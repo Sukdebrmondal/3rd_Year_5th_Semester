@@ -8,6 +8,7 @@ def server_program():
     print("->" + host)
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # creates server side socket
+     
     
     server_socket.bind((host, port))  # binds host address and port together
 
