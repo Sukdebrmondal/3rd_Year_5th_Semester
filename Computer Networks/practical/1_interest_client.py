@@ -10,7 +10,7 @@ def client_program():
     print(serveraddress)
     #  create socket
     client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-
+    
     # takes input
     principal = input("write the amount: ")
     rate = input("write the rate: ")

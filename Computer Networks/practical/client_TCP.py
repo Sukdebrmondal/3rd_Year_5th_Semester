@@ -5,7 +5,7 @@ def client_program():
     host = socket.gethostname()  
     port = 5000  # socket server port number
 
-      # creates client side socket
+    # creates client side socket
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # creates client side socket
     client_socket.connect((host, port))  # connects to the server
 
