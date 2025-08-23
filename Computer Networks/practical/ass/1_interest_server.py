@@ -23,12 +23,12 @@ def server_program():
         
 
         
-        principal,rate,time = message.split() # Extract values
+        a,b,c=map(str,message.split(",")) # Extract values
 
         # convert to float value
-        principal= float(principal)
-        rate = float(rate)
-        time = float(time)
+        principal= float(a)
+        rate = float(b)
+        time = float(c)
 
         print("principal: ", principal)
         print("Rate: ", rate)
