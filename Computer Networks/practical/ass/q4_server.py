@@ -23,6 +23,7 @@ def server_program():
         # receive data from the client
         data=connection.recv(1024).decode()
         if data == "exit":
+            print("Server shutting down.")
             break
 
         # split the string

@@ -16,6 +16,7 @@ def client_program():
     while True:
         a=input("enter the first word: ")
         if not a:
+            print("Client exiting...")
             break
         b=input("enter the second word: ")
 

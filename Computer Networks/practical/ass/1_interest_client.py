@@ -1,7 +1,5 @@
 import socket
 
-
-
 def client_program():
     host = socket.gethostname() #local host
     port = 5000

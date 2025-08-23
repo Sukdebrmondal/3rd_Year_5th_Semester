@@ -12,7 +12,8 @@ def client_program():
     client_socket.connect((host,port))  # connects to the server
     while True:
         a=input("enter the number1: ")  #takes inputs
-        if a == "exit":   
+        if a == "exit": 
+            print("Client exiting...")  
             break
         b=input("enter the number2: ")
         c= input("enter the operator: ") 

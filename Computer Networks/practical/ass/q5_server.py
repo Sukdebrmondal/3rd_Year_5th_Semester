@@ -22,6 +22,7 @@ def server_program():
     while True:
         data=conn.recv(1024).decode()
         if not data:
+            print("Server shutting down.")
             break
         a,b=map(str,data.split(","))  #data split
         c=""

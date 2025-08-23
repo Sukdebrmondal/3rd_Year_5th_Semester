@@ -11,8 +11,7 @@ def client_program():
 
     client_socket=socket.socket(socket.AF_INET,socket.SOCK_STREAM) # creates client side socket
     client_socket.connect((host,port)) # connects to the server
-
-    
+    # takes input
     a=input("enter the first file: ")
     
     b=input("enter the second file: ")

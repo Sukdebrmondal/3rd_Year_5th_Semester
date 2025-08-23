@@ -4,10 +4,12 @@ def server_program():
     host = socket.gethostname() #local host
     port = 5000
     print("->" + host)
+
     # socket create
     server_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+
     # connection
-    server_socket.bind((host, port)) 
+    server_socket.bind((host, port))
     print("UDP Server running.....")
 
     while True:
@@ -18,26 +20,20 @@ def server_program():
         if message.lower().strip() == "exit":
             print("Server shutting down.")
             break
-            
-        a,b,c=map(str,message.split(",")) # Extract values
-
-        # convert to float value
-        principal= float(a)
-        rate = float(b)
-        time = float(c)
-
-        print("principal: ", principal)
-        print("Rate: ", rate)
-        print("Time: ", time)
-
-        #calculate the interest
-        result = (principal * rate * time)/100
-        print(result)
+        a=int(message)
+        b=abs(a)
+        s = 0
+        num=str(b)
+        for i in range(1,len(num)):  
+            if (i+1)%2==0:
+                s=s+int(num[i])
+        print(s)
+        
         #convert into string
-        interest = str(result)
+        result = str(s)
         #send the result to the client
-        print("the interest is: ",interest)
-        server_socket.sendto(interest.encode(),address)
+        print("the output is: ",result)
+        server_socket.sendto(result.encode(),address)
         
     server_socket.close()
 
