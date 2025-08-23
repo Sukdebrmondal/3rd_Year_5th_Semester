@@ -12,8 +12,20 @@ def server_program():
     print("the conncetion client: " + str(address))
 
     data=conn.recv(1024).decode()
-    filename,block_size=map(str,data.split(","))
-    
+    print(data)
+    file,block_size=map(str,data.split(","))
+    print(file)
+
+    try:
+        if(os.path.exists(file)):
+            f=open(file,"r")
+            content=f.read(int(block_size))
+            f.close()
+    except Exception as e:
+        print(e)
+    print("The condition check from the server side: " + content)
+    conn.send(content.encode())
+    conn.close()
 
 if __name__ == "__main__":
     server_program()
