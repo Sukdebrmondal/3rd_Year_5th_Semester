@@ -40,15 +40,17 @@ if __name__ == '__main__':
 
 
 
-# PS E:\repositary\3rd_Year_5th_Semester\Computer Networks\practical\ass> python .\3_server.py
 # ->SUKDEB
 # UDP Server running.....
 # data:  b'test1.txt'
-# Address:  ('127.0.0.1', 50788)
+# Address:  ('10.142.105.6', 59026)
 # test1.txt
 # the content of this file: hi there this  a test1 file content....
 
+# data:  b'text.txt'
+# Address:  ('10.142.105.6', 59026)
+# text.txt
 # data:  b'exit'
-# Address:  ('127.0.0.1', 50788)
+# Address:  ('10.142.105.6', 59026)
 # exit
 # Server shutting down.
