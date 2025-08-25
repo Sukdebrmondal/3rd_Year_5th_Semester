@@ -27,7 +27,7 @@ def server_program():
                 f.close()
         except Exception as e:
             print(e)
-        print("The condition check from the server side: " + content)
+        print("The content: " + content)
         print("\n")
         conn.send(content.encode())
     server_socket.close()

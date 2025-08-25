@@ -40,5 +40,10 @@ if __name__ == '__main__':
 # The condition check from the client side: Content copied successfully!!
 
 
-# enter the first file: 
+# enter the first file: file.txt
+# enter the second file: file2.txt
+# The condition check from the client side: File not found
+
+
+# enter the first file:
 # client exiting.....

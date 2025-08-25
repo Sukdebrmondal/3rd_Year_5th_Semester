@@ -56,7 +56,9 @@ if __name__ == "__main__":
 
 
 # Server is starting on host: SUKDEB
-# Connected client: ('10.142.105.6', 59578)
+# Connected client: ('192.168.0.104', 65520)
 # test1.txt test2.txt
 # Server response: Content copied successfully!!
+# file.txt file2.txt
+# Server response: File not found
 # Server shutting down.
