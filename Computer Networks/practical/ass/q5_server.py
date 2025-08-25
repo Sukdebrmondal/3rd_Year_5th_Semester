@@ -10,7 +10,7 @@ def server_program():
     host=socket.gethostname()  # get the hostname
     port=5000  # initiates port no above 1024
 
-    print("-->" + host)
+    print("Server is starting on host:", host)
 
     server_socket=socket.socket(socket.AF_INET,socket.SOCK_STREAM) # creates server side socket
     server_socket.bind((host,port))  # binds host address and port together
@@ -31,10 +31,25 @@ def server_program():
         else:
             c="Check condition not satisfied"
 
-        print("The condition check from the server side: " + c)
+        print("The condition check result: " + c)
+        print("\n")
         message=c
         conn.send(message.encode()) #send to the client
     conn.close()
 
 if __name__ == "__main__":
     server_program()
+
+
+# Server is starting on host: SUKDEB
+# the connection cllient: ('10.142.105.6', 58806)
+# The condition check result: Check condition satisfied
+
+
+# The condition check result: Check condition satisfied
+
+
+# The condition check result: Check condition not satisfied
+
+
+# Server shutting down.

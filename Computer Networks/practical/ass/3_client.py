@@ -30,3 +30,15 @@ def client_program():
 
 if __name__ == '__main__':
     client_program()
+
+
+
+#     PS E:\repositary\3rd_Year_5th_Semester\Computer Networks\practical\ass> python .\3_client.py
+# SUKDEB
+# ('SUKDEB', 5000)
+# write the filename: test1.txt
+# Receive the answer from the server:  hi there this  a test1 file content....
+
+# write the filename: exit
+# Client exiting...
+# PS E:\repositary\3rd_Year_5th_Semester\Computer Networks\practical\ass> 

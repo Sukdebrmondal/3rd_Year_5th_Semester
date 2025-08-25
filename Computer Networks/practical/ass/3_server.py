@@ -37,3 +37,18 @@ def server_program():
 
 if __name__ == '__main__':
     server_program()
+
+
+
+# PS E:\repositary\3rd_Year_5th_Semester\Computer Networks\practical\ass> python .\3_server.py
+# ->SUKDEB
+# UDP Server running.....
+# data:  b'test1.txt'
+# Address:  ('127.0.0.1', 50788)
+# test1.txt
+# the content of this file: hi there this  a test1 file content....
+
+# data:  b'exit'
+# Address:  ('127.0.0.1', 50788)
+# exit
+# Server shutting down.

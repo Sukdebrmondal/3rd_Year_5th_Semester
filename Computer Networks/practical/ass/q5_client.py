@@ -9,7 +9,7 @@ import socket
 def client_program():
     host=socket.gethostname()  # get the hostname
     port=5000 # socket server port number
-
+    print("Client is starting on host:", host)
     client_socket=socket.socket(socket.AF_INET,socket.SOCK_STREAM) # creates client side socket
     client_socket.connect((host,port)) # connects to the server
 
@@ -25,7 +25,28 @@ def client_program():
 
         data=client_socket.recv(1024).decode()  # receives response
         print("The condition check from the server side: " + data) #print
+        print("\n")
     client_socket.close()
 
 if __name__ == '__main__':
     client_program()
+
+
+# Client is starting on host: SUKDEB
+# enter the first word: listen
+# enter the second word: silent
+# The condition check from the server side: Check condition satisfied
+
+
+# enter the first word: sukdeb
+# enter the second word: bedkus
+# The condition check from the server side: Check condition satisfied
+
+
+# enter the first word: hello
+# enter the second word: hi
+# The condition check from the server side: Check condition not satisfied
+
+
+# enter the first word:
+# Client exiting...

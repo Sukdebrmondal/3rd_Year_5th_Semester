@@ -1,46 +1,61 @@
-import socket
+import socket   
 
 def server_program():
-    host = socket.gethostname() #local host
-    port = 5000
+    host = socket.gethostname()   # local host
+    port = 5000                   # Port number 
     print("->" + host)
-    # socket create
-    server_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-    # connection
+
+    # Create a UDP socket 
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+    # Bind the socket with the host and port 
     server_socket.bind((host, port)) 
     print("UDP Server running.....")
 
     while True:
-        data,address = server_socket.recvfrom(1024)
-        print("data: ", data)
-        print("Address: ", address)
-        message = data.decode()
-        if message.lower().strip() == "exit":
-            print("Server shutting down.")
+        # Receive data from client 
+        data, address = server_socket.recvfrom(1024)
+        # Decode the data into string
+        message = data.decode().strip()
+        print(message)
+        # If message is "exit", shut down the server
+        if message.lower() == "exit":
+            print("Server shutting down")
             break
-            
-        a,b,c=map(str,message.split(",")) # Extract values
 
-        # convert to float value
-        principal= float(a)
-        rate = float(b)
-        time = float(c)
+        # Split the received string 
+        a, b, c = map(str, message.split(","))  
 
-        print("principal: ", principal)
-        print("Rate: ", rate)
-        print("Time: ", time)
+        # Convert extracted string values to float 
+        principal = float(a)   # Principal Amount
+        rate = float(b)        # Rate of Interest
+        time = float(c)        # Time 
 
-        #calculate the interest
-        result = (principal * rate * time)/100
-        print(result)
-        #convert into string
+        # Calculate Simple Interest 
+        result = (principal * rate * time) / 100
         interest = str(result)
-        #send the result to the client
-        print("the interest is: ",interest)
-        server_socket.sendto(interest.encode(),address)
-        
-    server_socket.close()
+        # Print the interest value 
+        print("The interest is: ", interest)
+        print("\n")
+        # Send the calculated interest to the client
+        server_socket.sendto(interest.encode(), address)
 
+    server_socket.close()
 
 if __name__ == '__main__':
     server_program()
+
+
+# PS E:\repositary\3rd_Year_5th_Semester\Computer Networks\practical\ass> python .\1_interest_server.py
+# ->SUKDEB
+# UDP Server running.....
+# 12500,12,10
+# The interest is:  15000.0
+
+
+# 250000,17,25
+# The interest is:  1062500.0
+
+
+# exit
+# Server shutting down
