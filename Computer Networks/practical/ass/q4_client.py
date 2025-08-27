@@ -2,6 +2,11 @@
 # # an operator to the server in operand1 operator operand2 format and the server will calculate 
 # # the result and display it. Allowed operators are +, -, *, /, %. 
 
+#------------------------------------
+# try test cases like 12.43 + 43 (error)
+# 1.0 * 3.0 (error)
+# -----------------------------
+
 
 import socket
 
