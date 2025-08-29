@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Sukdeb\\Desktop\\AB SIR\\Basic Calculater\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F3DDCA61-B8EE-4E55-924E-197EE5C4C6E8}|Basic Calculater\\Basic Calculater.csproj|c:\\users\\sukdeb\\desktop\\ab sir\\basic calculater\\basic calculater\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F3DDCA61-B8EE-4E55-924E-197EE5C4C6E8}|Basic Calculater\\Basic Calculater.csproj|solutionrelative:basic calculater\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3DDCA61-B8EE-4E55-924E-197EE5C4C6E8}|Basic Calculater\\Basic Calculater.csproj|c:\\users\\sukdeb\\desktop\\ab sir\\basic calculater\\basic calculater\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3DDCA61-B8EE-4E55-924E-197EE5C4C6E8}|Basic Calculater\\Basic Calculater.csproj|solutionrelative:basic calculater\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Sukdeb\\Desktop\\AB SIR\\Basic Calculater\\Basic Calculater\\Form1.cs",
+              "RelativeDocumentMoniker": "Basic Calculater\\Form1.cs",
+              "ToolTip": "C:\\Users\\Sukdeb\\Desktop\\AB SIR\\Basic Calculater\\Basic Calculater\\Form1.cs*",
+              "RelativeToolTip": "Basic Calculater\\Form1.cs*",
+              "ViewState": "AgIAAE4AAAAAAAAAAAA7wGAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-26T08:35:51.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Sukdeb\\Desktop\\AB SIR\\Basic Calculater\\Basic Calculater\\Form1.cs",
+              "RelativeDocumentMoniker": "Basic Calculater\\Form1.cs",
+              "ToolTip": "C:\\Users\\Sukdeb\\Desktop\\AB SIR\\Basic Calculater\\Basic Calculater\\Form1.cs [Design]*",
+              "RelativeToolTip": "Basic Calculater\\Form1.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-26T08:02:26.703Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

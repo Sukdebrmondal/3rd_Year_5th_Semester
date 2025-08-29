@@ -1,0 +1,16 @@
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\bin\Debug\net8.0-windows\Basic Calculater.exe
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\bin\Debug\net8.0-windows\Basic Calculater.deps.json
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\bin\Debug\net8.0-windows\Basic Calculater.runtimeconfig.json
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\bin\Debug\net8.0-windows\Basic Calculater.dll
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\bin\Debug\net8.0-windows\Basic Calculater.pdb
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\Basic_Calculater.Form1.resources
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\Basic Calculater.csproj.GenerateResource.cache
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\Basic Calculater.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\Basic Calculater.AssemblyInfoInputs.cache
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\Basic Calculater.AssemblyInfo.cs
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\Basic Calculater.csproj.CoreCompileInputs.cache
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\Basic Calculater.dll
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\refint\Basic Calculater.dll
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\Basic Calculater.pdb
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\Basic Calculater.genruntimeconfig.cache
+C:\Users\Sukdeb\Desktop\AB SIR\Basic Calculater\Basic Calculater\obj\Debug\net8.0-windows\ref\Basic Calculater.dll
