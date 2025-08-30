@@ -38,8 +38,8 @@ def server_program():
 
         # Split the received message
         a, b, c = map(str, data.split(","))
-        a = int(a)   
-        c = int(c)   
+        a = float(a)   
+        c = float(c)   
 
         try:
             if b == "+":

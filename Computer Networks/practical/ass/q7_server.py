@@ -25,8 +25,11 @@ def server_program():
                 f=open(file,"r")
                 content=f.read(int(block_size))
                 f.close()
+            else:
+                content="File does not exits in this system"
         except Exception as e:
-            print(e)
+            content="error is " + str(e)
+            
         print("The content: " + content)
         print("\n")
         conn.send(content.encode())
