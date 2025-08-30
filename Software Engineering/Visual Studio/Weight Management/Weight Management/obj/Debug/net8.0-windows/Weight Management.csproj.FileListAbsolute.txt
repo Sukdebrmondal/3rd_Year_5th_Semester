@@ -15,3 +15,4 @@ E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Weight Ma
 E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Weight Management\Weight Management\obj\Debug\net8.0-windows\Weight Management.pdb
 E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Weight Management\Weight Management\obj\Debug\net8.0-windows\Weight Management.genruntimeconfig.cache
 E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Weight Management\Weight Management\obj\Debug\net8.0-windows\ref\Weight Management.dll
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Weight Management\Weight Management\obj\Debug\net8.0-windows\Weight_Management.Form2.resources
