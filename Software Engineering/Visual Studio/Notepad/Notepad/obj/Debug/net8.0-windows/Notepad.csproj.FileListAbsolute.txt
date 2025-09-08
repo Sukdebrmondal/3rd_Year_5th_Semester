@@ -1,0 +1,17 @@
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\bin\Debug\net8.0-windows\Notepad.exe
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\bin\Debug\net8.0-windows\Notepad.deps.json
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\bin\Debug\net8.0-windows\Notepad.runtimeconfig.json
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\bin\Debug\net8.0-windows\Notepad.dll
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\bin\Debug\net8.0-windows\Notepad.pdb
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\Notepad.Form1.resources
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\Notepad.csproj.GenerateResource.cache
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\Notepad.GeneratedMSBuildEditorConfig.editorconfig
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\Notepad.AssemblyInfoInputs.cache
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\Notepad.AssemblyInfo.cs
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\Notepad.csproj.CoreCompileInputs.cache
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\Notepad.sourcelink.json
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\Notepad.dll
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\refint\Notepad.dll
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\Notepad.pdb
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\Notepad.genruntimeconfig.cache
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\net8.0-windows\ref\Notepad.dll
