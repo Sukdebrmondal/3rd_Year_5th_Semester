@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            menuStrip1 = new MenuStrip();
+            MainMenuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             newFileToolStripMenuItem = new ToolStripMenuItem();
-            newWindowToolStripMenuItem = new ToolStripMenuItem();
             openToolStripMenuItem = new ToolStripMenuItem();
             saveToolStripMenuItem = new ToolStripMenuItem();
             saveAsToolStripMenuItem = new ToolStripMenuItem();
@@ -42,63 +41,63 @@
             viewToolStripMenuItem = new ToolStripMenuItem();
             zoomToolStripMenuItem = new ToolStripMenuItem();
             richTextBox1 = new RichTextBox();
-            zoomOutToolStripMenuItem = new ToolStripMenuItem();
-            menuStrip1.SuspendLayout();
+            newWindowToolStripMenuItem = new ToolStripSeparator();
+            toolStripMenuItem1 = new ToolStripSeparator();
+            printPreviewToolStripMenuItem = new ToolStripMenuItem();
+            printPreviewToolStripMenuItem1 = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripSeparator();
+            exitToolStripMenuItem = new ToolStripMenuItem();
+            MainMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // menuStrip1
+            // MainMenuStrip1
             // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, viewToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 28);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
+            MainMenuStrip1.ImageScalingSize = new Size(20, 20);
+            MainMenuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, viewToolStripMenuItem });
+            MainMenuStrip1.Location = new Point(0, 0);
+            MainMenuStrip1.Name = "MainMenuStrip1";
+            MainMenuStrip1.Size = new Size(800, 28);
+            MainMenuStrip1.TabIndex = 0;
+            MainMenuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newFileToolStripMenuItem, newWindowToolStripMenuItem, openToolStripMenuItem, saveToolStripMenuItem, saveAsToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newFileToolStripMenuItem, newWindowToolStripMenuItem, openToolStripMenuItem, saveToolStripMenuItem, saveAsToolStripMenuItem, toolStripMenuItem1, printPreviewToolStripMenuItem, printPreviewToolStripMenuItem1, toolStripMenuItem2, exitToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(46, 24);
-            fileToolStripMenuItem.Text = "File";
+            fileToolStripMenuItem.Text = "&File";
+            fileToolStripMenuItem.Click += (sender, e) => { /* Optionally handle File menu click here */ };
             // 
             // newFileToolStripMenuItem
             // 
             newFileToolStripMenuItem.Name = "newFileToolStripMenuItem";
-            newFileToolStripMenuItem.Size = new Size(181, 26);
-            newFileToolStripMenuItem.Text = "New File";
-            // 
-            // newWindowToolStripMenuItem
-            // 
-            newWindowToolStripMenuItem.Name = "newWindowToolStripMenuItem";
-            newWindowToolStripMenuItem.Size = new Size(181, 26);
-            newWindowToolStripMenuItem.Text = "New Window";
+            newFileToolStripMenuItem.Size = new Size(224, 26);
+            newFileToolStripMenuItem.Text = "&New ";
             // 
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(181, 26);
-            openToolStripMenuItem.Text = "Open";
+            openToolStripMenuItem.Size = new Size(224, 26);
+            openToolStripMenuItem.Text = "&Open";
             // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(181, 26);
-            saveToolStripMenuItem.Text = "Save";
+            saveToolStripMenuItem.Size = new Size(224, 26);
+            saveToolStripMenuItem.Text = "&Save";
             // 
             // saveAsToolStripMenuItem
             // 
             saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            saveAsToolStripMenuItem.Size = new Size(181, 26);
-            saveAsToolStripMenuItem.Text = "Save As";
+            saveAsToolStripMenuItem.Size = new Size(224, 26);
+            saveAsToolStripMenuItem.Text = "Sa&ve As";
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { copyToolStripMenuItem, paToolStripMenuItem, cutToolStripMenuItem });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
             editToolStripMenuItem.Size = new Size(49, 24);
-            editToolStripMenuItem.Text = "Edit";
+            editToolStripMenuItem.Text = "&Edit";
             // 
             // copyToolStripMenuItem
             // 
@@ -120,16 +119,16 @@
             // 
             // viewToolStripMenuItem
             // 
-            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { zoomToolStripMenuItem, zoomOutToolStripMenuItem });
+            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { zoomToolStripMenuItem });
             viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             viewToolStripMenuItem.Size = new Size(55, 24);
-            viewToolStripMenuItem.Text = "View";
+            viewToolStripMenuItem.Text = "&Help";
             // 
             // zoomToolStripMenuItem
             // 
             zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
             zoomToolStripMenuItem.Size = new Size(224, 26);
-            zoomToolStripMenuItem.Text = "Zoom In";
+            zoomToolStripMenuItem.Text = "About Notepad";
             // 
             // richTextBox1
             // 
@@ -140,11 +139,38 @@
             richTextBox1.TabIndex = 1;
             richTextBox1.Text = "";
             // 
-            // zoomOutToolStripMenuItem
+            // newWindowToolStripMenuItem
             // 
-            zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            zoomOutToolStripMenuItem.Size = new Size(224, 26);
-            zoomOutToolStripMenuItem.Text = "Zoom Out";
+            newWindowToolStripMenuItem.Name = "newWindowToolStripMenuItem";
+            newWindowToolStripMenuItem.Size = new Size(221, 6);
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(221, 6);
+            // 
+            // printPreviewToolStripMenuItem
+            // 
+            printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
+            printPreviewToolStripMenuItem.Size = new Size(224, 26);
+            printPreviewToolStripMenuItem.Text = "&Print Preview";
+            // 
+            // printPreviewToolStripMenuItem1
+            // 
+            printPreviewToolStripMenuItem1.Name = "printPreviewToolStripMenuItem1";
+            printPreviewToolStripMenuItem1.Size = new Size(224, 26);
+            printPreviewToolStripMenuItem1.Text = "P&rint ";
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(221, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(224, 26);
+            exitToolStripMenuItem.Text = "E&xit";
             // 
             // Form1
             // 
@@ -152,24 +178,23 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(richTextBox1);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(MainMenuStrip1);
+            MainMenuStrip = MainMenuStrip1;
             Name = "Form1";
-            Text = "Form1";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            Text = "Notepad";
+            MainMenuStrip1.ResumeLayout(false);
+            MainMenuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private MenuStrip menuStrip1;
+        private MenuStrip MainMenuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem newFileToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem viewToolStripMenuItem;
-        private ToolStripMenuItem newWindowToolStripMenuItem;
         private ToolStripMenuItem openToolStripMenuItem;
         private ToolStripMenuItem saveToolStripMenuItem;
         private ToolStripMenuItem saveAsToolStripMenuItem;
@@ -178,6 +203,11 @@
         private ToolStripMenuItem cutToolStripMenuItem;
         private ToolStripMenuItem zoomToolStripMenuItem;
         private RichTextBox richTextBox1;
-        private ToolStripMenuItem zoomOutToolStripMenuItem;
+        private ToolStripSeparator newWindowToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripMenuItem printPreviewToolStripMenuItem;
+        private ToolStripMenuItem printPreviewToolStripMenuItem1;
+        private ToolStripSeparator toolStripMenuItem2;
+        private ToolStripMenuItem exitToolStripMenuItem;
     }
 }
