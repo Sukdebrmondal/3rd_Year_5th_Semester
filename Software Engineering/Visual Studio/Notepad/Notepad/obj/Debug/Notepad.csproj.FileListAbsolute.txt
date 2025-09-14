@@ -1,0 +1,11 @@
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\bin\Debug\Notepad.exe.config
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\bin\Debug\Notepad.exe
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\bin\Debug\Notepad.pdb
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.csproj.AssemblyReference.cache
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.Form1.resources
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.csproj.GenerateResource.cache
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.csproj.CoreCompileInputs.cache
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.exe
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.pdb
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\Notepad\Notepad\obj\Debug\Notepad.exe.config

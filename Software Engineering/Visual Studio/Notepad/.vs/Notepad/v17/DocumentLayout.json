@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A18F2D91-58DD-4C3D-9B10-57883B46CA7C}|Notepad\\Notepad.csproj|e:\\repositary\\3rd_year_5th_semester\\software engineering\\visual studio\\notepad\\notepad\\notepsdform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A18F2D91-58DD-4C3D-9B10-57883B46CA7C}|Notepad\\Notepad.csproj|solutionrelative:notepad\\notepsdform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B3D1A17F-F255-4371-825D-BEF17DF1AA79}|Notepad\\Notepad.csproj|e:\\repositary\\3rd_year_5th_semester\\software engineering\\visual studio\\notepad\\notepad\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B3D1A17F-F255-4371-825D-BEF17DF1AA79}|Notepad\\Notepad.csproj|solutionrelative:notepad\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A18F2D91-58DD-4C3D-9B10-57883B46CA7C}|Notepad\\Notepad.csproj|e:\\repositary\\3rd_year_5th_semester\\software engineering\\visual studio\\notepad\\notepad\\notepsdform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A18F2D91-58DD-4C3D-9B10-57883B46CA7C}|Notepad\\Notepad.csproj|solutionrelative:notepad\\notepsdform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A18F2D91-58DD-4C3D-9B10-57883B46CA7C}|Notepad\\Notepad.csproj|e:\\repositary\\3rd_year_5th_semester\\software engineering\\visual studio\\notepad\\notepad\\notepsdform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A18F2D91-58DD-4C3D-9B10-57883B46CA7C}|Notepad\\Notepad.csproj|solutionrelative:notepad\\notepsdform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B3D1A17F-F255-4371-825D-BEF17DF1AA79}|Notepad\\Notepad.csproj|e:\\repositary\\3rd_year_5th_semester\\software engineering\\visual studio\\notepad\\notepad\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B3D1A17F-F255-4371-825D-BEF17DF1AA79}|Notepad\\Notepad.csproj|solutionrelative:notepad\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,44 +18,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NotepsdForm.Designer.cs",
-              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\Notepad\\NotepsdForm.Designer.cs",
-              "RelativeDocumentMoniker": "Notepad\\NotepsdForm.Designer.cs",
-              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\Notepad\\NotepsdForm.Designer.cs*",
-              "RelativeToolTip": "Notepad\\NotepsdForm.Designer.cs*",
-              "ViewState": "AgIAADQAAAAAAAAAAAAqwEQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T03:13:52.573Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NotepsdForm.cs",
-              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\Notepad\\NotepsdForm.cs",
-              "RelativeDocumentMoniker": "Notepad\\NotepsdForm.cs",
-              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\Notepad\\NotepsdForm.cs",
-              "RelativeToolTip": "Notepad\\NotepsdForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T03:07:58.274Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "NotepsdForm.cs [Design]",
-              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\Notepad\\NotepsdForm.cs",
-              "RelativeDocumentMoniker": "Notepad\\NotepsdForm.cs",
-              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\Notepad\\NotepsdForm.cs [Design]",
-              "RelativeToolTip": "Notepad\\NotepsdForm.cs [Design]",
+              "Title": "Form1.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\Notepad\\Form1.cs",
+              "RelativeDocumentMoniker": "Notepad\\Form1.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\Notepad\\Form1.cs",
+              "RelativeToolTip": "Notepad\\Form1.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAawEAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T08:34:08.077Z",
+              "WhenOpened": "2025-09-14T03:34:11.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\Notepad\\Form1.cs",
+              "RelativeDocumentMoniker": "Notepad\\Form1.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Notepad\\Notepad\\Form1.cs [Design]",
+              "RelativeToolTip": "Notepad\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T03:17:45.801Z",
               "EditorCaption": " [Design]"
             }
           ]
