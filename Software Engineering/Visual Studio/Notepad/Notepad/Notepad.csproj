@@ -78,6 +78,7 @@
     </Compile>
     <None Include="Resources\Exit" />
     <None Include="Resources\file_new" />
+    <None Include="Resources\font" />
     <None Include="Resources\Notepad" />
     <None Include="Resources\notepad %282%29" />
     <None Include="Resources\Print" />
@@ -85,6 +86,7 @@
     <None Include="Resources\redo" />
     <None Include="Resources\save" />
     <None Include="Resources\save_as" />
+    <None Include="Resources\time" />
     <None Include="Resources\Undo" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,15 @@ namespace Notepad
         private bool isFileAlreadySaved;
         private bool isFileDirty;
         private string currOpenFileName;
+        private FontDialog fontDialog = new FontDialog();
+        private PrintDocument printDocument = new PrintDocument();
+        private string documentTextToPrint;
         #endregion
 
         public Form1()
         {
             InitializeComponent();
+            printDocument.PrintPage += printDocument_PrintPage;
         }
 
         /// <summary>
@@ -37,6 +42,33 @@ namespace Notepad
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //if (isFileDirty)
+            //{
+            //    DialogResult result = MessageBox.Show("Do you want to save your changes?", "Unsaved Changes",
+            //        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+            //    switch (result)
+            //    {
+            //        case DialogResult.Yes:
+            //            // User chose to save changes
+            //            SaveFileMenu();
+
+            //            break;
+            //        case DialogResult.No:
+            //            // User chose not to save changes
+
+            //            break;
+            //    }
+
+
+            //}
+            //ClearScreen();
+            //isFileAlreadySaved = false;
+            //currOpenFileName = "";
+            //EnableDisableUndoRedoProcess(false);
+            newfilemenu();
+        }
+        private void newfilemenu()
+        {
             if (isFileDirty)
             {
                 DialogResult result = MessageBox.Show("Do you want to save your changes?", "Unsaved Changes",
@@ -46,19 +78,17 @@ namespace Notepad
                     case DialogResult.Yes:
                         // User chose to save changes
                         SaveFileMenu();
-                        
                         break;
                     case DialogResult.No:
                         // User chose not to save changes
-                        
                         break;
                 }
-
-            
             }
             ClearScreen();
-            isFileAlreadySaved= false;
+            isFileAlreadySaved = false;
             currOpenFileName = "";
+            EnableDisableUndoRedoProcess(false);
+            MessagetoolStripStatusLabel1.Text = "New file created successfully.";
         }
 
         /// <summary>
@@ -70,6 +100,7 @@ namespace Notepad
         private void exiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+            MessagetoolStripStatusLabel1.Text = "Notepad application closed.";
         }
 
         /// <summary>
@@ -77,7 +108,9 @@ namespace Notepad
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        /// 
+
+        private void openfilemenu()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text Files (*.txt)|*.txt|Rich text Format (*.rtf)|*.rtf|pdf (*.pdf)|*.pdf";
@@ -89,15 +122,15 @@ namespace Notepad
                     MessageBox.Show("Invalid file name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if(Path.GetExtension(openFileDialog.FileName).ToLower() == ".txt")
+                if (Path.GetExtension(openFileDialog.FileName).ToLower() == ".txt")
                 {
                     richTextBox1.LoadFile(openFileDialog.FileName, RichTextBoxStreamType.PlainText);
                 }
-                if(Path.GetExtension(openFileDialog.FileName).ToLower() == ".rtf")
+                if (Path.GetExtension(openFileDialog.FileName).ToLower() == ".rtf")
                 {
                     richTextBox1.LoadFile(openFileDialog.FileName, RichTextBoxStreamType.RichText);
                 }
-                if(Path.GetExtension(openFileDialog.FileName).ToLower() == ".pdf")
+                if (Path.GetExtension(openFileDialog.FileName).ToLower() == ".pdf")
                 {
                     MessageBox.Show("PDF files are not supported for viewing in this Notepad application.", "Unsupported Format", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -105,10 +138,53 @@ namespace Notepad
                 isFileAlreadySaved = true;
                 isFileDirty = false;
                 currOpenFileName = openFileDialog.FileName;
-
+                EnableDisableUndoRedoProcess(false);
+                MessagetoolStripStatusLabel1.Text = "File opened successfully.";
             }
-            //this.Text = Path.GetFileName(openFileDialog.FileName) + " - Notepad";
+        }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //openFileDialog.Filter = "Text Files (*.txt)|*.txt|Rich text Format (*.rtf)|*.rtf|pdf (*.pdf)|*.pdf";
+            //DialogResult result = openFileDialog.ShowDialog();
+            //if (result == DialogResult.OK)
+            //{
+            //    if (string.IsNullOrWhiteSpace(openFileDialog.FileName))
+            //    {
+            //        MessageBox.Show("Invalid file name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return;
+            //    }
+            //    if (Path.GetExtension(openFileDialog.FileName).ToLower() == ".txt")
+            //    {
+            //        richTextBox1.LoadFile(openFileDialog.FileName, RichTextBoxStreamType.PlainText);
+            //    }
+            //    if (Path.GetExtension(openFileDialog.FileName).ToLower() == ".rtf")
+            //    {
+            //        richTextBox1.LoadFile(openFileDialog.FileName, RichTextBoxStreamType.RichText);
+            //    }
+            //    if (Path.GetExtension(openFileDialog.FileName).ToLower() == ".pdf")
+            //    {
+            //        MessageBox.Show("PDF files are not supported for viewing in this Notepad application.", "Unsupported Format", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
+            //    this.Text = Path.GetFileName(openFileDialog.FileName) + " - Notepad(Create By Sukdeb)";
+            //    isFileAlreadySaved = true;
+            //    isFileDirty = false;
+            //    currOpenFileName = openFileDialog.FileName;
 
+            //    EnableDisableUndoRedoProcess(false);
+
+            //}
+            //this.Text = Path.GetFileName(openFileDialog.FileName) + " - Notepad";
+            openfilemenu();
+
+        }
+
+
+
+        private void EnableDisableUndoRedoProcess(bool enabled)
+        {
+            undoToolStripMenuItem.Enabled = enabled;
+            redoToolStripMenuItem.Enabled = enabled;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -233,14 +309,15 @@ namespace Notepad
             //        isFileDirty = false;
             //    }
 
-                //}
-                SaveAsFileMenu();
+            //}
+            SaveAsFileMenu();
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            isFileDirty=true;
+            isFileDirty = true;
             undoToolStripMenuItem.Enabled = true;
+            toolStripButton7.Enabled = true;
         }
 
         //clear screen method
@@ -255,6 +332,8 @@ namespace Notepad
         {
             richTextBox1.Undo();
             undoToolStripMenuItem.Enabled = false;
+            toolStripButton8.Enabled = true;
+            toolStripButton7.Enabled = false;
             redoToolStripMenuItem.Enabled = true;
         }
 
@@ -263,6 +342,307 @@ namespace Notepad
             richTextBox1.Redo();
             redoToolStripMenuItem.Enabled = false;
             undoToolStripMenuItem.Enabled = true;
+            toolStripButton8.Enabled = false;
+            toolStripButton7.Enabled = true;
+        }
+
+        private void selectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectAll();
+        }
+
+        private void dateTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectedText = DateTime.Now.ToString();
+        }
+
+        private void boldToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormatText(FontStyle.Bold);
+
+        }
+        private void FormatText(FontStyle fontStyle)
+        {
+            richTextBox1.SelectionFont = new Font(richTextBox1.Font, fontStyle);
+        }
+
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            FormatText(FontStyle.Italic);
+        }
+
+        private void underlineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormatText(FontStyle.Underline);
+        }
+
+        private void strikethroughtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormatText(FontStyle.Strikeout);
+        }
+
+        private void normalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormatText(FontStyle.Regular);
+        }
+
+        private void formatFontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = new FontDialog();
+            fontDialog.ShowColor = true;
+            fontDialog.ShowApply = true;
+
+            fontDialog.Apply += new EventHandler(FontDialog_Apply);
+
+            DialogResult result = fontDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                if(richTextBox1.SelectionLength > 0 )
+                    richTextBox1.SelectionFont = fontDialog.Font;
+                richTextBox1.SelectionColor = fontDialog.Color;
+            }
+        }
+         private void FontDialog_Apply(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = sender as FontDialog;
+            if (fontDialog != null)
+            {
+                if (richTextBox1.SelectionLength > 0)
+                    richTextBox1.SelectionFont = fontDialog.Font;
+                richTextBox1.SelectionColor = fontDialog.Color;
+            }
+        }
+        private void changeTextColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            DialogResult result = colorDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                if (richTextBox1.SelectionLength > 0)
+                    richTextBox1.SelectionColor = colorDialog.Color;
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            newfilemenu();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            openfilemenu();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            SaveAsFileMenu();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            SaveAsFileMenu();
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            documentTextToPrint = richTextBox1.Text;
+            using (PrintDialog printDialog = new PrintDialog())
+            {
+                printDialog.Document = printDocument;
+                if (printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    printDocument.Print();
+                }
+            }
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Undo();
+            undoToolStripMenuItem.Enabled = false;
+            toolStripButton8.Enabled = true;
+            toolStripButton7.Enabled = false;
+            redoToolStripMenuItem.Enabled = true;
+
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Redo();
+            redoToolStripMenuItem.Enabled = false;
+            undoToolStripMenuItem.Enabled = true;
+            toolStripButton8.Enabled = false;
+            toolStripButton7.Enabled = true;
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectedText = DateTime.Now.ToString();
+        }
+
+        private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = new FontDialog();
+            fontDialog.ShowColor = true;
+            fontDialog.ShowApply = true;
+
+            fontDialog.Apply += new EventHandler(FontDialog_Apply);
+
+            DialogResult result = fontDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                if (richTextBox1.SelectionLength > 0)
+                    richTextBox1.SelectionFont = fontDialog.Font;
+                richTextBox1.SelectionColor = fontDialog.Color;
+            }
+        }
+
+        private void toolStripButton11_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Redo();
+            redoToolStripMenuItem.Enabled = false;
+            undoToolStripMenuItem.Enabled = true;
+            toolStripButton8.Enabled = false;
+            toolStripButton7.Enabled = true;
+        }
+
+        private void sToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormatText(FontStyle.Regular);
+        }
+
+        private void boldToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormatText(FontStyle.Bold);
+        }
+
+        private void italicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormatText(FontStyle.Italic);
+        }
+
+        private void underlineToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormatText(FontStyle.Strikeout);
+        }
+
+        private void toolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Undo();
+            undoToolStripMenuItem.Enabled = false;
+            toolStripButton8.Enabled = true;
+            toolStripButton7.Enabled = false;
+            redoToolStripMenuItem.Enabled = true;
+        }
+
+        // Context menu: Undo
+        private void contextUndoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (richTextBox1.CanUndo)
+                richTextBox1.Undo();
+        }
+
+        // Context menu: Redo
+        private void contextRedoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (richTextBox1.CanRedo)
+                richTextBox1.Redo();
+        }
+
+        // Context menu: Select All
+        private void contextSelectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectAll();
+        }
+
+        private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(documentTextToPrint, richTextBox1.Font, Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top);
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            documentTextToPrint = richTextBox1.Text;
+            PrintPreviewDialog previewDialog = new PrintPreviewDialog();
+            previewDialog.Document = printDocument;
+            previewDialog.ShowDialog();
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            documentTextToPrint = richTextBox1.Text;
+            using (PrintDialog printDialog = new PrintDialog())
+            {
+                printDialog.Document = printDocument;
+                if (printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    printDocument.Print();
+                }
+            }
+        }
+
+        private void printToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            documentTextToPrint = richTextBox1.Text;
+            using (PrintDialog printDialog = new PrintDialog())
+            {
+                printDialog.Document = printDocument;
+                if (printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    printDocument.Print();
+                }
+            }
+        }
+
+        private void printPreviewToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            documentTextToPrint = richTextBox1.Text;
+            using (PrintPreviewDialog previewDialog = new PrintPreviewDialog())
+            {
+                previewDialog.Document = printDocument;
+                previewDialog.ShowDialog();
+            }
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            documentTextToPrint = richTextBox1.Text;
+            using (PrintPreviewDialog previewDialog = new PrintPreviewDialog())
+            {
+                previewDialog.Document = printDocument;
+                previewDialog.ShowDialog();
+            }
+        }
+
+        // Cut
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (richTextBox1.SelectedText.Length > 0)
+                richTextBox1.Cut();
+        }
+
+        // Copy
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (richTextBox1.SelectedText.Length > 0)
+                richTextBox1.Copy();
+        }
+
+        // Paste
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Clipboard.ContainsText())
+                richTextBox1.Paste();
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Notepad Application\nVersion 1.0\n© 2025 Your Company Sukdeb", "About Notepad", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
