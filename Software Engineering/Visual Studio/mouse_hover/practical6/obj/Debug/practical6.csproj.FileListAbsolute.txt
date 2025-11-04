@@ -1,0 +1,21 @@
+C:\Users\raj\source\repos\practical6\practical6\bin\Debug\practical6.exe.config
+C:\Users\raj\source\repos\practical6\practical6\bin\Debug\practical6.exe
+C:\Users\raj\source\repos\practical6\practical6\bin\Debug\practical6.pdb
+C:\Users\raj\source\repos\practical6\practical6\obj\Debug\practical6.csproj.AssemblyReference.cache
+C:\Users\raj\source\repos\practical6\practical6\obj\Debug\practical6.Form1.resources
+C:\Users\raj\source\repos\practical6\practical6\obj\Debug\practical6.Properties.Resources.resources
+C:\Users\raj\source\repos\practical6\practical6\obj\Debug\practical6.csproj.GenerateResource.cache
+C:\Users\raj\source\repos\practical6\practical6\obj\Debug\practical6.csproj.CoreCompileInputs.cache
+C:\Users\raj\source\repos\practical6\practical6\obj\Debug\practical6.exe
+C:\Users\raj\source\repos\practical6\practical6\obj\Debug\practical6.pdb
+C:\Users\raj\source\repos\practical6\practical6\obj\Debug\practical6.exe.config
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\SE assignments (1)\SE assignments\practical6\practical6\obj\Debug\practical6.csproj.AssemblyReference.cache
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\SE assignments (1)\SE assignments\practical6\practical6\obj\Debug\practical6.exe.config
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\SE assignments (1)\SE assignments\practical6\practical6\obj\Debug\practical6.exe
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\SE assignments (1)\SE assignments\practical6\practical6\obj\Debug\practical6.pdb
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\SE assignments (1)\SE assignments\practical6\practical6\obj\Debug\practical6.Properties.Resources.resources
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\SE assignments (1)\SE assignments\practical6\practical6\obj\Debug\practical6.csproj.GenerateResource.cache
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\mouse_hover\practical6\obj\Debug\practical6.csproj.AssemblyReference.cache
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\mouse_hover\practical6\obj\Debug\practical6.exe.config
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\mouse_hover\practical6\obj\Debug\practical6.exe
+E:\repositary\3rd_Year_5th_Semester\Software Engineering\Visual Studio\mouse_hover\practical6\obj\Debug\practical6.pdb

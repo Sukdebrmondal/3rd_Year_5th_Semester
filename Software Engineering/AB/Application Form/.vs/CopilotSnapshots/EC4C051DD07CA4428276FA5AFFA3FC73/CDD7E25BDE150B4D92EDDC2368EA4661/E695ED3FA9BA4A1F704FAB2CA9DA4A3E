@@ -1,0 +1,401 @@
+﻿using System.Xml;
+
+namespace Application_Form
+{
+    public partial class Form1 : Form
+    {
+        public static string course = "";
+        public static string name = "";
+        public static string gender = "";
+        public static string guardianname = "";
+        public static string village = "";
+        public static string postoffice = "";
+        public static string policestation = "";
+        public static string district = "";
+        public static string pin = "";
+        public static string country = "";
+        public static string state = "";
+        public static string email = "";
+        public static string phone = "";
+        public static string category = "";
+        public static string dateofbirth = "";
+        public static string boardname = "";
+        public static string institution = "";
+        public static string rollno = "";
+        public static string passingyear = "";
+        public static string subject1 = "";
+        public static string subject2 = "";
+        public static string subject3 = "";
+        public static string subject4 = "";
+        public static string subject5 = "";
+        public static string mark1 = "";
+        public static string mark2 = "";
+        public static string mark3 = "";
+        public static string mark4 = "";
+        public static string mark5 = "";
+        public static string submit = "";
+
+        public Form1()
+        {
+            InitializeComponent();
+            // Add KeyPress event handler for pin code validation
+            textBox10.KeyPress += textBox10_KeyPress;
+            // Add KeyPress event handler for permanent pin code validation
+            textBox16.KeyPress += textBox16_KeyPress;
+            // Add Validating event handler for email validation
+            textBox18.Validating += textBox18_Validating;
+            // Add KeyPress event handler for phone number validation
+            textBox19.KeyPress += textBox19_KeyPress;
+            // Add KeyPress event handler for another number validation
+            textBox20.KeyPress += textBox20_KeyPress;
+            // Add KeyPress event handler for roll number validation
+            textBox21.KeyPress += textBox21_KeyPress;
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            course = comboBox1.Text;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            submit = course + " " + name + " " + gender + " " + guardianname + "\n" + village + " " + postoffice + " " + policestation +
+                " " + district + "\n" + pin + " " + country + " " + state + " " + email + "\n" + phone + " " + dateofbirth + " " + boardname
+                + "\n" + institution + " " + rollno + " " + passingyear + " " + subject1 + "\n" + subject2 + " " + subject3 + " " + subject4
+                + " " + subject5 + "\n" + mark1 + " " + mark2 + " " + mark3 + " " + mark4 + " " + mark5;
+
+            label34.Text = submit;
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            name = textBox3.Text;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                gender = "male";
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                gender = "female";
+            }
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            guardianname = textBox5.Text;
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+            village = textBox6.Text;
+            if (checkBox1.Checked)
+            {
+                textBox12.Text = village;
+            }
+
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+            postoffice = textBox7.Text;
+            if (checkBox1.Checked)
+            {
+                textBox13.Text = postoffice;
+            }
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+            policestation = textBox8.Text;
+            if (checkBox1.Checked)
+            {
+                textBox14.Text = policestation;
+            }
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+            district = textBox9.Text;
+            if (checkBox1.Checked)
+            {
+                textBox15.Text = district;
+            }
+        }
+
+
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+            pin = Convert.ToString(textBox10.Text);
+            if (checkBox1.Checked)
+            {
+                textBox16.Text = pin;
+            }
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+            country = textBox11.Text;
+            if (checkBox1.Checked)
+            {
+                textBox17.Text = country;
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            state = comboBox2.Text;
+            if (checkBox1.Checked)
+            {
+                comboBox3.Text = state;
+            }
+
+        }
+
+        private void textBox18_TextChanged(object sender, EventArgs e)
+        {
+            email = textBox18.Text;
+        }
+
+        private void textBox19_TextChanged(object sender, EventArgs e)
+        {
+            phone = Convert.ToString(textBox19.Text);
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            dateofbirth = dateTimePicker1.Text;
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            boardname = comboBox5.Text;
+        }
+
+        private void textBox22_TextChanged(object sender, EventArgs e)
+        {
+            institution = textBox22.Text;
+        }
+
+        private void textBox21_TextChanged(object sender, EventArgs e)
+        {
+            rollno = Convert.ToString(textBox21.Text);
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            passingyear = comboBox4.Text;
+        }
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            subject1 = comboBox6.Text;
+        }
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            subject2 = comboBox7.Text;
+        }
+
+        private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            subject3 = comboBox8.Text;
+        }
+
+        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            subject4 = comboBox9.Text;
+        }
+
+        private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            subject5 = comboBox10.Text;
+        }
+
+        private void textBox23_TextChanged(object sender, EventArgs e)
+        {
+            mark1 = Convert.ToString(textBox23.Text);
+        }
+
+        private void textBox24_TextChanged(object sender, EventArgs e)
+        {
+            mark2 = Convert.ToString(textBox24.Text);
+        }
+
+        private void textBox25_TextChanged(object sender, EventArgs e)
+        {
+            mark3 = Convert.ToString(textBox25.Text);
+        }
+
+        private void textBox26_TextChanged(object sender, EventArgs e)
+        {
+            mark4 = Convert.ToString(textBox26.Text);
+        }
+
+        private void textBox27_TextChanged(object sender, EventArgs e)
+        {
+            mark5 = Convert.ToString(textBox27.Text);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                textBox12.Text = textBox6.Text;
+                textBox12.Enabled = false;  
+                textBox13.Text = textBox7.Text;
+                textBox13.Enabled = false; // Disable textBox13 when checkbox is checked
+                textBox14.Text = textBox8.Text;
+                textBox14.Enabled = false; // Disable textBox14 when checkbox is checked
+                textBox15.Text = textBox9.Text;
+                textBox15.Enabled = false; // Disable textBox15 when checkbox is checked
+                textBox16.Text = textBox10.Text;
+                textBox16.Enabled = false; // Disable textBox16 when checkbox is checked
+                textBox17.Text = textBox11.Text;
+                textBox17.Enabled = false; // Disable textBox17 when checkbox is checked
+                comboBox3.Text = comboBox2.Text;
+                comboBox3.Enabled = false; // Disable comboBox3 when checkbox is checked
+            }
+            else
+            {
+                textBox12.Enabled = true; // Enable textBox12 when checkbox is unchecked
+                textBox13.Enabled = true; // Enable textBox13 when checkbox is unchecked
+                textBox14.Enabled = true; // Enable textBox14 when checkbox is unchecked
+                textBox15.Enabled = true; // Enable textBox15 when checkbox is unchecked
+                textBox16.Enabled = true; // Enable textBox16 when checkbox is unchecked
+                textBox17.Enabled = true; // Enable textBox17 when checkbox is unchecked
+                comboBox3.Enabled = true; // Enable comboBox3 when checkbox is unchecked
+            }
+        }
+
+        private void textBox13_TextChanged(object sender, EventArgs e)
+        {
+            //if (checkBox1.Checked)
+            //{
+            //    textBox13.Text = textBox7.Text;
+            //}
+        }
+
+        private void textBox16_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox17_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                textBox20.Visible = true;
+            }
+            else
+            {
+                textBox20.Visible = false;
+            }
+        }
+
+        // Add this method for pin code input validation
+        private void textBox10_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only digits and control keys (e.g., backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            // Prevent more than 6 digits
+            if (char.IsDigit(e.KeyChar) && textBox10.Text.Length >= 6 && textBox10.SelectionLength == 0)
+            {
+                e.Handled = true;
+            }
+        }
+
+        // Add this method for permanent pin code input validation
+        private void textBox16_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only digits and control keys (e.g., backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            // Prevent more than 6 digits
+            if (char.IsDigit(e.KeyChar) && textBox16.Text.Length >= 6 && textBox16.SelectionLength == 0)
+            {
+                e.Handled = true;
+            }
+        }
+
+        // Add this method for email input validation
+        private void textBox18_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var emailText = textBox18.Text;
+            if (!System.Text.RegularExpressions.Regex.IsMatch(emailText, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Cancel = true;
+            }
+        }
+
+        // Add this method for phone number input validation
+        private void textBox19_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only digits and control keys (e.g., backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            // Prevent more than 10 digits
+            if (char.IsDigit(e.KeyChar) && textBox19.Text.Length >= 10 && textBox19.SelectionLength == 0)
+            {
+                e.Handled = true;
+            }
+        }
+
+        // Add this method for another number input validation
+        private void textBox20_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only digits and control keys (e.g., backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            // Prevent more than 10 digits
+            if (char.IsDigit(e.KeyChar) && textBox20.Text.Length >= 10 && textBox20.SelectionLength == 0)
+            {
+                e.Handled = true;
+            }
+        }
+
+        // Add this method for roll number input validation
+        private void textBox21_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only digits and control keys (e.g., backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            // Prevent more than 6 digits
+            if (char.IsDigit(e.KeyChar) && textBox21.Text.Length >= 6 && textBox21.SelectionLength == 0)
+            {
+                e.Handled = true;
+            }
+        }
+    }
+}

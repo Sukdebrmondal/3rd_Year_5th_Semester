@@ -1,0 +1,48 @@
+﻿using System;
+using System.Windows.Forms;
+
+namespace Application_Form
+{
+    public partial class Form2 : Form
+    {
+        private static string GetPermanentAddress()
+        {
+            // Collect permanent address fields from Form1 static variables
+            return $"{Form1.village} (Village), {Form1.postoffice} (Post Office), {Form1.policestation} (Police Station), {Form1.district} (District), {Form1.pin} (Pin), {Form1.country} (Country), {Form1.state} (State)";
+        }
+
+        private static string GetPermanentAddressAlt()
+        {
+            // Collect permanent address fields from permanent address controls
+            return $"{Form1.village} (Village), {Form1.postoffice} (Post Office), {Form1.policestation} (Police Station), {Form1.district} (District), {Form1.pin} (Pin), {Form1.country} (Country), {Form1.state} (State)";
+        }
+
+        public Form2(string[] labels, string[] values)
+        {
+            InitializeComponent();
+
+            // Build the display text with heading and subheading
+            var displayText = "RAMAKRISHNA MISSION VIDYAMANDIRA\r\nAPPLICATION FORM\r\n\r\n";
+            for (int i = 0; i < labels.Length; i++)
+            {
+                // For subjects and marks, only show if not empty
+                if ((labels[i].StartsWith("Subject") || labels[i].StartsWith("Mark")) && string.IsNullOrWhiteSpace(values[i]))
+                    continue;
+                // For address, add permanent address below
+                if (labels[i] == "Address:")
+                {
+                    displayText += $"{labels[i]} {values[i]}\r\n";
+                    displayText += $"Permanent Address: {Form1.village} (Village), {Form1.postoffice} (Post Office), {Form1.policestation} (Police Station), {Form1.district} (District), {Form1.pin} (Pin), {Form1.country} (Country), {Form1.state} (State)\r\n";
+                    continue;
+                }
+                displayText += $"{labels[i]} {values[i]}\r\n";
+            }
+            textBoxDisplay.Text = displayText;
+        }
+
+        private void textBoxDisplay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

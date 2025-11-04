@@ -1,0 +1,65 @@
+﻿using System;
+using System.Windows.Forms;
+
+namespace Application_Form
+{
+    public partial class Form2 : Form
+    {
+        public Form2(string[] labels, string[] values)
+        {
+            InitializeComponent();
+
+            // Add heading labels above the TableLayoutPanel
+            var heading = new Label
+            {
+                Text = "RAMAKRISHNA MISSION VIDYAMANDIRA",
+                AutoSize = true,
+                Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold),
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Top,
+                ForeColor = System.Drawing.Color.Navy
+            };
+            var subheading = new Label
+            {
+                Text = "APPLICATION FORM",
+                AutoSize = true,
+                Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold),
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Top,
+                ForeColor = System.Drawing.Color.DarkSlateGray
+            };
+            this.Controls.Add(subheading);
+            this.Controls.Add(heading);
+            this.Controls.SetChildIndex(heading, 0);
+            this.Controls.SetChildIndex(subheading, 1);
+
+            // Dynamically add label-value pairs to a TableLayoutPanel
+            for (int i = 0; i < labels.Length; i++)
+            {
+                var label = new Label
+                {
+                    Text = labels[i],
+                    AutoSize = true,
+                    Anchor = AnchorStyles.Left,
+                    Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold)
+                };
+                var value = new Label
+                {
+                    Text = values[i],
+                    AutoSize = true,
+                    Anchor = AnchorStyles.Left,
+                    Font = new System.Drawing.Font("Segoe UI", 10F)
+                };
+                tableLayoutPanel1.RowCount++;
+                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                tableLayoutPanel1.Controls.Add(label, 0, i);
+                tableLayoutPanel1.Controls.Add(value, 1, i);
+            }
+        }
+
+        private void textBoxDisplay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

@@ -1,0 +1,76 @@
+﻿namespace Application_Form
+{
+    partial class Form2
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.TextBox textBoxDisplay;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            textBoxDisplay = new TextBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            SuspendLayout();
+            // 
+            // textBoxDisplay
+            // 
+            textBoxDisplay.Font = new Font("Segoe UI", 10F);
+            textBoxDisplay.Location = new Point(20, 20);
+            textBoxDisplay.Multiline = true;
+            textBoxDisplay.Name = "textBoxDisplay";
+            textBoxDisplay.ReadOnly = true;
+            textBoxDisplay.ScrollBars = ScrollBars.Vertical;
+            textBoxDisplay.Size = new Size(560, 100);
+            textBoxDisplay.TabIndex = 0;
+            textBoxDisplay.TextChanged += textBoxDisplay_TextChanged;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel1.AutoScroll = true;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tableLayoutPanel1.Location = new Point(20, 140);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Size = new Size(560, 240);
+            tableLayoutPanel1.TabIndex = 1;
+            // 
+            // Form2
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(600, 400);
+            Controls.Add(tableLayoutPanel1);
+            Controls.Add(textBoxDisplay);
+            Name = "Form2";
+            Text = "Submitted Data";
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+    }
+}
