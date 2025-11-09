@@ -1,50 +1,83 @@
+
+# TCP
+# import socket
+
+# def server_program():
+#     host = socket.gethostname()
+#     port = 5000
+#     address = (host,port)
+#     server_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+#     server_socket.bind(address)
+#     server_socket.listen(2)
+#     print("Tcp server start..........")
+#     conn,address = server_socket.accept()
+
+#     data = conn.recv(1024).decode()
+#     print(data)
+#     data=int(data)
+#     b=abs(data)
+#     type(b)
+#     s=0
+#     b=str(b)
+#     for i in range(1,len(b)):
+#         if(i+1)%2 == 0:
+#             s=s+int(b[i])
+#     print(s)
+
+#     res=str(s)
+#     print("result: ",res)
+#     conn.send(res.encode())
+
+
+
+# if __name__ == "__main__":
+#     server_program()
+
+
+
+# UDP
 import socket
 
-
 def server_program():
+    host = socket.gethostname()
+    port = 5000
+    address = (host,port)
+    server_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+    server_socket.bind(address)
     
-    host = socket.gethostname() # get the hostname
-    port = 5000  # initiates port no above 1024
-    print("->" + host)
 
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # creates server side socket
-     
-    
-    server_socket.bind((host, port))  # binds host address and port together
+    data,address = server_socket.recvfrom(1024)
+    data = data.decode()
+    if data.isdigit():
+        port_no=int(data)
+        if 0<=port_no<=65535 :
+            valid=True
+        else:
+            valid=False
+    else:
+        valid=False
 
-    server_socket.listen(2)  # how many client the server can listen simultaneously
-    conn, address = server_socket.accept()  # accepts new connection
-    
-    print("Connection from: " + str(address))
-    # while True:
-    #     # receives data stream. it won't accept data packet greater than 1024 bytes
-    #     data = conn.recv(1024).decode()
-    #     if not data:
-    #         # if data is not received then break
-    #         break
-    #     print("from connected user: " + str(data))
-    #     data = input(' -> ')
-    #     conn.send(data.encode())  # sends data to the client
-    while True:
+    if valid:
+        res = f"'{data}' is a valid port no"
+    else:
+        res = f"'{data}' is no a valid port no"
 
-        data = conn.recv(1024).decode()
-        if data == "exit":
-            break
-        a,b,c = map(str,data.split(","))
-        a = int(a)
-        b = int(b)
+    # print(data)
+    # data=int(data)
+    # b=abs(data)
+    # type(b)
+    # s=0
+    # b=str(b)
+    # for i in range(1,len(b)):
+    #     if(i+1)%2 == 0:
+    #         s=s+int(b[i])
+    # print(s)
 
-        res = 0
-        if (c == "+"):
-            res = a+b
-        elif(c == "-"):
-            res = a-b
-        
-        message = str(res)
-        conn.send(message.encode())
-
-    conn.close()  # closes the connection
+    # res=str(s)
+    print("result: ",res)
+    server_socket.sendto(res.encode(),address)
 
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     server_program()

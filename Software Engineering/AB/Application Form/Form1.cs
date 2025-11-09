@@ -421,7 +421,7 @@ namespace Application_Form
             if (checkBox1.Checked)
             {
                 textBox12.Text = textBox6.Text;
-                textBox12.Enabled = false;  
+                textBox12.Enabled = false;
                 textBox13.Text = textBox7.Text;
                 textBox13.Enabled = false; // Disable textBox13 when checkbox is checked
                 textBox14.Text = textBox8.Text;
@@ -648,6 +648,11 @@ namespace Application_Form
         private void SubjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateSubjectComboBoxes();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
