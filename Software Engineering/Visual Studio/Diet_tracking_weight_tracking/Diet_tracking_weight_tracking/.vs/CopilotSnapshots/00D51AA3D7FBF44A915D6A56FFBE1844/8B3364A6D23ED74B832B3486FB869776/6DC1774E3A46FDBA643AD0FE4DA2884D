@@ -1,0 +1,141 @@
+﻿using System;
+using System.IO;
+using System.Text.Json;
+
+namespace Diet_tracking_weight_tracking.Services
+{
+    /// <summary>
+    /// Simple credentials data structure
+    /// </summary>
+    public class SimpleCredentials
+    {
+        public string Username { get; set; }
+  public string Password { get; set; }
+    }
+
+    /// <summary>
+    /// Simple credential store that uses plaintext JSON file for persistence
+    /// </summary>
+    public static class SimpleCredStore
+    {
+     private static string AppFolder => Path.Combine(
+          Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DietTracker");
+
+        public static string CredFilePath
+        {
+          get
+            {
+            Directory.CreateDirectory(AppFolder); // ensure folder exists
+    return Path.Combine(AppFolder, "credentials.json");
+     }
+        }
+
+        /// <summary>
+        /// Load credentials from disk. If file doesn't exist, return default admin/admin.
+        /// </summary>
+        /// <returns>Stored credentials or default admin/admin</returns>
+      public static SimpleCredentials LoadCredentials()
+        {
+            try
+ {
+    var path = CredFilePath;
+         if (!File.Exists(path))
+  {
+       // default credentials
+     System.Diagnostics.Debug.WriteLine("Credentials file not found, using default admin/admin");
+  return new SimpleCredentials { Username = "admin", Password = "admin" };
+     }
+
+                var json = File.ReadAllText(path);
+   if (string.IsNullOrWhiteSpace(json))
+     {
+         System.Diagnostics.Debug.WriteLine("Credentials file is empty, using default admin/admin");
+           return new SimpleCredentials { Username = "admin", Password = "admin" };
+    }
+
+                var creds = JsonSerializer.Deserialize<SimpleCredentials>(json);
+       if (creds == null || string.IsNullOrEmpty(creds.Username) || creds.Password == null)
+           {
+  System.Diagnostics.Debug.WriteLine("Invalid credentials in file, using default admin/admin");
+       return new SimpleCredentials { Username = "admin", Password = "admin" };
+         }
+
+                System.Diagnostics.Debug.WriteLine($"Loaded credentials for user: {creds.Username}");
+      return creds;
+            }
+            catch (Exception ex)
+            {
+        // on any error fall back to default
+      System.Diagnostics.Debug.WriteLine($"Error loading credentials: {ex.Message}, using default admin/admin");
+     return new SimpleCredentials { Username = "admin", Password = "admin" };
+            }
+     }
+
+    /// <summary>
+        /// Save credentials (overwrites file). This stores plain text username/password.
+        /// </summary>
+/// <param name="creds">Credentials to save</param>
+    public static void SaveCredentials(SimpleCredentials creds)
+        {
+     if (creds == null) return;
+            try
+            {
+           var path = CredFilePath;
+     var json = JsonSerializer.Serialize(creds, new JsonSerializerOptions { WriteIndented = true });
+           File.WriteAllText(path, json);
+  System.Diagnostics.Debug.WriteLine($"Saved credentials for user: {creds.Username} to {path}");
+    }
+            catch (Exception ex)
+            {
+       System.Diagnostics.Debug.WriteLine($"Error saving credentials: {ex.Message}");
+   }
+        }
+
+        /// <summary>
+        /// Register a new user (overwrites existing credentials)
+        /// </summary>
+      /// <param name="username">New username</param>
+        /// <param name="password">New password</param>
+    /// <returns>True if registration successful</returns>
+        public static bool RegisterUser(string username, string password)
+{
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrEmpty(password))
+     return false;
+
+            var creds = new SimpleCredentials { Username = username.Trim(), Password = password };
+   SaveCredentials(creds);
+            return true;
+        }
+
+        /// <summary>
+        /// Authenticate user against stored credentials
+        /// </summary>
+        /// <param name="username">Username to check</param>
+/// <param name="password">Password to check</param>
+        /// <returns>True if credentials match</returns>
+        public static bool AuthenticateUser(string username, string password)
+        {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrEmpty(password))
+        return false;
+
+      var stored = LoadCredentials();
+       if (stored == null)
+     return false;
+
+            // Compare exactly (case-sensitive)
+            bool isValid = stored.Username == username.Trim() && stored.Password == password;
+        System.Diagnostics.Debug.WriteLine($"Authentication for {username}: {(isValid ? "SUCCESS" : "FAILED")}");
+            return isValid;
+      }
+
+     /// <summary>
+  /// Get current stored username (for display purposes)
+        /// </summary>
+        /// <returns>Current username or "admin" if none set</returns>
+        public static string GetCurrentUsername()
+        {
+        var stored = LoadCredentials();
+            return stored?.Username ?? "admin";
+        }
+    }
+}

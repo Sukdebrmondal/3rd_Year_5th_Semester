@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\price\\",
+  "WorkspaceRootPath": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\SE assignments (1)\\SE assignments\\project2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{70872363-5AE5-46F4-8774-8C795AAAE36E}|project2\\project2.csproj|e:\\repositary\\3rd_year_5th_semester\\software engineering\\visual studio\\price\\project2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{70872363-5AE5-46F4-8774-8C795AAAE36E}|project2\\project2.csproj|e:\\repositary\\3rd_year_5th_semester\\software engineering\\se assignments (1)\\se assignments\\project2\\project2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{70872363-5AE5-46F4-8774-8C795AAAE36E}|project2\\project2.csproj|solutionrelative:project2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -28,9 +28,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\price\\project2\\Form1.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\SE assignments (1)\\SE assignments\\project2\\project2\\Form1.cs",
               "RelativeDocumentMoniker": "project2\\Form1.cs",
-              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\price\\project2\\Form1.cs [Design]",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\SE assignments (1)\\SE assignments\\project2\\project2\\Form1.cs [Design]",
               "RelativeToolTip": "project2\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-03T08:34:09.174Z",

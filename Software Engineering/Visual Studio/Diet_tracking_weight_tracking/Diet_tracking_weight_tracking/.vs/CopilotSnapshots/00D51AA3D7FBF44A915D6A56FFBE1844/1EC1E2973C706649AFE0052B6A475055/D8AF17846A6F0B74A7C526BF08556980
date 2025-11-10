@@ -1,0 +1,581 @@
+﻿namespace Diet_tracking_weight_tracking.Forms
+{
+    partial class DashboardForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+ /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+           components.Dispose();
+        }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+     /// Required method for Designer support - do not modify
+ /// the contents of this method with the code editor.
+        /// </summary>
+     private void InitializeComponent()
+        {
+this.pnlHeader = new System.Windows.Forms.Panel();
+      this.lblWaterTarget = new System.Windows.Forms.Label();
+      this.lblBmiValue = new System.Windows.Forms.Label();
+this.lblTargetCalories = new System.Windows.Forms.Label();
+            this.lblGoal = new System.Windows.Forms.Label();
+       this.pnlLeft = new System.Windows.Forms.Panel();
+         this.dgvFoodEntries = new System.Windows.Forms.DataGridView();
+            this.lblCalorieTotal = new System.Windows.Forms.Label();
+            this.lblFoodTitle = new System.Windows.Forms.Label();
+       this.pnlCenter = new System.Windows.Forms.Panel();
+      this.picWeight = new System.Windows.Forms.PictureBox();
+      this.picCalories = new System.Windows.Forms.PictureBox();
+       this.pnlBottom = new System.Windows.Forms.Panel();
+            this.nudQuantity = new System.Windows.Forms.NumericUpDown();
+        this.lblQuantity = new System.Windows.Forms.Label();
+     this.btnAddFood = new System.Windows.Forms.Button();
+      this.cboFoodSearch = new System.Windows.Forms.ComboBox();
+         this.lblFoodSearch = new System.Windows.Forms.Label();
+            this.pnlQuickAdd = new System.Windows.Forms.Panel();
+   this.lblQuickAdd = new System.Windows.Forms.Label();
+ this.pnlRight = new System.Windows.Forms.Panel();
+    this.dgvWeightEntries = new System.Windows.Forms.DataGridView();
+        this.nudWeightEntry = new System.Windows.Forms.NumericUpDown();
+        this.btnAddWeight = new System.Windows.Forms.Button();
+         this.lblWeightEntry = new System.Windows.Forms.Label();
+            this.dgvWaterEntries = new System.Windows.Forms.DataGridView();
+            this.progressWater = new System.Windows.Forms.ProgressBar();
+       this.lblWaterTotal = new System.Windows.Forms.Label();
+       this.btnAddWater = new System.Windows.Forms.Button();
+            this.nudWaterMl = new System.Windows.Forms.NumericUpDown();
+            this.lblWaterMl = new System.Windows.Forms.Label();
+          this.lblWaterTitle = new System.Windows.Forms.Label();
+            this.pnlHeader.SuspendLayout();
+ this.pnlLeft.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)(this.dgvFoodEntries)).BeginInit();
+        this.pnlCenter.SuspendLayout();
+  ((System.ComponentModel.ISupportInitialize)(this.picWeight)).BeginInit();
+     ((System.ComponentModel.ISupportInitialize)(this.picCalories)).BeginInit();
+    this.pnlBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
+            this.pnlRight.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)(this.dgvWeightEntries)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.nudWeightEntry)).BeginInit();
+    ((System.ComponentModel.ISupportInitialize)(this.dgvWaterEntries)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.nudWaterMl)).BeginInit();
+       this.SuspendLayout();
+            // 
+        // pnlHeader
+   // 
+          this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
+    this.pnlHeader.Controls.Add(this.lblWaterTarget);
+            this.pnlHeader.Controls.Add(this.lblBmiValue);
+       this.pnlHeader.Controls.Add(this.lblTargetCalories);
+  this.pnlHeader.Controls.Add(this.lblGoal);
+      this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+     this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+      this.pnlHeader.Name = "pnlHeader";
+  this.pnlHeader.Size = new System.Drawing.Size(1200, 60);
+            this.pnlHeader.TabIndex = 0;
+     // 
+  // lblWaterTarget
+            // 
+    this.lblWaterTarget.AutoSize = true;
+            this.lblWaterTarget.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+          this.lblWaterTarget.ForeColor = System.Drawing.Color.White;
+ this.lblWaterTarget.Location = new System.Drawing.Point(900, 20);
+     this.lblWaterTarget.Name = "lblWaterTarget";
+   this.lblWaterTarget.Size = new System.Drawing.Size(117, 19);
+    this.lblWaterTarget.TabIndex = 3;
+            this.lblWaterTarget.Text = "Water Goal: N/A";
+     // 
+    // lblBmiValue
+            // 
+       this.lblBmiValue.AutoSize = true;
+  this.lblBmiValue.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblBmiValue.ForeColor = System.Drawing.Color.White;
+            this.lblBmiValue.Location = new System.Drawing.Point(600, 20);
+            this.lblBmiValue.Name = "lblBmiValue";
+        this.lblBmiValue.Size = new System.Drawing.Size(74, 19);
+       this.lblBmiValue.TabIndex = 2;
+this.lblBmiValue.Text = "BMI: N/A";
+       // 
+            // lblTargetCalories
+            // 
+    this.lblTargetCalories.AutoSize = true;
+   this.lblTargetCalories.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+this.lblTargetCalories.ForeColor = System.Drawing.Color.White;
+this.lblTargetCalories.Location = new System.Drawing.Point(300, 20);
+       this.lblTargetCalories.Name = "lblTargetCalories";
+    this.lblTargetCalories.Size = new System.Drawing.Size(90, 19);
+     this.lblTargetCalories.TabIndex = 1;
+this.lblTargetCalories.Text = "Target: N/A";
+       // 
+         // lblGoal
+          // 
+       this.lblGoal.AutoSize = true;
+     this.lblGoal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+       this.lblGoal.ForeColor = System.Drawing.Color.White;
+      this.lblGoal.Location = new System.Drawing.Point(20, 20);
+       this.lblGoal.Name = "lblGoal";
+ this.lblGoal.Size = new System.Drawing.Size(84, 21);
+this.lblGoal.TabIndex = 0;
+  this.lblGoal.Text = "Goal: N/A";
+            // 
+  // pnlLeft
+  // 
+        this.pnlLeft.BackColor = System.Drawing.Color.White;
+         this.pnlLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        this.pnlLeft.Controls.Add(this.dgvFoodEntries);
+         this.pnlLeft.Controls.Add(this.lblCalorieTotal);
+            this.pnlLeft.Controls.Add(this.lblFoodTitle);
+        this.pnlLeft.Location = new System.Drawing.Point(20, 80);
+          this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.Size = new System.Drawing.Size(350, 400);
+ this.pnlLeft.TabIndex = 1;
+    // 
+         // dgvFoodEntries
+            // 
+         this.dgvFoodEntries.AllowUserToAddRows = false;
+ this.dgvFoodEntries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+  this.dgvFoodEntries.BackgroundColor = System.Drawing.Color.White;
+        this.dgvFoodEntries.BorderStyle = System.Windows.Forms.BorderStyle.None;
+        this.dgvFoodEntries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+    this.dgvFoodEntries.Location = new System.Drawing.Point(10, 40);
+  this.dgvFoodEntries.MultiSelect = false;
+        this.dgvFoodEntries.Name = "dgvFoodEntries";
+        this.dgvFoodEntries.ReadOnly = true;
+  this.dgvFoodEntries.RowHeadersVisible = false;
+  this.dgvFoodEntries.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+   this.dgvFoodEntries.Size = new System.Drawing.Size(330, 320);
+ this.dgvFoodEntries.TabIndex = 2;
+         this.dgvFoodEntries.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFoodEntries_CellDoubleClick);
+  // 
+            // lblCalorieTotal
+         // 
+   this.lblCalorieTotal.AutoSize = true;
+            this.lblCalorieTotal.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+     this.lblCalorieTotal.Location = new System.Drawing.Point(10, 370);
+        this.lblCalorieTotal.Name = "lblCalorieTotal";
+         this.lblCalorieTotal.Size = new System.Drawing.Size(113, 19);
+            this.lblCalorieTotal.TabIndex = 1;
+       this.lblCalorieTotal.Text = "Total: 0 calories";
+          // 
+            // lblFoodTitle
+      // 
+            this.lblFoodTitle.AutoSize = true;
+            this.lblFoodTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblFoodTitle.Location = new System.Drawing.Point(10, 10);
+       this.lblFoodTitle.Name = "lblFoodTitle";
+            this.lblFoodTitle.Size = new System.Drawing.Size(108, 21);
+            this.lblFoodTitle.TabIndex = 0;
+          this.lblFoodTitle.Text = "Today's Food";
+        // 
+  // pnlCenter
+            // 
+          this.pnlCenter.BackColor = System.Drawing.Color.White;
+            this.pnlCenter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+         this.pnlCenter.Controls.Add(this.picWeight);
+         this.pnlCenter.Controls.Add(this.picCalories);
+   this.pnlCenter.Location = new System.Drawing.Point(390, 80);
+this.pnlCenter.Name = "pnlCenter";
+    this.pnlCenter.Size = new System.Drawing.Size(480, 400);
+        this.pnlCenter.TabIndex = 2;
+      this.pnlCenter.Padding = new System.Windows.Forms.Padding(5);
+   // 
+      // picWeight
+      // 
+  this.picWeight.BackColor = System.Drawing.Color.White;
+ this.picWeight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+ this.picWeight.Location = new System.Drawing.Point(10, 200);
+      this.picWeight.Name = "picWeight";
+      this.picWeight.Size = new System.Drawing.Size(460, 190);
+ this.picWeight.TabIndex = 1;
+      this.picWeight.TabStop = false;
+      this.picWeight.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+      // 
+      // picCalories
+      // 
+      this.picCalories.BackColor = System.Drawing.Color.White;
+      this.picCalories.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+  this.picCalories.Location = new System.Drawing.Point(10, 10);
+      this.picCalories.Name = "picCalories";
+      this.picCalories.Size = new System.Drawing.Size(460, 180);
+      this.picCalories.TabIndex = 0;
+      this.picCalories.TabStop = false;
+      this.picCalories.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+       // 
+ // pnlBottom
+       // 
+       this.pnlBottom.BackColor = System.Drawing.Color.White;
+            this.pnlBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+       this.pnlBottom.Controls.Add(this.nudQuantity);
+    this.pnlBottom.Controls.Add(this.lblQuantity);
+            this.pnlBottom.Controls.Add(this.btnAddFood);
+        this.pnlBottom.Controls.Add(this.cboFoodSearch);
+            this.pnlBottom.Controls.Add(this.lblFoodSearch);
+    this.pnlBottom.Controls.Add(this.pnlQuickAdd);
+this.pnlBottom.Controls.Add(this.lblQuickAdd);
+            this.pnlBottom.Location = new System.Drawing.Point(20, 500);
+   this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(850, 150);
+            this.pnlBottom.TabIndex = 3;
+  // 
+            // nudQuantity
+ // 
+this.nudQuantity.DecimalPlaces = 1;
+      this.nudQuantity.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.nudQuantity.Increment = new decimal(new int[] {
+         5,
+  0,
+            0,
+  65536});
+        this.nudQuantity.Location = new System.Drawing.Point(530, 40);
+     this.nudQuantity.Maximum = new decimal(new int[] {
+  20,
+            0,
+            0,
+   0});
+      this.nudQuantity.Minimum = new decimal(new int[] {
+            1,
+            0,
+      0,
+            65536});
+            this.nudQuantity.Name = "nudQuantity";
+       this.nudQuantity.Size = new System.Drawing.Size(60, 25);
+            this.nudQuantity.TabIndex = 6;
+            this.nudQuantity.Value = new decimal(new int[] {
+    1,
+            0,
+  0,
+         0});
+       // 
+        // lblQuantity
+        // 
+    this.lblQuantity.AutoSize = true;
+            this.lblQuantity.Font = new System.Drawing.Font("Segoe UI", 9F);
+      this.lblQuantity.Location = new System.Drawing.Point(530, 20);
+   this.lblQuantity.Name = "lblQuantity";
+          this.lblQuantity.Size = new System.Drawing.Size(56, 15);
+   this.lblQuantity.TabIndex = 5;
+       this.lblQuantity.Text = "Quantity:";
+   // 
+     // btnAddFood
+            // 
+       this.btnAddFood.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+      this.btnAddFood.FlatAppearance.BorderSize = 0;
+            this.btnAddFood.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+  this.btnAddFood.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+         this.btnAddFood.ForeColor = System.Drawing.Color.White;
+   this.btnAddFood.Location = new System.Drawing.Point(600, 40);
+            this.btnAddFood.Name = "btnAddFood";
+    this.btnAddFood.Size = new System.Drawing.Size(80, 30);
+     this.btnAddFood.TabIndex = 4;
+       this.btnAddFood.Text = "Add";
+            this.btnAddFood.UseVisualStyleBackColor = false;
+       this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
+            // 
+     // cboFoodSearch
+    // 
+     this.cboFoodSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFoodSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboFoodSearch.FormattingEnabled = true;
+   this.cboFoodSearch.Location = new System.Drawing.Point(280, 40);
+     this.cboFoodSearch.Name = "cboFoodSearch";
+            this.cboFoodSearch.Size = new System.Drawing.Size(240, 25);
+this.cboFoodSearch.TabIndex = 3;
+      // 
+            // lblFoodSearch
+            // 
+     this.lblFoodSearch.AutoSize = true;
+   this.lblFoodSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+ this.lblFoodSearch.Location = new System.Drawing.Point(280, 20);
+ this.lblFoodSearch.Name = "lblFoodSearch";
+         this.lblFoodSearch.Size = new System.Drawing.Size(67, 15);
+            this.lblFoodSearch.TabIndex = 2;
+            this.lblFoodSearch.Text = "Select Food:";
+/// 
+            // pnlQuickAdd
+         // 
+   this.pnlQuickAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+  this.pnlQuickAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlQuickAdd.Location = new System.Drawing.Point(10, 40);
+      this.pnlQuickAdd.Name = "pnlQuickAdd";
+      this.pnlQuickAdd.Size = new System.Drawing.Size(260, 100);
+ this.pnlQuickAdd.TabIndex = 1;
+      this.pnlQuickAdd.Padding = new System.Windows.Forms.Padding(5);
+      this.pnlQuickAdd.AutoScroll = true;
+      this.pnlQuickAdd.MinimumSize = new System.Drawing.Size(250, 80);
+         // 
+         // lblQuickAdd
+  // 
+   this.lblQuickAdd.AutoSize = true;
+        this.lblQuickAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+          this.lblQuickAdd.Location = new System.Drawing.Point(10, 10);
+            this.lblQuickAdd.Name = "lblQuickAdd";
+       this.lblQuickAdd.Size = new System.Drawing.Size(78, 19);
+ this.lblQuickAdd.TabIndex = 0;
+      this.lblQuickAdd.Text = "Quick Add";
+            // 
+  // pnlRight
+            // 
+         this.pnlRight.BackColor = System.Drawing.Color.White;
+            this.pnlRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+       this.pnlRight.Controls.Add(this.dgvWeightEntries);
+     this.pnlRight.Controls.Add(this.nudWeightEntry);
+            this.pnlRight.Controls.Add(this.btnAddWeight);
+            this.pnlRight.Controls.Add(this.lblWeightEntry);
+            this.pnlRight.Controls.Add(this.dgvWaterEntries);
+         this.pnlRight.Controls.Add(this.progressWater);
+          this.pnlRight.Controls.Add(this.lblWaterTotal);
+            this.pnlRight.Controls.Add(this.btnAddWater);
+            this.pnlRight.Controls.Add(this.nudWaterMl);
+       this.pnlRight.Controls.Add(this.lblWaterMl);
+    this.pnlRight.Controls.Add(this.lblWaterTitle);
+ this.pnlRight.Location = new System.Drawing.Point(890, 80);
+            this.pnlRight.Name = "pnlRight";
+            this.pnlRight.Size = new System.Drawing.Size(290, 570);
+            this.pnlRight.TabIndex = 4;
+       // 
+ // dgvWeightEntries
+            // 
+         this.dgvWeightEntries.AllowUserToAddRows = false;
+   this.dgvWeightEntries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+  this.dgvWeightEntries.BackgroundColor = System.Drawing.Color.White;
+this.dgvWeightEntries.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.dgvWeightEntries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+ this.dgvWeightEntries.Location = new System.Drawing.Point(20, 320);
+     this.dgvWeightEntries.MultiSelect = false;
+        this.dgvWeightEntries.Name = "dgvWeightEntries";
+    this.dgvWeightEntries.ReadOnly = true;
+        this.dgvWeightEntries.RowHeadersVisible = false;
+     this.dgvWeightEntries.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+  this.dgvWeightEntries.Size = new System.Drawing.Size(250, 120);
+   this.dgvWeightEntries.TabIndex = 10;
+         // 
+ // nudWeightEntry
+     // 
+   this.nudWeightEntry.DecimalPlaces = 1;
+   this.nudWeightEntry.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.nudWeightEntry.Location = new System.Drawing.Point(20, 480);
+    this.nudWeightEntry.Maximum = new decimal(new int[] {
+       500,
+    0,
+  0,
+            0});
+ this.nudWeightEntry.Minimum = new decimal(new int[] {
+  20,
+            0,
+            0,
+      0});
+  this.nudWeightEntry.Name = "nudWeightEntry";
+   this.nudWeightEntry.Size = new System.Drawing.Size(120, 25);
+            this.nudWeightEntry.TabIndex = 9;
+            this.nudWeightEntry.Value = new decimal(new int[] {
+            70,
+            0,
+            0,
+    0});
+       // 
+            // btnAddWeight
+            // 
+       this.btnAddWeight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
+    this.btnAddWeight.FlatAppearance.BorderSize = 0;
+            this.btnAddWeight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddWeight.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnAddWeight.ForeColor = System.Drawing.Color.White;
+     this.btnAddWeight.Location = new System.Drawing.Point(150, 480);
+            this.btnAddWeight.Name = "btnAddWeight";
+            this.btnAddWeight.Size = new System.Drawing.Size(120, 25);
+  this.btnAddWeight.TabIndex = 8;
+            this.btnAddWeight.Text = "Log Weight";
+      this.btnAddWeight.UseVisualStyleBackColor = false;
+            this.btnAddWeight.Click += new System.EventHandler(this.btnAddWeight_Click);
+ // 
+        // lblWeightEntry
+        // 
+            this.lblWeightEntry.AutoSize = true;
+   this.lblWeightEntry.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+    this.lblWeightEntry.Location = new System.Drawing.Point(20, 450);
+    this.lblWeightEntry.Name = "lblWeightEntry";
+            this.lblWeightEntry.Size = new System.Drawing.Size(129, 19);
+        this.lblWeightEntry.TabIndex = 7;
+         this.lblWeightEntry.Text = "Log Weight (kg):";
+    // 
+ // dgvWaterEntries
+            // 
+  this.dgvWaterEntries.AllowUserToAddRows = false;
+  this.dgvWaterEntries.AllowUserToDeleteRows = false;
+  this.dgvWaterEntries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+  this.dgvWaterEntries.Location = new System.Drawing.Point(20, 40);
+  this.dgvWaterEntries.MultiSelect = false;
+  this.dgvWaterEntries.Name = "dgvWaterEntries";
+  this.dgvWaterEntries.ReadOnly = true;
+  this.dgvWaterEntries.RowHeadersVisible = false;
+  this.dgvWaterEntries.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+  this.dgvWaterEntries.Size = new System.Drawing.Size(250, 150);
+  this.dgvWaterEntries.TabIndex = 6;
+        this.dgvWaterEntries.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvWaterEntries_KeyDown);
+     // 
+            // progressWater
+            // 
+            this.progressWater.Location = new System.Drawing.Point(20, 140);
+          this.progressWater.Name = "progressWater";
+        this.progressWater.Size = new System.Drawing.Size(250, 20);
+         this.progressWater.TabIndex = 5;
+            // 
+  // lblWaterTotal
+            // 
+   this.lblWaterTotal.AutoSize = true;
+          this.lblWaterTotal.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+      this.lblWaterTotal.Location = new System.Drawing.Point(20, 110);
+     this.lblWaterTotal.Name = "lblWaterTotal";
+            this.lblWaterTotal.Size = new System.Drawing.Size(103, 19);
+    this.lblWaterTotal.TabIndex = 4;
+        this.lblWaterTotal.Text = "0 / 2000 ml";
+       // 
+       // btnAddWater
+            // 
+     this.btnAddWater.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
+            this.btnAddWater.FlatAppearance.BorderSize = 0;
+      this.btnAddWater.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddWater.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+          this.btnAddWater.ForeColor = System.Drawing.Color.White;
+          this.btnAddWater.Location = new System.Drawing.Point(150, 70);
+ this.btnAddWater.Name = "btnAddWater";
+   this.btnAddWater.Size = new System.Drawing.Size(120, 25);
+            this.btnAddWater.TabIndex = 3;
+        this.btnAddWater.Text = "Add Water";
+   this.btnAddWater.UseVisualStyleBackColor = false;
+      this.btnAddWater.Click += new System.EventHandler(this.btnAddWater_Click);
+            // 
+     // nudWaterMl
+            // 
+            this.nudWaterMl.Font = new System.Drawing.Font("Segoe UI", 10F);
+this.nudWaterMl.Increment = new decimal(new int[] {
+   50,
+        0,
+            0,
+     0});
+     this.nudWaterMl.Location = new System.Drawing.Point(20, 70);
+            this.nudWaterMl.Maximum = new decimal(new int[] {
+2000,
+            0,
+            0,
+     0});
+    this.nudWaterMl.Minimum = new decimal(new int[] {
+  50,
+      0,
+  0,
+   0});
+      this.nudWaterMl.Name = "nudWaterMl";
+         this.nudWaterMl.Size = new System.Drawing.Size(120, 25);
+      this.nudWaterMl.TabIndex = 2;
+   this.nudWaterMl.Value = new decimal(new int[] {
+    250,
+         0,
+            0,
+            0});
+            // 
+     // lblWaterMl
+  // 
+            this.lblWaterMl.AutoSize = true;
+       this.lblWaterMl.Font = new System.Drawing.Font("Segoe UI", 9F);
+  this.lblWaterMl.Location = new System.Drawing.Point(20, 50);
+ this.lblWaterMl.Name = "lblWaterMl";
+ this.lblWaterMl.Size = new System.Drawing.Size(73, 15);
+  this.lblWaterMl.TabIndex = 1;
+this.lblWaterMl.Text = "Amount (ml):";
+            // 
+            // lblWaterTitle
+            // 
+        this.lblWaterTitle.AutoSize = true;
+     this.lblWaterTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+      this.lblWaterTitle.Location = new System.Drawing.Point(20, 20);
+            this.lblWaterTitle.Name = "lblWaterTitle";
+            this.lblWaterTitle.Size = new System.Drawing.Size(121, 21);
+this.lblWaterTitle.TabIndex = 0;
+            this.lblWaterTitle.Text = "Water Tracker";
+            // 
+       // DashboardForm
+          // 
+this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+  this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.ClientSize = new System.Drawing.Size(1200, 670);
+    this.Controls.Add(this.pnlRight);
+            this.Controls.Add(this.pnlBottom);
+    this.Controls.Add(this.pnlCenter);
+     this.Controls.Add(this.pnlLeft);
+    this.Controls.Add(this.pnlHeader);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
+    this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+        this.MaximizeBox = false;
+   this.MinimizeBox = false;
+      this.Name = "DashboardForm";
+     this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Diet Tracker - Dashboard";
+   this.pnlHeader.ResumeLayout(false);
+ this.pnlHeader.PerformLayout();
+    this.pnlLeft.ResumeLayout(false);
+  this.pnlLeft.PerformLayout();
+            this.pnlCenter.ResumeLayout(false);
+    ((System.ComponentModel.ISupportInitialize)(this.picWeight)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picCalories)).EndInit();
+            this.pnlBottom.ResumeLayout(false);
+ this.pnlBottom.PerformLayout();
+  ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).EndInit();
+         this.pnlRight.ResumeLayout(false);
+       this.pnlRight.PerformLayout();
+    ((System.ComponentModel.ISupportInitialize)(this.nudWeightEntry)).EndInit();
+   ((System.ComponentModel.ISupportInitialize)(this.nudWaterMl)).EndInit();
+            this.ResumeLayout(false);
+
+ }
+
+        #endregion
+
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblWaterTarget;
+     private System.Windows.Forms.Label lblBmiValue;
+ private System.Windows.Forms.Label lblTargetCalories;
+     private System.Windows.Forms.Label lblGoal;
+        private System.Windows.Forms.Panel pnlLeft;
+        private System.Windows.Forms.DataGridView dgvFoodEntries;
+        private System.Windows.Forms.Label lblCalorieTotal;
+        private System.Windows.Forms.Label lblFoodTitle;
+        private System.Windows.Forms.Panel pnlCenter;
+   private System.Windows.Forms.PictureBox picWeight;
+        private System.Windows.Forms.PictureBox picCalories;
+        private System.Windows.Forms.Panel pnlBottom;
+        private System.Windows.Forms.NumericUpDown nudQuantity;
+        private System.Windows.Forms.Label lblQuantity;
+        private System.Windows.Forms.Button btnAddFood;
+        private System.Windows.Forms.ComboBox cboFoodSearch;
+        private System.Windows.Forms.Label lblFoodSearch;
+        private System.Windows.Forms.Panel pnlQuickAdd;
+        private System.Windows.Forms.Label lblQuickAdd;
+        private System.Windows.Forms.Panel pnlRight;
+        private System.Windows.Forms.DataGridView dgvWeightEntries;
+        private System.Windows.Forms.NumericUpDown nudWeightEntry;
+        private System.Windows.Forms.Button btnAddWeight;
+        private System.Windows.Forms.Label lblWeightEntry;
+        private System.Windows.Forms.DataGridView dgvWaterEntries;
+        private System.Windows.Forms.ProgressBar progressWater;
+ private System.Windows.Forms.Label lblWaterTotal;
+        private System.Windows.Forms.Button btnAddWater;
+        private System.Windows.Forms.NumericUpDown nudWaterMl;
+        private System.Windows.Forms.Label lblWaterMl;
+        private System.Windows.Forms.Label lblWaterTitle;
+    }
+}

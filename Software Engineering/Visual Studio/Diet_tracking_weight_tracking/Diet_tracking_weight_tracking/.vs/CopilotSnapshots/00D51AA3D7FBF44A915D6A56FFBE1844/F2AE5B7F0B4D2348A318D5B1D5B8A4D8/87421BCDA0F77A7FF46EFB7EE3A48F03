@@ -1,0 +1,29 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Diet_tracking_weight_tracking.Models
+{
+    /// <summary>
+    /// Water entry entity for tracking daily water consumption
+    /// </summary>
+    public class WaterEntry
+    {
+     [Key]
+        public int Id { get; set; }
+
+        [Required]
+   public int UserId { get; set; }
+
+        [Required]
+        [Range(1, 2000)]
+      public int Ml { get; set; }
+
+   [Required]
+        public DateTime Timestamp { get; set; } = DateTime.Now;
+
+  // Foreign key relationship
+  [ForeignKey("UserId")]
+     public virtual User User { get; set; }
+  }
+}

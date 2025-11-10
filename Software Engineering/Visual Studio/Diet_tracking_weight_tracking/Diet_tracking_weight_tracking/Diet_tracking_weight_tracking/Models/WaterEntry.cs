@@ -1,0 +1,18 @@
+using System;
+
+namespace Diet_tracking_weight_tracking.Models
+{
+ /// <summary>
+    /// Water entry entity for tracking daily water consumption
+    /// </summary>
+    public class WaterEntry
+    {
+        public int Id { get; set; }
+   public int UserId { get; set; }
+        public int Ml { get; set; }
+        public DateTime Timestamp { get; set; } = DateTime.Now;
+
+        // Foreign key relationship
+  public virtual User User { get; set; }
+    }
+}

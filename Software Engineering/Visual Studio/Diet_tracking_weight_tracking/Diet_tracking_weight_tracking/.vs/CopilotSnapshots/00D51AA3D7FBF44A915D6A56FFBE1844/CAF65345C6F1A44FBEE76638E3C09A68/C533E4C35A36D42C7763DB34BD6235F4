@@ -1,0 +1,318 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SQLite;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using Diet_tracking_weight_tracking.Models;
+
+namespace Diet_tracking_weight_tracking.Data
+{
+    /// <summary>
+    /// SQLite-based data context for persistent storage using System.Data.SQLite
+ /// Replaces the in-memory implementation with file-based persistence
+    /// </summary>
+    public class PersistentDietTrackerDbContext : IDisposable
+    {
+private readonly string _connectionString;
+        private readonly object _lock = new object();
+
+ public PersistentDietTrackerDbContext()
+        {
+    _connectionString = AppPaths.GetSqliteConnectionString();
+    EnsureCreated();
+        }
+
+        /// <summary>
+   /// Ensures database file and tables are created
+        /// </summary>
+    public void EnsureCreated()
+        {
+    lock (_lock)
+   {
+        try
+             {
+             using (var connection = new SQLiteConnection(_connectionString))
+        {
+        connection.Open();
+               CreateTables(connection);
+    SeedInitialData(connection);
+        }
+       Debug.WriteLine($"Database initialized successfully: {AppPaths.DbFilePath}");
+                }
+  catch (Exception ex)
+{
+        Debug.WriteLine($"Database initialization failed: {ex.Message}");
+          throw;
+             }
+    }
+        }
+
+     private void CreateTables(SQLiteConnection connection)
+        {
+            var createTablesScript = @"
+       -- Users table
+   CREATE TABLE IF NOT EXISTS Users (
+            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+               Username NVARCHAR(50) NOT NULL UNIQUE,
+         Email NVARCHAR(100) NOT NULL,
+        PasswordHash NVARCHAR(500) NOT NULL,
+             CreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                );
+
+    -- Profiles table
+             CREATE TABLE IF NOT EXISTS Profiles (
+        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+        UserId INTEGER NOT NULL,
+   FullName NVARCHAR(100),
+   PhoneNumber NVARCHAR(20),
+      DOB DATE,
+               Gender INTEGER NOT NULL DEFAULT 0,
+    HeightCm INTEGER NOT NULL DEFAULT 170,
+          WeightKg REAL NOT NULL DEFAULT 70.0,
+       ActivityLevel INTEGER NOT NULL DEFAULT 2,
+           HealthGoal INTEGER NOT NULL DEFAULT 1,
+   TargetWeightKg REAL,
+  WaterTargetMl INTEGER NOT NULL DEFAULT 2000,
+      ProfileImagePath NVARCHAR(500),
+               UpdatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (UserId) REFERENCES Users(Id) ON DELETE CASCADE
+            );
+
+         -- FoodItems table
+     CREATE TABLE IF NOT EXISTS FoodItems (
+        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            Name NVARCHAR(100) NOT NULL,
+         DefaultCaloriesPerServing INTEGER NOT NULL,
+        ServingDescription NVARCHAR(100)
+           );
+
+  -- FoodEntries table
+    CREATE TABLE IF NOT EXISTS FoodEntries (
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+      UserId INTEGER NOT NULL,
+  FoodItemId INTEGER,
+          FoodName NVARCHAR(100) NOT NULL,
+         Calories INTEGER NOT NULL,
+      Quantity REAL NOT NULL DEFAULT 1.0,
+          Timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   Note NVARCHAR(500),
+    FOREIGN KEY (UserId) REFERENCES Users(Id) ON DELETE CASCADE,
+        FOREIGN KEY (FoodItemId) REFERENCES FoodItems(Id)
+          );
+
+    -- WaterEntries table
+        CREATE TABLE IF NOT EXISTS WaterEntries (
+        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   UserId INTEGER NOT NULL,
+           Ml INTEGER NOT NULL,
+     Timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+         FOREIGN KEY (UserId) REFERENCES Users(Id) ON DELETE CASCADE
+        );
+
+                -- WeightEntries table
+          CREATE TABLE IF NOT EXISTS WeightEntries (
+           Id INTEGER PRIMARY KEY AUTOINCREMENT,
+          UserId INTEGER NOT NULL,
+        WeightKg REAL NOT NULL,
+        Timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+          FOREIGN KEY (UserId) REFERENCES Users(Id) ON DELETE CASCADE
+        );
+
+    -- Create indexes for performance
+        CREATE INDEX IF NOT EXISTS IX_Users_Username ON Users(Username);
+   CREATE INDEX IF NOT EXISTS IX_Users_Email ON Users(Email);
+                CREATE INDEX IF NOT EXISTS IX_Profiles_UserId ON Profiles(UserId);
+  CREATE INDEX IF NOT EXISTS IX_FoodEntries_UserId_Timestamp ON FoodEntries(UserId, Timestamp);
+         CREATE INDEX IF NOT EXISTS IX_WaterEntries_UserId_Timestamp ON WaterEntries(UserId, Timestamp);
+        CREATE INDEX IF NOT EXISTS IX_WeightEntries_UserId_Timestamp ON WeightEntries(UserId, Timestamp);
+            ";
+
+            using (var command = new SQLiteCommand(createTablesScript, connection))
+   {
+                command.ExecuteNonQuery();
+    }
+        }
+
+        private void SeedInitialData(SQLiteConnection connection)
+        {
+    // Check if food items already exist
+         using (var command = new SQLiteCommand("SELECT COUNT(*) FROM FoodItems", connection))
+          {
+   var count = Convert.ToInt32(command.ExecuteScalar());
+     if (count > 0) return; // Already seeded
+   }
+
+  // Seed food items
+     var foodItems = new[]
+   {
+  new { Name = "Rice", Calories = 200, Description = "1 cup cooked" },
+      new { Name = "Egg", Calories = 78, Description = "1 large" },
+     new { Name = "Milk", Calories = 150, Description = "1 cup" },
+          new { Name = "Fish", Calories = 200, Description = "100g" },
+            new { Name = "Potato", Calories = 160, Description = "1 medium" },
+  new { Name = "Butter", Calories = 102, Description = "1 tbsp" },
+          new { Name = "Bread", Calories = 80, Description = "1 slice" },
+        new { Name = "Apple", Calories = 95, Description = "1 medium" },
+            new { Name = "Chicken Breast", Calories = 165, Description = "100g" },
+  new { Name = "Banana", Calories = 105, Description = "1 medium" }
+     };
+
+          foreach (var item in foodItems)
+     {
+ using (var command = new SQLiteCommand(
+    "INSERT INTO FoodItems (Name, DefaultCaloriesPerServing, ServingDescription) VALUES (@name, @calories, @description)",
+            connection))
+     {
+         command.Parameters.AddWithValue("@name", item.Name);
+       command.Parameters.AddWithValue("@calories", item.Calories);
+        command.Parameters.AddWithValue("@description", item.Description);
+          command.ExecuteNonQuery();
+      }
+            }
+  }
+
+        // User operations
+        public User CreateUser(string username, string email, string passwordHash)
+    {
+        lock (_lock)
+{
+         using (var connection = new SQLiteConnection(_connectionString))
+                {
+   connection.Open();
+
+       using (var command = new SQLiteCommand(
+     "INSERT INTO Users (Username, Email, PasswordHash, CreatedAt) VALUES (@username, @email, @passwordHash, @createdAt); SELECT last_insert_rowid();",
+      connection))
+        {
+ command.Parameters.AddWithValue("@username", username);
+      command.Parameters.AddWithValue("@email", email);
+              command.Parameters.AddWithValue("@passwordHash", passwordHash);
+ command.Parameters.AddWithValue("@createdAt", DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
+
+    var userId = Convert.ToInt32(command.ExecuteScalar());
+
+        return new User
+          {
+       Id = userId,
+    Username = username,
+  Email = email,
+        PasswordHash = passwordHash,
+                CreatedAt = DateTime.UtcNow
+               };
+       }
+       }
+      }
+        }
+
+        public User GetUser(string username)
+   {
+            lock (_lock)
+   {
+    using (var connection = new SQLiteConnection(_connectionString))
+ {
+     connection.Open();
+
+             using (var command = new SQLiteCommand(
+        "SELECT Id, Username, Email, PasswordHash, CreatedAt FROM Users WHERE LOWER(Username) = LOWER(@username)",
+       connection))
+       {
+            command.Parameters.AddWithValue("@username", username);
+
+using (var reader = command.ExecuteReader())
+   {
+              if (reader.Read())
+            {
+  return new User
+        {
+      Id = reader.GetInt32("Id"),
+      Username = reader.GetString("Username"),
+     Email = reader.GetString("Email"),
+               PasswordHash = reader.GetString("PasswordHash"),
+           CreatedAt = DateTime.Parse(reader.GetString("CreatedAt"))
+             };
+          }
+  }
+         }
+    }
+          }
+      return null;
+        }
+
+        public bool UserExists(string username, string email)
+        {
+lock (_lock)
+        {
+      using (var connection = new SQLiteConnection(_connectionString))
+  {
+               connection.Open();
+
+   using (var command = new SQLiteCommand(
+     "SELECT COUNT(*) FROM Users WHERE LOWER(Username) = LOWER(@username) OR LOWER(Email) = LOWER(@email)",
+      connection))
+      {
+   command.Parameters.AddWithValue("@username", username);
+ command.Parameters.AddWithValue("@email", email);
+
+      return Convert.ToInt32(command.ExecuteScalar()) > 0;
+    }
+        }
+            }
+        }
+
+        public int GetUserCount()
+        {
+            lock (_lock)
+       {
+            using (var connection = new SQLiteConnection(_connectionString))
+  {
+    connection.Open();
+
+       using (var command = new SQLiteCommand("SELECT COUNT(*) FROM Users", connection))
+          {
+        return Convert.ToInt32(command.ExecuteScalar());
+              }
+     }
+            }
+        }
+
+        public List<FoodItem> GetFoodItems()
+        {
+    lock (_lock)
+            {
+  var foodItems = new List<FoodItem>();
+
+              using (var connection = new SQLiteConnection(_connectionString))
+       {
+    connection.Open();
+
+           using (var command = new SQLiteCommand(
+      "SELECT Id, Name, DefaultCaloriesPerServing, ServingDescription FROM FoodItems ORDER BY Name",
+       connection))
+          {
+    using (var reader = command.ExecuteReader())
+      {
+      while (reader.Read())
+         {
+        foodItems.Add(new FoodItem
+        {
+        Id = reader.GetInt32("Id"),
+         Name = reader.GetString("Name"),
+        DefaultCaloriesPerServing = reader.GetInt32("DefaultCaloriesPerServing"),
+            ServingDescription = reader.IsDBNull("ServingDescription") ? null : reader.GetString("ServingDescription")
+});
+          }
+}
+            }
+        }
+
+   return foodItems;
+     }
+        }
+
+        public void Dispose()
+     {
+     // Nothing to dispose for this implementation
+      }
+    }
+}

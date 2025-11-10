@@ -1,0 +1,100 @@
+﻿using System;
+using System.Threading.Tasks;
+using Diet_tracking_weight_tracking.Data;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+
+namespace Diet_tracking_weight_tracking.Services
+{
+    /// <summary>
+    /// Service for user authentication operations
+    /// </summary>
+    public class AuthenticationService
+    {
+        /// <summary>
+    /// Register a new user with profile information
+   /// </summary>
+   public async Task<User> RegisterAsync(string username, string email, string password, ProfileDto profileData)
+        {
+return await Task.Run(() =>
+            {
+      using (var context = new DietTrackerDbContext())
+    {
+    context.EnsureCreated();
+     
+  // Check if username already exists
+  if (context.UserExists(username, email))
+        {
+       throw new InvalidOperationException("Username or email already exists");
+            }
+
+  // Hash the password
+           string passwordHash = HashPassword(password);
+
+            // Create new user
+  var user = context.CreateUser(username, passwordHash, email);
+
+ // Create profile if provided
+    if (profileData != null)
+        {
+     var profile = new Profile
+   {
+         FullName = profileData.FullName,
+        PhoneNumber = profileData.PhoneNumber,
+      DOB = profileData.DOB,
+   Gender = profileData.Gender,
+  HeightCm = profileData.HeightCm,
+    WeightKg = profileData.WeightKg,
+        ActivityLevel = profileData.ActivityLevel,
+      HealthGoal = profileData.HealthGoal,
+     TargetWeightKg = profileData.TargetWeightKg,
+        WaterTargetMl = profileData.WaterTargetMl,
+        ProfileImagePath = profileData.ProfileImagePath
+   };
+        context.SaveProfile(user.Id, profile);
+            }
+
+     return user;
+ }
+        });
+        }
+
+  /// <summary>
+        /// Authenticate a user with username and password
+     /// </summary>
+   public async Task<User> LoginAsync(string username, string password)
+        {
+     return await Task.Run(() =>
+    {
+ using (var context = new DietTrackerDbContext())
+      {
+       context.EnsureCreated();
+           
+        var user = context.GetUser(username);
+if (user != null && VerifyPassword(password, user.PasswordHash))
+            {
+          return user;
+            }
+
+   return null; // Invalid credentials
+     }
+ });
+     }
+
+/// <summary>
+ /// Hash a password using the PasswordHelper
+        /// </summary>
+     public string HashPassword(string password)
+        {
+     return PasswordHelper.HashPassword(password);
+  }
+
+        /// <summary>
+        /// Verify a password using the PasswordHelper
+      /// </summary>
+        public bool VerifyPassword(string password, string hash)
+        {
+    return PasswordHelper.VerifyPassword(password, hash);
+        }
+    }
+}

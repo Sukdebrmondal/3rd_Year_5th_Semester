@@ -1,0 +1,226 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Diet_tracking_weight_tracking.Data;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+
+namespace Diet_tracking_weight_tracking.Services
+{
+    /// <summary>
+    /// Service for managing food, water, and weight entries
+    /// </summary>
+    public class EntryService
+    {
+   /// <summary>
+        /// Add a new food entry for the user
+        /// </summary>
+        public async Task AddFoodEntryAsync(int userId, FoodEntryDto dto)
+        {
+            await Task.Run(() =>
+        {
+      using (var context = new DietTrackerDbContext())
+       {
+     context.EnsureCreated();
+
+           var entry = new FoodEntry
+            {
+            UserId = userId,
+      FoodItemId = dto.FoodItemId,
+        FoodName = dto.FoodName,
+            Calories = dto.Calories,
+      Quantity = dto.Quantity,
+   Timestamp = dto.Timestamp,
+    Note = dto.Note
+        };
+  
+     context.AddFoodEntry(entry);
+          }
+          });
+        }
+
+        /// <summary>
+        /// Get food entries for a specific date
+    /// </summary>
+ public async Task<List<FoodEntryDto>> GetFoodEntriesForDateAsync(int userId, DateTime date)
+        {
+       return await Task.Run(() =>
+         {
+             using (var context = new DietTrackerDbContext())
+      {
+          context.EnsureCreated();
+     
+         var entries = context.GetFoodEntries(userId, date);
+     return entries.Select(e => new FoodEntryDto
+     {
+        FoodItemId = e.FoodItemId,
+         FoodName = e.FoodName,
+     Calories = e.Calories,
+  Quantity = e.Quantity,
+            Timestamp = e.Timestamp,
+  Note = e.Note
+ }).ToList();
+   }
+            });
+  }
+
+        /// <summary>
+    /// Add a new water entry for the user
+        /// </summary>
+        public async Task AddWaterEntryAsync(int userId, int ml)
+     {
+            await Task.Run(() =>
+          {
+       using (var context = new DietTrackerDbContext())
+    {
+     context.EnsureCreated();
+  
+          var entry = new WaterEntry
+                {
+   UserId = userId,
+          Ml = ml,
+      Timestamp = DateTime.Now
+};
+        
+    context.AddWaterEntry(entry);
+         }
+ });
+        }
+
+        /// <summary>
+        /// Get water entries for a specific date
+        /// </summary>
+        public async Task<List<WaterEntry>> GetWaterEntriesForDateAsync(int userId, DateTime date)
+     {
+        return await Task.Run(() =>
+      {
+      using (var context = new DietTrackerDbContext())
+                {
+                    context.EnsureCreated();
+        return context.GetWaterEntries(userId, date);
+  }
+            });
+     }
+
+        /// <summary>
+        /// Add a new weight entry for the user
+        /// </summary>
+  public async Task AddWeightEntryAsync(int userId, double weightKg)
+        {
+       await Task.Run(() =>
+     {
+     using (var context = new DietTrackerDbContext())
+      {
+         context.EnsureCreated();
+            
+     var entry = new WeightEntry
+           {
+           UserId = userId,
+         WeightKg = weightKg,
+        Timestamp = DateTime.Now
+         };
+  
+          context.AddWeightEntry(entry);
+        }
+  });
+  }
+
+  /// <summary>
+        /// Get weight history for a date range
+        /// </summary>
+        public async Task<List<WeightEntryDto>> GetWeightHistoryAsync(int userId, DateTime from, DateTime to)
+        {
+  return await Task.Run(() =>
+            {
+     using (var context = new DietTrackerDbContext())
+   {
+       context.EnsureCreated();
+        
+             var entries = context.GetWeightEntries(userId, from, to);
+         return entries.Select(e => new WeightEntryDto
+    {
+            WeightKg = e.WeightKg,
+   Timestamp = e.Timestamp
+   }).ToList();
+    }
+});
+        }
+
+        /// <summary>
+        /// Get all available food items
+        /// </summary>
+        public async Task<List<FoodItem>> GetFoodItemsAsync()
+      {
+     return await Task.Run(() =>
+            {
+                using (var context = new DietTrackerDbContext())
+      {
+       context.EnsureCreated();
+       return context.GetFoodItems();
+             }
+         });
+        }
+
+        /// <summary>
+ /// Delete a food entry by ID
+    /// </summary>
+        public async Task DeleteFoodEntryAsync(int entryId)
+        {
+ await Task.Run(() =>
+       {
+         // Implementation would need to be added to data context
+         // For now, this is a placeholder
+  });
+        }
+
+   /// <summary>
+        /// Delete a water entry by ID
+        /// </summary>
+        public async Task DeleteWaterEntryAsync(int entryId)
+        {
+            await Task.Run(() =>
+      {
+ using (var context = new DietTrackerDbContext())
+         {
+        context.EnsureCreated();
+ context.DeleteWaterEntry(entryId);
+}
+            });
+        }
+
+  /// <summary>
+        /// Get total calories consumed for a specific date
+     /// </summary>
+        public async Task<int> GetTotalCaloriesForDateAsync(int userId, DateTime date)
+        {
+  return await Task.Run(() =>
+        {
+    using (var context = new DietTrackerDbContext())
+         {
+          context.EnsureCreated();
+        
+           var entries = context.GetFoodEntries(userId, date);
+          return entries.Sum(e => e.Calories);
+       }
+       });
+        }
+
+        /// <summary>
+        /// Get total water consumed for a specific date
+ /// </summary>
+        public async Task<int> GetTotalWaterForDateAsync(int userId, DateTime date)
+        {
+         return await Task.Run(() =>
+    {
+                using (var context = new DietTrackerDbContext())
+  {
+         context.EnsureCreated();
+        
+      var entries = context.GetWaterEntries(userId, date);
+    return entries.Sum(e => e.Ml);
+         }
+            });
+      }
+    }
+}

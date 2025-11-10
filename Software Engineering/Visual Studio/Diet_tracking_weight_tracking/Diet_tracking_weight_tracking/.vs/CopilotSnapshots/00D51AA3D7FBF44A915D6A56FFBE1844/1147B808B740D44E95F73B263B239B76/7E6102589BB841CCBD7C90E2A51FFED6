@@ -1,0 +1,171 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms.DataVisualization.Charting;
+
+namespace Diet_tracking_weight_tracking.Services
+{
+    /// <summary>
+    /// Helper class for chart setup and configuration
+    /// Provides reusable methods for pie and line chart initialization
+    /// </summary>
+    public static class ChartHelpers
+    {
+  /// <summary>
+    /// Clear all chart components (series, areas, titles, legends)
+        /// </summary>
+        public static void ClearChart(Chart chart)
+        {
+ chart.Series.Clear();
+        chart.ChartAreas.Clear();
+   chart.Titles.Clear();
+   chart.Legends.Clear();
+        }
+
+    /// <summary>
+        /// Set up a pie chart for calorie distribution
+    /// </summary>
+        /// <param name="chart">Chart control to configure</param>
+     /// <param name="title">Chart title</param>
+ public static void SetUpPieSeries(Chart chart, string title)
+      {
+            // Add title
+            var chartTitle = chart.Titles.Add(title);
+    chartTitle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+            chartTitle.ForeColor = Color.FromArgb(33, 37, 41);
+
+       // Create chart area
+            var ca = new ChartArea("PieArea");
+        ca.BackColor = Color.White;
+            ca.Position = new ElementPosition(5, 15, 90, 75); // Leave space for legend
+         chart.ChartAreas.Add(ca);
+
+  // Add legend
+var legend = new Legend("Legend");
+       legend.Docking = Docking.Bottom;
+    legend.Alignment = StringAlignment.Center;
+   legend.Font = new Font("Segoe UI", 9);
+ chart.Legends.Add(legend);
+
+       // Create pie series
+        var series = new Series("Calories")
+   {
+         ChartType = SeriesChartType.Pie,
+                ChartArea = "PieArea",
+   IsValueShownAsLabel = true,
+ Label = "#PERCENT{P1}", // Show percentage
+             Legend = "Legend",
+           Font = new Font("Segoe UI", 8, FontStyle.Bold)
+        };
+
+            // Configure tooltips
+            series.ToolTip = "#LEGENDTEXT: #VAL cal (#PERCENT{P1})";
+  
+            // Set label position outside pie slices
+     series["PieLabelStyle"] = "Outside";
+            series["PieLineColor"] = "Black";
+
+            chart.Series.Add(series);
+        }
+
+        /// <summary>
+   /// Set up a line chart for weight history
+ /// </summary>
+        /// <param name="chart">Chart control to configure</param>
+        /// <param name="title">Chart title</param>
+     public static void SetUpLineSeries(Chart chart, string title)
+{
+            // Add title
+        var chartTitle = chart.Titles.Add(title);
+         chartTitle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+        chartTitle.ForeColor = Color.FromArgb(33, 37, 41);
+
+     // Create chart area
+       var ca = new ChartArea("LineArea");
+            ca.BackColor = Color.White;
+            ca.AxisX.Title = "Date";
+  ca.AxisY.Title = "Weight (kg)";
+ ca.AxisX.TitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+ ca.AxisY.TitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+         
+          // Format X axis for dates
+   ca.AxisX.LabelStyle.Format = "dd MMM";
+            ca.AxisX.LabelStyle.Font = new Font("Segoe UI", 8);
+ ca.AxisX.IntervalType = DateTimeIntervalType.Days;
+         ca.AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
+            
+// Grid lines
+         ca.AxisX.MajorGrid.LineColor = Color.LightGray;
+         ca.AxisY.MajorGrid.LineColor = Color.LightGray;
+   ca.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dot;
+            ca.AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dot;
+   
+            chart.ChartAreas.Add(ca);
+
+            // Create line series
+    var series = new Series("Weight")
+        {
+      ChartType = SeriesChartType.Line,
+                ChartArea = "LineArea",
+    XValueType = ChartValueType.DateTime,
+         BorderWidth = 3,
+              Color = Color.FromArgb(0, 123, 255),
+    MarkerStyle = MarkerStyle.Circle,
+      MarkerSize = 8,
+         MarkerColor = Color.FromArgb(0, 123, 255),
+  MarkerBorderColor = Color.White,
+    MarkerBorderWidth = 2
+            };
+
+         // Configure tooltips
+            series.ToolTip = "Date: #VALX{dd MMM yyyy}\\nWeight: #VALY{0.0} kg";
+            
+            chart.Series.Add(series);
+        }
+
+  /// <summary>
+        /// Display a "no data" message in the chart
+ /// </summary>
+        /// <param name="chart">Chart control</param>
+        /// <param name="message">Message to display</param>
+        public static void ShowNoDataMessage(Chart chart, string message)
+      {
+    ClearChart(chart);
+     
+  var title = chart.Titles.Add(message);
+  title.Font = new Font("Segoe UI", 11, FontStyle.Italic);
+       title.ForeColor = Color.Gray;
+            title.Position = new ElementPosition(0, 40, 100, 20);
+            title.TextStyle = TextStyle.Default;
+    
+            // Add a simple chart area to maintain structure
+    var ca = new ChartArea("EmptyArea");
+            ca.BackColor = Color.WhiteSmoke;
+            ca.BorderColor = Color.LightGray;
+     ca.BorderDashStyle = ChartDashStyle.Dash;
+ chart.ChartAreas.Add(ca);
+        }
+
+        /// <summary>
+        /// Get a color palette for consistent pie chart colors
+        /// </summary>
+        /// <param name="index">Color index</param>
+     /// <returns>Color for the specified index</returns>
+        public static Color GetPaletteColor(int index)
+        {
+     Color[] palette = {
+          Color.FromArgb(255, 99, 132),   // Red
+           Color.FromArgb(54, 162, 235),// Blue
+        Color.FromArgb(255, 205, 86),   // Yellow
+ Color.FromArgb(75, 192, 192),   // Green
+       Color.FromArgb(153, 102, 255),  // Purple
+     Color.FromArgb(255, 159, 64),   // Orange
+      Color.FromArgb(199, 199, 199),  // Grey
+                Color.FromArgb(83, 102, 255)    // Indigo
+            };
+        
+            return palette[index % palette.Length];
+        }
+    }
+}

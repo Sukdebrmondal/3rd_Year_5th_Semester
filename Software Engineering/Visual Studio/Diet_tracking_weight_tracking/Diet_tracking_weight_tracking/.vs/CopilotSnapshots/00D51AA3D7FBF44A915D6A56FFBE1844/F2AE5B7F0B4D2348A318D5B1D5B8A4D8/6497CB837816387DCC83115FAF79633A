@@ -1,0 +1,242 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.IO;
+
+namespace Diet_tracking_weight_tracking.Data
+{
+    /// <summary>
+    /// Simple database context using OleDb for Access database (.mdb)
+    /// This avoids external SQLite dependencies while maintaining functionality
+    /// </summary>
+    public class DietTrackerDbContext : IDisposable
+    {
+        private OleDbConnection _connection;
+private readonly string _connectionString;
+    private readonly string _dbPath;
+
+        public DietTrackerDbContext()
+     {
+   string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DietTracker");
+      Directory.CreateDirectory(appDataPath);
+         _dbPath = Path.Combine(appDataPath, "DietTracker.mdb");
+     _connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={_dbPath}";
+    
+        // Fallback to Jet if ACE is not available
+   if (!IsProviderAvailable("Microsoft.ACE.OLEDB.12.0"))
+    {
+  _connectionString = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={_dbPath}";
+      }
+        }
+
+private bool IsProviderAvailable(string provider)
+        {
+            try
+     {
+    using (var connection = new OleDbConnection($"Provider={provider}"))
+  {
+ return true;
+       }
+   }
+        catch
+       {
+   return false;
+      }
+ }
+
+public OleDbConnection GetConnection()
+        {
+    if (_connection == null || _connection.State != ConnectionState.Open)
+      {
+   if (_connection != null)
+        {
+      _connection.Close();
+        _connection.Dispose();
+     }
+        
+_connection = new OleDbConnection(_connectionString);
+           try
+      {
+    _connection.Open();
+ }
+     catch (Exception ex)
+   {
+     // If database doesn't exist, create it
+CreateDatabase();
+    _connection = new OleDbConnection(_connectionString);
+     _connection.Open();
+      }
+    }
+          return _connection;
+      }
+
+        private void CreateDatabase()
+        {
+       try
+   {
+  // For Jet provider, we need to create the database file manually
+        var catalog = new ADOX.CatalogClass();
+    catalog.Create(_connectionString);
+       System.Runtime.InteropServices.Marshal.ReleaseComObject(catalog);
+       }
+       catch
+     {
+   // If ADOX fails, create an empty .mdb file and let the connection handle it
+    File.WriteAllBytes(_dbPath, new byte[0]);
+   }
+     }
+
+   public void EnsureCreated()
+        {
+     var connection = GetConnection();
+  
+      try
+      {
+     // Create Users table
+   ExecuteNonQuery(@"
+         CREATE TABLE Users (
+       Id AUTOINCREMENT PRIMARY KEY,
+ Username TEXT(50) NOT NULL,
+   PasswordHash TEXT(255) NOT NULL,
+        Email TEXT(100) NOT NULL,
+   CreatedAt DATETIME NOT NULL
+        )");
+     }
+      catch { } // Table might already exist
+
+   try
+      {
+     // Create Profiles table
+         ExecuteNonQuery(@"
+      CREATE TABLE Profiles (
+   Id AUTOINCREMENT PRIMARY KEY,
+ UserId LONG NOT NULL,
+     FullName TEXT(100) NOT NULL,
+      PhoneNumber TEXT(20),
+           DOB DATETIME NOT NULL,
+     Gender INTEGER NOT NULL,
+       HeightCm INTEGER NOT NULL,
+    WeightKg DOUBLE NOT NULL,
+   ActivityLevel INTEGER NOT NULL,
+     HealthGoal INTEGER NOT NULL,
+   TargetWeightKg DOUBLE,
+     WaterTargetMl INTEGER NOT NULL,
+       ProfileImagePath TEXT(255),
+  UpdatedAt DATETIME NOT NULL
+      )");
+  }
+ catch { } // Table might already exist
+
+   try
+     {
+     // Create FoodItems table
+       ExecuteNonQuery(@"
+ CREATE TABLE FoodItems (
+  Id AUTOINCREMENT PRIMARY KEY,
+        Name TEXT(100) NOT NULL,
+      DefaultCaloriesPerServing INTEGER NOT NULL,
+        ServingDescription TEXT(50),
+ IsActive YESNO NOT NULL
+  )");
+     }
+  catch { } // Table might already exist
+
+        try
+      {
+   // Create FoodEntries table
+      ExecuteNonQuery(@"
+    CREATE TABLE FoodEntries (
+  Id AUTOINCREMENT PRIMARY KEY,
+    UserId LONG NOT NULL,
+            FoodItemId LONG,
+      FoodName TEXT(100) NOT NULL,
+      Calories INTEGER NOT NULL,
+     Quantity DOUBLE NOT NULL,
+    Timestamp DATETIME NOT NULL,
+       Note TEXT(200)
+      )");
+}
+     catch { } // Table might already exist
+
+    try
+       {
+      // Create WaterEntries table
+   ExecuteNonQuery(@"
+            CREATE TABLE WaterEntries (
+    Id AUTOINCREMENT PRIMARY KEY,
+            UserId LONG NOT NULL,
+    Ml INTEGER NOT NULL,
+    Timestamp DATETIME NOT NULL
+          )");
+       }
+       catch { } // Table might already exist
+
+            try
+      {
+   // Create WeightEntries table
+   ExecuteNonQuery(@"
+      CREATE TABLE WeightEntries (
+  Id AUTOINCREMENT PRIMARY KEY,
+  UserId LONG NOT NULL,
+        WeightKg DOUBLE NOT NULL,
+        Timestamp DATETIME NOT NULL
+        )");
+      }
+      catch { } // Table might already exist
+        }
+
+        public void ExecuteNonQuery(string sql, params object[] parameters)
+        {
+     var connection = GetConnection();
+     using (var command = new OleDbCommand(sql, connection))
+     {
+          if (parameters != null && parameters.Length > 0)
+        {
+     // Replace ? placeholders with parameter markers
+for (int i = 0; i < parameters.Length; i++)
+       {
+      command.Parameters.Add(new OleDbParameter($"@param{i}", parameters[i] ?? DBNull.Value));
+     }
+    }
+        command.ExecuteNonQuery();
+       }
+      }
+
+public OleDbDataReader ExecuteReader(string sql, params object[] parameters)
+        {
+      var connection = GetConnection();
+      var command = new OleDbCommand(sql, connection);
+        if (parameters != null && parameters.Length > 0)
+      {
+         for (int i = 0; i < parameters.Length; i++)
+    {
+        command.Parameters.Add(new OleDbParameter($"@param{i}", parameters[i] ?? DBNull.Value));
+   }
+        }
+        return command.ExecuteReader();
+        }
+
+     public object ExecuteScalar(string sql, params object[] parameters)
+        {
+            var connection = GetConnection();
+    using (var command = new OleDbCommand(sql, connection))
+    {
+       if (parameters != null && parameters.Length > 0)
+            {
+      for (int i = 0; i < parameters.Length; i++)
+     {
+  command.Parameters.Add(new OleDbParameter($"@param{i}", parameters[i] ?? DBNull.Value));
+    }
+      }
+   return command.ExecuteScalar();
+ }
+ }
+
+    public void Dispose()
+      {
+  _connection?.Close();
+       _connection?.Dispose();
+    }
+    }
+}

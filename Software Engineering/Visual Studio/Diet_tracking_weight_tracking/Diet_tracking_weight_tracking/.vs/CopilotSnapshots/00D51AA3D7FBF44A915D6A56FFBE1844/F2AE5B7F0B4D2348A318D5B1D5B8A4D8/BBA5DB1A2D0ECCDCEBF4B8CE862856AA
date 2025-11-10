@@ -1,0 +1,131 @@
+﻿using System;
+using System.Data;
+using System.Data.Common;
+using System.IO;
+using Diet_tracking_weight_tracking.Models;
+using Diet_tracking_weight_tracking.Services;
+
+namespace Diet_tracking_weight_tracking.Data
+{
+    /// <summary>
+    /// Database initializer that creates tables and seeds initial data
+    /// Uses basic SQL without external dependencies
+    /// </summary>
+    public static class DatabaseInitializer
+    {
+        /// <summary>
+        /// Initialize the database with tables and seed data
+        /// </summary>
+   public static void Initialize()
+        {
+        using (var context = new DietTrackerDbContext())
+      {
+              context.EnsureCreated();
+    SeedFoodItems(context);
+           SeedSampleData(context);
+     }
+  }
+
+        /// <summary>
+        /// Seed initial food items for quick-add functionality
+        /// </summary>
+        private static void SeedFoodItems(DietTrackerDbContext context)
+   {
+            // Check if food items already exist
+  var count = context.ExecuteScalar("SELECT COUNT(*) FROM FoodItems");
+            if (Convert.ToInt32(count) > 0) return;
+
+            // Insert initial food items
+         context.ExecuteNonQuery(@"
+   INSERT INTO FoodItems (Name, DefaultCaloriesPerServing, ServingDescription) VALUES
+ ('Rice', 200, '1 cup cooked'),
+      ('Egg', 78, '1 large egg'),
+      ('Milk', 150, '1 cup'),
+            ('Fish', 200, '100g'),
+        ('Potato', 160, '1 medium'),
+        ('Butter', 102, '1 tablespoon'),
+          ('Bread', 80, '1 slice'),
+            ('Apple', 95, '1 medium'),
+   ('Chicken Breast', 165, '100g'),
+            ('Banana', 105, '1 medium'),
+       ('Broccoli', 34, '1 cup'),
+       ('Pasta', 220, '1 cup cooked')
+            ");
+        }
+
+        /// <summary>
+    /// Seed sample data for demonstration
+  /// </summary>
+        private static void SeedSampleData(DietTrackerDbContext context)
+        {
+            // Check if users already exist
+        var userCount = context.ExecuteScalar("SELECT COUNT(*) FROM Users");
+       if (Convert.ToInt32(userCount) > 0) return;
+
+        // Create a sample user
+         var authService = new AuthenticationService();
+            var passwordHash = authService.HashPassword("demo123");
+
+     context.ExecuteNonQuery(@"
+            INSERT INTO Users (Username, PasswordHash, Email, CreatedAt) 
+            VALUES (?, ?, ?, ?)",
+      "demo",
+     passwordHash,
+  "demo@example.com",
+       DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+     );
+
+       // Get the user ID
+            var userId = context.ExecuteScalar("SELECT last_insert_rowid()");
+      int userIdInt = Convert.ToInt32(userId);
+
+      // Create sample profile
+     context.ExecuteNonQuery(@"
+          INSERT INTO Profiles (UserId, FullName, PhoneNumber, DOB, Gender, HeightCm, WeightKg, 
+    ActivityLevel, HealthGoal, TargetWeightKg, WaterTargetMl, UpdatedAt)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+       userIdInt,
+     "Demo User",
+        "1234567890",
+        new DateTime(1990, 1, 1).ToString("yyyy-MM-dd"),
+       (int)Gender.Male,
+      175,
+  70.0,
+     (int)ActivityLevel.Moderate,
+  (int)HealthGoal.Maintain,
+ 68.0,
+        2000,
+      DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+ );
+
+            // Add sample food entries for today
+            var today = DateTime.Today;
+         context.ExecuteNonQuery(@"
+      INSERT INTO FoodEntries (UserId, FoodItemId, FoodName, Calories, Quantity, Timestamp, Note)
+    VALUES 
+    (?, 1, 'Rice', 200, 1, ?, 'Breakfast'),
+      (?, 2, 'Egg', 156, 2, ?, 'Breakfast'),
+  (?, 3, 'Milk', 150, 1, ?, 'Morning snack')",
+        userIdInt, today.AddHours(8).ToString("yyyy-MM-dd HH:mm:ss"),
+ userIdInt, today.AddHours(8.5).ToString("yyyy-MM-dd HH:mm:ss"),
+       userIdInt, today.AddHours(10).ToString("yyyy-MM-dd HH:mm:ss")
+            );
+
+   // Add sample water entries for today
+    context.ExecuteNonQuery(@"
+      INSERT INTO WaterEntries (UserId, Ml, Timestamp)
+            VALUES 
+  (?, 250, ?),
+            (?, 150, ?)",
+          userIdInt, today.AddHours(9).ToString("yyyy-MM-dd HH:mm:ss"),
+      userIdInt, today.AddHours(11).ToString("yyyy-MM-dd HH:mm:ss")
+            );
+
+   // Add sample weight entries for the past week
+       for (int i = 0; i < 7; i++)
+            {
+       var date = today.AddDays(-i);
+        var weight = 70.0 + (i * 0.1); // Gradual weight change
+       context.ExecuteNonQuery(@"
+              INSERT INTO WeightEntries (UserId, WeightKg, Timestamp)
+          VALUES (?, ?, ?)",

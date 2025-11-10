@@ -1,0 +1,241 @@
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+using Diet_tracking_weight_tracking.Services;
+
+namespace Diet_tracking_weight_tracking.Forms
+{
+    /// <summary>
+    /// Registration form for new user accounts with persistent storage
+    /// </summary>
+    public partial class RegisterForm : Form
+    {
+        private readonly AuthenticationService _authService;
+
+        public RegisterForm()
+        {
+            InitializeComponent();
+            _authService = new AuthenticationService();
+
+            // Report database status for debugging
+            _authService.DebugReportDatabaseStatus();
+        }
+
+        private async void btnRegister_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRegister.Enabled = false;
+                btnRegister.Text = "Creating account...";
+
+                Debug.WriteLine($"Registration attempt for username: {txtUsername.Text}");
+
+                // Validate inputs
+                if (!ValidateInputs())
+                    return;
+
+                // Create basic profile DTO
+                var profileDto = new ProfileDto
+                {
+                    FullName = txtName.Text.Trim(),
+                    PhoneNumber = txtPhone.Text.Trim(),
+                    DOB = dtpDob.Value.Date,
+                    // Default values for required profile fields
+                    Gender = Gender.Other,
+                    ActivityLevel = ActivityLevel.Moderate,
+                    HealthGoal = HealthGoal.Maintain,
+                    HeightCm = 170, // Will be updated in profile setup
+                    WeightKg = 70,  // Will be updated in profile setup
+                    TargetWeightKg = 70,
+                    WaterTargetMl = 2000
+                };
+
+                User user = await _authService.RegisterAsync(
+                    txtUsername.Text.Trim(),
+                    txtEmail.Text.Trim(),
+                    txtPassword.Text,
+                    profileDto
+                );
+
+                if (user != null)
+                {
+                    Debug.WriteLine($"Registration successful for user: {user.Username}");
+                    MessageBox.Show(
+                        "Account created successfully!\n\nPlease complete your profile setup.",
+                        "Registration Successful",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    // Open profile setup form
+                    var profileSetupForm = new ProfileSetupForm(user);
+                    this.Hide();
+
+                    if (profileSetupForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Profile setup completed, go to dashboard
+                        var dashboardForm = new DashboardForm(user);
+                        this.Hide();
+                        dashboardForm.ShowDialog();
+                    }
+
+                    this.Close();
+                }
+                else
+                {
+                    Debug.WriteLine("Registration failed: Service returned null user");
+                    MessageBox.Show("Registration failed. Please try again.",
+                        "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                Debug.WriteLine($"Registration validation error: {ex.Message}");
+
+                // Show user-friendly error message
+                if (ex.Message.Contains("Username already exists"))
+                {
+                    MessageBox.Show("This username is already taken. Please choose a different one.",
+                        "Username Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtUsername.Focus();
+                    txtUsername.SelectAll();
+                }
+                else if (ex.Message.Contains("Email already exists"))
+                {
+                    MessageBox.Show("This email address is already registered. Please use a different email or try logging in.",
+                        "Email Already Registered", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmail.Focus();
+                    txtEmail.SelectAll();
+                }
+                else
+                {
+                    MessageBox.Show($"Registration failed: {ex.Message}",
+                        "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine($"Registration input validation error: {ex.Message}");
+                MessageBox.Show($"Input validation error: {ex.Message}",
+                    "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Focus the relevant field based on parameter name
+                if (ex.ParamName == "password")
+                {
+                    txtPassword.Focus();
+                    txtPassword.SelectAll();
+                }
+                else if (ex.ParamName == "username")
+                {
+                    txtUsername.Focus();
+                    txtUsername.SelectAll();
+                }
+                else if (ex.ParamName == "email")
+                {
+                    txtEmail.Focus();
+                    txtEmail.SelectAll();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unexpected registration error: {ex.Message}");
+                MessageBox.Show($"An unexpected error occurred during registration:\n{ex.Message}\n\nPlease try again.",
+                    "Registration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btnRegister.Enabled = true;
+                btnRegister.Text = "Register";
+            }
+        }
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                MessageBox.Show("Please enter a username.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUsername.Focus();
+                return false;
+            }
+
+            if (txtUsername.Text.Length < 3)
+            {
+                MessageBox.Show("Username must be at least 3 characters long.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUsername.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Please enter an email address.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+
+            if (!IsValidEmail(txtEmail.Text))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+
+            if (!PasswordHelper.IsValidPassword(txtPassword.Text))
+            {
+                MessageBox.Show(PasswordHelper.GetPasswordRequirements(), "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPassword.Focus();
+                return false;
+            }
+
+            if (txtPassword.Text != txtConfirmPassword.Text)
+            {
+                MessageBox.Show("Passwords do not match.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtConfirmPassword.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Please enter your full name.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtName.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void lnkLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var loginForm = new LoginForm();
+            this.Hide();
+            loginForm.ShowDialog();
+            this.Close();
+        }
+    }
+}

@@ -1,0 +1,45 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Diet_tracking_weight_tracking.Models
+{
+    /// <summary>
+    /// Food entry entity for tracking daily food consumption
+    /// </summary>
+    public class FoodEntry
+  {
+        [Key]
+        public int Id { get; set; }
+
+      [Required]
+     public int UserId { get; set; }
+
+  public int? FoodItemId { get; set; }
+
+        [Required]
+     [StringLength(100)]
+    public string FoodName { get; set; }
+
+        [Required]
+        [Range(1, 10000)]
+    public int Calories { get; set; }
+
+    [Required]
+        [Range(0.1, 100)]
+        public double Quantity { get; set; }
+
+      [Required]
+        public DateTime Timestamp { get; set; } = DateTime.Now;
+
+  [StringLength(200)]
+   public string Note { get; set; }
+
+        // Foreign key relationships
+        [ForeignKey("UserId")]
+     public virtual User User { get; set; }
+
+    [ForeignKey("FoodItemId")]
+        public virtual FoodItem FoodItem { get; set; }
+   }
+}

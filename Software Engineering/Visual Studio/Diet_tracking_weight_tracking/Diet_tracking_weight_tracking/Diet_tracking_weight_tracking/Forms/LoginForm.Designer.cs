@@ -1,0 +1,169 @@
+namespace Diet_tracking_weight_tracking.Forms
+{
+    partial class LoginForm
+    {
+   /// <summary>
+     /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+    /// Clean up any resources being used.
+        /// </summary>
+  /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+          {
+      components.Dispose();
+            }
+   base.Dispose(disposing);
+        }
+
+      #region Windows Form Designer generated code
+
+ /// <summary>
+    /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+   /// </summary>
+        private void InitializeComponent()
+        {
+            this.pnlMain = new System.Windows.Forms.Panel();
+       this.lnkRegister = new System.Windows.Forms.LinkLabel();
+            this.btnLogin = new System.Windows.Forms.Button();
+        this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+    this.lblPassword = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
+        this.lblTitle = new System.Windows.Forms.Label();
+        this.pnlMain.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // pnlMain
+        // 
+      this.pnlMain.BackColor = System.Drawing.Color.White;
+            this.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.pnlMain.Controls.Add(this.lnkRegister);
+ this.pnlMain.Controls.Add(this.btnLogin);
+   this.pnlMain.Controls.Add(this.txtPassword);
+     this.pnlMain.Controls.Add(this.txtUsername);
+   this.pnlMain.Controls.Add(this.lblPassword);
+            this.pnlMain.Controls.Add(this.lblUsername);
+            this.pnlMain.Controls.Add(this.lblTitle);
+    this.pnlMain.Location = new System.Drawing.Point(50, 50);
+ this.pnlMain.Name = "pnlMain";
+  this.pnlMain.Size = new System.Drawing.Size(350, 280);
+    this.pnlMain.TabIndex = 0;
+ // 
+         // lnkRegister
+            // 
+this.lnkRegister.AutoSize = true;
+  this.lnkRegister.Font = new System.Drawing.Font("Segoe UI", 9F);
+          this.lnkRegister.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            this.lnkRegister.Location = new System.Drawing.Point(120, 240);
+      this.lnkRegister.Name = "lnkRegister";
+     this.lnkRegister.Size = new System.Drawing.Size(109, 15);
+       this.lnkRegister.TabIndex = 4;
+            this.lnkRegister.TabStop = true;
+      this.lnkRegister.Text = "Create new account";
+         this.lnkRegister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnRegister_Click);
+            // 
+  // btnLogin
+       // 
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+   this.btnLogin.FlatAppearance.BorderSize = 0;
+   this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+  this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(50, 190);
+   this.btnLogin.Name = "btnLogin";
+      this.btnLogin.Size = new System.Drawing.Size(250, 40);
+          this.btnLogin.TabIndex = 3;
+ this.btnLogin.Text = "Login";
+      this.btnLogin.UseVisualStyleBackColor = false;
+ this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+   // 
+            // txtPassword
+    // 
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtPassword.Location = new System.Drawing.Point(50, 150);
+   this.txtPassword.Name = "txtPassword";
+    this.txtPassword.PasswordChar = '*';
+    this.txtPassword.Size = new System.Drawing.Size(250, 25);
+   this.txtPassword.TabIndex = 2;
+    this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
+            // 
+  // txtUsername
+            // 
+      this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtUsername.Location = new System.Drawing.Point(50, 100);
+        this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(250, 25);
+      this.txtUsername.TabIndex = 1;
+    this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
+            // 
+   // lblPassword
+        // 
+this.lblPassword.AutoSize = true;
+    this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
+    this.lblPassword.Location = new System.Drawing.Point(50, 130);
+          this.lblPassword.Name = "lblPassword";
+         this.lblPassword.Size = new System.Drawing.Size(60, 15);
+    this.lblPassword.TabIndex = 2;
+            this.lblPassword.Text = "Password:";
+    // 
+       // lblUsername
+            // 
+     this.lblUsername.AutoSize = true;
+            this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
+        this.lblUsername.Location = new System.Drawing.Point(50, 80);
+            this.lblUsername.Name = "lblUsername";
+   this.lblUsername.Size = new System.Drawing.Size(63, 15);
+            this.lblUsername.TabIndex = 1;
+            this.lblUsername.Text = "Username:";
+   // 
+  // lblTitle
+            // 
+   this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+      this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
+        this.lblTitle.Location = new System.Drawing.Point(120, 30);
+          this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(109, 32);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Sign In";
+   // 
+            // LoginForm
+   // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+         this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+       this.ClientSize = new System.Drawing.Size(450, 380);
+            this.Controls.Add(this.pnlMain);
+ this.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+        this.MaximizeBox = false;
+       this.MinimizeBox = false;
+      this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Diet Tracker - Login";
+            this.pnlMain.ResumeLayout(false);
+         this.pnlMain.PerformLayout();
+          this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+private System.Windows.Forms.Panel pnlMain;
+        private System.Windows.Forms.LinkLabel lnkRegister;
+        private System.Windows.Forms.Button btnLogin;
+private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Label lblPassword;
+    private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.Label lblTitle;
+ }
+}

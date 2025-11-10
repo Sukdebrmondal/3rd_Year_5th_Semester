@@ -1,0 +1,220 @@
+﻿using System;
+using System.Data.SQLite;
+using System.Threading.Tasks;
+using Diet_tracking_weight_tracking.Data;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+
+namespace Diet_tracking_weight_tracking.Services
+{
+    /// <summary>
+    /// Service for user profile management and health calculations
+    /// </summary>
+    public class ProfileService
+  {
+     /// <summary>
+    /// Save or update user profile information
+        /// </summary>
+     public async Task SaveProfileAsync(int userId, ProfileDto dto)
+      {
+        await Task.Run(() => SaveProfile(userId, dto));
+        }
+
+  /// <summary>
+   /// Save or update user profile information (synchronous)
+    /// </summary>
+        public void SaveProfile(int userId, ProfileDto dto)
+    {
+     using (var context = new DietTrackerDbContext())
+     {
+      // Check if profile exists
+       var existingProfile = context.ExecuteScalar(
+ "SELECT COUNT(*) FROM Profiles WHERE UserId = @userId",
+    new SQLiteParameter("@userId", userId)
+   );
+
+      if (Convert.ToInt32(existingProfile) > 0)
+        {
+    // Update existing profile
+       context.ExecuteNonQuery(@"
+        UPDATE Profiles SET 
+       FullName = @fullName,
+ PhoneNumber = @phone,
+       DOB = @dob,
+       Gender = @gender,
+     HeightCm = @height,
+  WeightKg = @weight,
+ActivityLevel = @activity,
+     HealthGoal = @goal,
+   TargetWeightKg = @targetWeight,
+      WaterTargetMl = @waterTarget,
+     ProfileImagePath = @imagePath,
+     UpdatedAt = @updatedAt
+   WHERE UserId = @userId",
+      CreateProfileParameters(userId, dto)
+      );
+     }
+  else
+      {
+ // Insert new profile
+     context.ExecuteNonQuery(@"
+      INSERT INTO Profiles (UserId, FullName, PhoneNumber, DOB, Gender, HeightCm, WeightKg, 
+    ActivityLevel, HealthGoal, TargetWeightKg, WaterTargetMl, ProfileImagePath, UpdatedAt)
+      VALUES (@userId, @fullName, @phone, @dob, @gender, @height, @weight, 
+       @activity, @goal, @targetWeight, @waterTarget, @imagePath, @updatedAt)",
+     CreateProfileParameters(userId, dto)
+    );
+ }
+   }
+ }
+
+/// <summary>
+   /// Get user profile information
+      /// </summary>
+ public async Task<ProfileDto> GetProfileAsync(int userId)
+  {
+     return await Task.Run(() =>
+      {
+   using (var context = new DietTrackerDbContext())
+      {
+     using (var reader = context.ExecuteReader(@"
+        SELECT FullName, PhoneNumber, DOB, Gender, HeightCm, WeightKg, 
+       ActivityLevel, HealthGoal, TargetWeightKg, WaterTargetMl, ProfileImagePath
+  FROM Profiles WHERE UserId = @userId",
+   new SQLiteParameter("@userId", userId)
+     ))
+      {
+     if (reader.Read())
+         {
+      return new ProfileDto
+        {
+    FullName = reader.GetString("FullName"),
+     PhoneNumber = reader.IsDBNull(reader.GetOrdinal("PhoneNumber")) ? null : reader.GetString("PhoneNumber"),
+      DOB = DateTime.Parse(reader.GetString("DOB")),
+     Gender = (Gender)reader.GetInt32("Gender"),
+    HeightCm = reader.GetInt32("HeightCm"),
+       WeightKg = reader.GetDouble("WeightKg"),
+     ActivityLevel = (ActivityLevel)reader.GetInt32("ActivityLevel"),
+     HealthGoal = (HealthGoal)reader.GetInt32("HealthGoal"),
+       TargetWeightKg = reader.IsDBNull(reader.GetOrdinal("TargetWeightKg")) ? null : (double?)reader.GetDouble("TargetWeightKg"),
+     WaterTargetMl = reader.GetInt32("WaterTargetMl"),
+ ProfileImagePath = reader.IsDBNull(reader.GetOrdinal("ProfileImagePath")) ? null : reader.GetString("ProfileImagePath")
+     };
+    }
+   }
+
+  return null;
+     }
+});
+        }
+
+ /// <summary>
+     /// Calculate BMI from height and weight
+        /// </summary>
+      public double CalculateBMI(double weightKg, int heightCm)
+  {
+ double heightM = heightCm / 100.0;
+  return weightKg / (heightM * heightM);
+ }
+
+        /// <summary>
+   /// Calculate BMR (Basal Metabolic Rate) and TDEE (Total Daily Energy Expenditure)
+ /// </summary>
+  public (double bmr, double tdee) CalculateBmrTdee(ProfileDto profile)
+      {
+    int age = CalculateAge(profile.DOB);
+   double bmr;
+
+ // Mifflin-St Jeor Equation
+      if (profile.Gender == Gender.Male)
+  {
+     bmr = 10 * profile.WeightKg + 6.25 * profile.HeightCm - 5 * age + 5;
+ }
+ else
+     {
+   bmr = 10 * profile.WeightKg + 6.25 * profile.HeightCm - 5 * age - 161;
+    }
+
+     // Activity factor
+       double activityFactor = GetActivityFactor(profile.ActivityLevel);
+   double tdee = bmr * activityFactor;
+
+     return (bmr, tdee);
+  }
+
+/// <summary>
+ /// Get daily calorie target based on health goal and TDEE
+   /// </summary>
+     public int GetDailyCalorieTarget(ProfileDto profile)
+        {
+ var (bmr, tdee) = CalculateBmrTdee(profile);
+
+  switch (profile.HealthGoal)
+      {
+       case HealthGoal.LoseWeight:
+     return (int)(tdee - 500); // 500 calorie deficit for ~1 lb/week loss
+     case HealthGoal.GainWeight:
+    return (int)(tdee + 300); // 300 calorie surplus for gradual gain
+   case HealthGoal.Maintain:
+ default:
+     return (int)tdee;
+   }
+ }
+
+  /// <summary>
+        /// Calculate age from date of birth
+        /// </summary>
+        private int CalculateAge(DateTime dob)
+ {
+       var today = DateTime.Today;
+  var age = today.Year - dob.Year;
+  if (dob.Date > today.AddYears(-age)) age--;
+   return age;
+   }
+
+     /// <summary>
+        /// Get activity factor for TDEE calculation
+/// </summary>
+     private double GetActivityFactor(ActivityLevel activityLevel)
+  {
+     switch (activityLevel)
+ {
+      case ActivityLevel.Sedentary:
+     return 1.2;
+case ActivityLevel.Light:
+    return 1.375;
+case ActivityLevel.Moderate:
+ return 1.55;
+       case ActivityLevel.Active:
+     return 1.725;
+    case ActivityLevel.VeryActive:
+  return 1.9;
+    default:
+  return 1.55;
+    }
+   }
+
+      /// <summary>
+        /// Create SQL parameters for profile operations
+  /// </summary>
+     private SQLiteParameter[] CreateProfileParameters(int userId, ProfileDto dto)
+      {
+    return new[]
+ {
+   new SQLiteParameter("@userId", userId),
+   new SQLiteParameter("@fullName", dto.FullName),
+    new SQLiteParameter("@phone", dto.PhoneNumber ?? (object)DBNull.Value),
+      new SQLiteParameter("@dob", dto.DOB.ToString("yyyy-MM-dd")),
+  new SQLiteParameter("@gender", (int)dto.Gender),
+   new SQLiteParameter("@height", dto.HeightCm),
+    new SQLiteParameter("@weight", dto.WeightKg),
+ new SQLiteParameter("@activity", (int)dto.ActivityLevel),
+   new SQLiteParameter("@goal", (int)dto.HealthGoal),
+     new SQLiteParameter("@targetWeight", dto.TargetWeightKg ?? (object)DBNull.Value),
+   new SQLiteParameter("@waterTarget", dto.WaterTargetMl),
+     new SQLiteParameter("@imagePath", dto.ProfileImagePath ?? (object)DBNull.Value),
+new SQLiteParameter("@updatedAt", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+   };
+  }
+  }
+}

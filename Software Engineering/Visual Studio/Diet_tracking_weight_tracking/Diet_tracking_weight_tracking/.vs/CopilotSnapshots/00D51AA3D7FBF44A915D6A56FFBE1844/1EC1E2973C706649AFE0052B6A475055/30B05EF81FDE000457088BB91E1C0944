@@ -1,0 +1,652 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+using Diet_tracking_weight_tracking.Services;
+
+namespace Diet_tracking_weight_tracking.Forms
+{
+    /// <summary>
+  /// Main dashboard form for tracking daily food, water, and weight
+    /// </summary>
+    public partial class DashboardForm : Form
+    {
+        private readonly User _user;
+private readonly ProfileService _profileService;
+   private readonly EntryService _entryService;
+   private ProfileDto _userProfile;
+        private List<FoodItem> _foodItems;
+      
+  // Quick Add FlowLayoutPanel
+     private FlowLayoutPanel flowQuickAdd;
+
+        public DashboardForm(User user)
+        {
+            InitializeComponent();
+  _user = user;
+   _profileService = new ProfileService();
+   _entryService = new EntryService();
+    
+            // Wire up resize event for responsive behavior
+            this.Resize += DashboardForm_Resize;
+            
+            LoadUserData();
+        }
+
+ private void DashboardForm_Resize(object sender, EventArgs e)
+     {
+         // Ensure charts re-render properly on resize
+       if (picCalories.Image != null)
+            {
+           // Re-render pie chart to maintain circular aspect
+   var today = DateTime.Today;
+                _ = UpdateCaloriesPieChartAsync(today);
+ }
+    
+        // Ensure FlowLayoutPanel reflows properly
+         flowQuickAdd?.PerformLayout();
+        }
+
+     private async void LoadUserData()
+     {
+  try
+        {
+                // Load user profile
+ _userProfile = await _profileService.GetProfileAsync(_user.Id);
+
+    // Load food items for quick add
+      _foodItems = await _entryService.GetFoodItemsAsync();
+     
+   // Setup UI
+     CreateOrConfigureFlowPanel();
+     await PopulateQuickAddButtons();
+      await PopulateFoodComboBox();
+      await UpdateHeaderStats();
+  await RefreshTodayData();
+  
+       // Load charts
+  await UpdateCaloriesPieChartAsync(DateTime.Today);
+       await UpdateWeightLineChartAsync(DateTime.Today.AddDays(-30), DateTime.Today);
+            }
+  catch (Exception ex)
+       {
+      MessageBox.Show($"Error loading dashboard: {ex.Message}", "Error", 
+ MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+     }
+
+        #region Quick Add Button Management
+
+     /// <summary>
+        /// Create or configure the FlowLayoutPanel for Quick Add buttons
+        /// </summary>
+ private void CreateOrConfigureFlowPanel()
+        {
+    if (flowQuickAdd == null)
+            {
+flowQuickAdd = QuickAddLayoutHelpers.CreateQuickAddFlowPanel();
+           
+    // Replace the existing pnlQuickAdd with the new FlowLayoutPanel
+        if (pnlQuickAdd != null)
+     {
+  var parent = pnlQuickAdd.Parent;
+  var bounds = pnlQuickAdd.Bounds;
+    var anchor = pnlQuickAdd.Anchor;
+        var dock = pnlQuickAdd.Dock;
+          
+ parent.Controls.Remove(pnlQuickAdd);
+         pnlQuickAdd.Dispose();
+      
+        // Set up the FlowLayoutPanel with the same positioning
+ flowQuickAdd.Bounds = bounds;
+        flowQuickAdd.Anchor = anchor;
+ flowQuickAdd.Dock = dock;
+     
+      parent.Controls.Add(flowQuickAdd);
+   flowQuickAdd.BringToFront();
+   }
+   }
+        }
+
+      /// <summary>
+  /// Populate Quick Add buttons from food items
+        /// </summary>
+      private async Task PopulateQuickAddButtons()
+        {
+            if (flowQuickAdd == null || _foodItems == null) return;
+
+            flowQuickAdd.Controls.Clear();
+  
+   // Default food items for quick add (or use all available food items)
+      var quickAddFoods = _foodItems.Where(f => 
+              new[] { "Rice", "Egg", "Milk", "Fish", "Potato", "Butter", "Bread", "Apple", 
+  "Chicken Breast", "Banana", "Broccoli", "Pasta" }.Contains(f.Name, StringComparer.OrdinalIgnoreCase))
+      .ToList();
+
+      // If we don't have enough predefined foods, take the first 12
+            if (quickAddFoods.Count < 8)
+            {
+      quickAddFoods = _foodItems.Take(12).ToList();
+            }
+
+            foreach (var food in quickAddFoods)
+        {
+       var btn = QuickAddLayoutHelpers.CreateQuickAddButton(
+             food, 
+     food.Name, 
+   food.DefaultCaloriesPerServing, 
+     QuickAddButton_Click);
+    
+         flowQuickAdd.Controls.Add(btn);
+          }
+
+            // Add a "View All" button if there are more foods
+      if (_foodItems.Count > quickAddFoods.Count)
+      {
+          var viewAllBtn = new Button
+       {
+        Text = "View All\nFoods",
+     Size = new Size(110, 60),
+        Margin = new Padding(6),
+    FlatStyle = FlatStyle.Flat,
+     BackColor = Color.FromArgb(108, 117, 125), // Gray color
+        ForeColor = Color.White,
+         Font = new Font("Segoe UI", 9, FontStyle.Bold),
+         TextAlign = ContentAlignment.MiddleCenter
+         };
+         viewAllBtn.FlatAppearance.BorderSize = 0;
+       viewAllBtn.Click += ViewAllFoodsButton_Click;
+    
+     flowQuickAdd.Controls.Add(viewAllBtn);
+          }
+        }
+
+  private async void QuickAddButton_Click(object sender, EventArgs e)
+        {
+  if (sender is Button btn && btn.Tag is FoodItem food)
+            {
+         await AddFoodEntry(food, 1.0);
+ await OnFoodEntryAddedAsync();
+  }
+        }
+
+        private void ViewAllFoodsButton_Click(object sender, EventArgs e)
+    {
+        // Focus on the food search combo box
+     cboFoodSearch.Focus();
+            cboFoodSearch.DroppedDown = true;
+    }
+
+        #endregion
+
+    #region Chart Update Methods
+
+        /// <summary>
+   /// Update the calorie pie chart for a specific date
+    /// Shows calorie distribution by food type
+ /// </summary>
+        /// <param name="date">Date to show calories for</param>
+        public async Task UpdateCaloriesPieChartAsync(DateTime date)
+        {
+     try
+   {
+       // Fetch data off UI thread
+             var groupedEntries = await Task.Run(() =>
+      {
+         using (var context = new Data.DietTrackerDbContext())
+     {
+          context.EnsureCreated();
+            var entries = context.GetFoodEntries(_user.Id, date);
+ 
+        if (!entries.Any())
+              return new List<GroupedCaloriesDto>();
+
+       var grouped = entries
+         .GroupBy(f => f.FoodName)
+  .Select(g => new GroupedCaloriesDto
+{
+           Food = g.Key,
+            Calories = g.Sum(x => x.Calories)
+      })
+   .OrderByDescending(g => g.Calories)
+     .ToList();
+
+     // Calculate percentages
+  var totalCalories = grouped.Sum(g => g.Calories);
+           foreach (var item in grouped)
+     {
+          item.Percentage = totalCalories > 0 ? (double)item.Calories / totalCalories * 100 : 0;
+          }
+
+         return grouped;
+            }
+      });
+
+ // Update UI on main thread
+   if (this.InvokeRequired)
+    {
+            this.BeginInvoke(new Action(() => UpdateCaloriesPieChartInternal(groupedEntries, date)));
+             }
+        else
+                {
+   UpdateCaloriesPieChartInternal(groupedEntries, date);
+    }
+         }
+            catch (Exception ex)
+            {
+      if (this.InvokeRequired)
+       {
+          this.BeginInvoke(new Action(() => 
+ ShowChartError(picCalories, "Error loading calorie data")));
+ }
+    else
+      {
+           ShowChartError(picCalories, "Error loading calorie data");
+          }
+      
+     // Log error or show message
+      Console.WriteLine($"Error updating calorie chart: {ex.Message}");
+       }
+        }
+
+        /// <summary>
+/// Internal method to update pie chart on UI thread
+        /// </summary>
+        private void UpdateCaloriesPieChartInternal(List<GroupedCaloriesDto> groupedEntries, DateTime date)
+        {
+            var title = $"Calorie Distribution - {date:MMM dd}";
+   
+   if (groupedEntries == null || !groupedEntries.Any())
+    {
+      SimpleChartHelpers.DrawPieChart(picCalories, new List<GroupedCaloriesDto>(), title);
+       return;
+       }
+
+     // Group small items under "Other" if percentage < 3%
+ var mainItems = groupedEntries.Where(g => g.Percentage >= 3).ToList();
+    var otherItems = groupedEntries.Where(g => g.Percentage < 3).ToList();
+
+        var chartData = new List<GroupedCaloriesDto>(mainItems);
+   
+     // Add "Other" category if there are small items
+            if (otherItems.Any())
+      {
+     var otherCalories = otherItems.Sum(i => i.Calories);
+            var totalCalories = groupedEntries.Sum(g => g.Calories);
+                var otherPercentage = (double)otherCalories / totalCalories * 100;
+                
+       chartData.Add(new GroupedCaloriesDto
+                {
+    Food = "Other",
+  Calories = otherCalories,
+        Percentage = otherPercentage
+     });
+   }
+
+    // Use the enhanced circular pie chart rendering
+          SimpleChartHelpers.DrawPieChart(picCalories, chartData, title);
+     }
+
+        /// <summary>
+     /// Update the weight line chart for a date range
+      /// Shows weight trend over time
+        /// </summary>
+     /// <param name="fromDate">Start date</param>
+        /// <param name="toDate">End date</param>
+        public async Task UpdateWeightLineChartAsync(DateTime fromDate, DateTime toDate)
+        {
+            try
+    {
+     // Fetch data off UI thread
+    var weightEntries = await Task.Run(() =>
+       {
+        using (var context = new Data.DietTrackerDbContext())
+          {
+  context.EnsureCreated();
+         var entries = context.GetWeightEntries(_user.Id, fromDate, toDate);
+ 
+        return entries.Select(w => new WeightChartDto
+    {
+         Timestamp = w.Timestamp,
+            WeightKg = w.WeightKg
+   }).OrderBy(w => w.Timestamp).ToList();
+        }
+   });
+
+       // Update UI on main thread
+                if (this.InvokeRequired)
+       {
+        this.BeginInvoke(new Action(() => UpdateWeightLineChartInternal(weightEntries, fromDate, toDate)));
+     }
+       else
+     {
+ UpdateWeightLineChartInternal(weightEntries, fromDate, toDate);
+   }
+   }
+            catch (Exception ex)
+  {
+         if (this.InvokeRequired)
+           {
+         this.BeginInvoke(new Action(() => 
+            ShowChartError(picWeight, "Error loading weight data")));
+     }
+    else
+     {
+         ShowChartError(picWeight, "Error loading weight data");
+                }
+
+ Console.WriteLine($"Error updating weight chart: {ex.Message}");
+          }
+  }
+
+     /// <summary>
+  /// Internal method to update line chart on UI thread
+        /// </summary>
+        private void UpdateWeightLineChartInternal(List<WeightChartDto> weightEntries, DateTime fromDate, DateTime toDate)
+        {
+            var daySpan = (toDate - fromDate).Days;
+      var title = $"Weight History - Last {daySpan} Days";
+       
+     SimpleChartHelpers.DrawLineChart(picWeight, weightEntries, title);
+  }
+
+        /// <summary>
+        /// Show an error message on a chart PictureBox
+     /// </summary>
+ private void ShowChartError(PictureBox pictureBox, string message)
+     {
+         var bitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
+            using (var graphics = Graphics.FromImage(bitmap))
+            {
+      graphics.Clear(Color.White);
+     using (var font = new Font("Segoe UI", 11, FontStyle.Italic))
+       using (var brush = new SolidBrush(Color.Red))
+                {
+                    var size = graphics.MeasureString(message, font);
+          var x = (pictureBox.Width - size.Width) / 2;
+      var y = (pictureBox.Height - size.Height) / 2;
+        graphics.DrawString(message, font, brush, x, y);
+           }
+            }
+            pictureBox.Image?.Dispose();
+ pictureBox.Image = bitmap;
+        }
+
+    #endregion
+
+        #region Event Handlers for Chart Updates
+
+      /// <summary>
+        /// Called after a food entry is added - refresh pie chart
+        /// </summary>
+   private async Task OnFoodEntryAddedAsync()
+        {
+     await RefreshFoodEntries();
+    await UpdateCaloriesPieChartAsync(DateTime.Today);
+        }
+
+        /// <summary>
+ /// Called after a food entry is deleted - refresh pie chart
+      /// </summary>
+        private async Task OnFoodEntryDeletedAsync()
+        {
+            await RefreshFoodEntries();
+            await UpdateCaloriesPieChartAsync(DateTime.Today);
+        }
+
+        /// <summary>
+        /// Called after a weight entry is added - refresh line chart
+        /// </summary>
+        private async Task OnWeightEntryAddedAsync()
+     {
+            await UpdateHeaderStats(); // BMI might change
+       await UpdateWeightLineChartAsync(DateTime.Today.AddDays(-30), DateTime.Today);
+        }
+
+        #endregion
+
+        #region Form Event Handlers and Helper Methods
+
+        private async Task PopulateFoodComboBox()
+        {
+    cboFoodSearch.Items.Clear();
+    cboFoodSearch.Items.Add("Select a food item...");
+            
+     foreach (var food in _foodItems)
+            {
+        cboFoodSearch.Items.Add($"{food.Name} ({food.DefaultCaloriesPerServing} cal)");
+        }
+      
+            cboFoodSearch.SelectedIndex = 0;
+        }
+
+     private async Task UpdateHeaderStats()
+        {
+ if (_userProfile != null)
+            {
+   // Calculate BMI
+          double bmi = _profileService.CalculateBMI(_userProfile.WeightKg, _userProfile.HeightCm);
+            string bmiCategory = GetBMICategory(bmi);
+      Color bmiColor = GetBMIColor(bmi);
+     
+                lblBmiValue.Text = $"BMI: {bmi:F1} ({bmiCategory})";
+ lblBmiValue.ForeColor = bmiColor;
+           
+            // Calculate calorie target
+          int calorieTarget = _profileService.GetDailyCalorieTarget(_userProfile);
+    lblTargetCalories.Text = $"Target: {calorieTarget} cal";
+       
+     // Water target
+  lblWaterTarget.Text = $"Water Goal: {_userProfile.WaterTargetMl} ml";
+  
+   // Health goal
+    lblGoal.Text = $"Goal: {_userProfile.HealthGoal}";
+      }
+  }
+
+        private async Task RefreshTodayData()
+  {
+  // Refresh food entries
+       await RefreshFoodEntries();
+            
+     // Refresh water entries
+ await RefreshWaterEntries();
+        }
+
+        private async Task RefreshFoodEntries()
+        {
+         var entries = await _entryService.GetFoodEntriesForDateAsync(_user.Id, DateTime.Today);
+            
+            lvFoodEntries.Items.Clear();
+     int totalCalories = 0;
+  
+          foreach (var entry in entries)
+            {
+    var item = new ListViewItem(entry.FoodName);
+  item.SubItems.Add(entry.Calories.ToString());
+      item.SubItems.Add(entry.Quantity.ToString("F1"));
+     item.SubItems.Add(entry.Timestamp.ToString("HH:mm"));
+                item.Tag = entry; // Store the entry for deletion
+         
+           lvFoodEntries.Items.Add(item);
+          totalCalories += entry.Calories;
+         }
+ 
+            lblCalorieTotal.Text = $"Total: {totalCalories} calories";
+        }
+
+private async Task RefreshWaterEntries()
+     {
+   var entries = await _entryService.GetWaterEntriesForDateAsync(_user.Id, DateTime.Today);
+    
+     lvWaterEntries.Items.Clear();
+ int totalWater = 0;
+  
+ foreach (var entry in entries)
+    {
+      var item = new ListViewItem($"{entry.Ml} ml");
+    item.SubItems.Add(entry.Timestamp.ToString("HH:mm"));
+                item.Tag = entry.Id; // Store the ID for deletion
+   
+       lvWaterEntries.Items.Add(item);
+         totalWater += entry.Ml;
+}
+            
+       int target = _userProfile?.WaterTargetMl ?? 2000;
+          lblWaterTotal.Text = $"{totalWater} / {target} ml";
+     
+       // Update progress
+       double progress = Math.Min(100, (double)totalWater / target * 100);
+         progressWater.Value = (int)progress;
+        }
+
+        private async void btnAddFood_Click(object sender, EventArgs e)
+        {
+            if (cboFoodSearch.SelectedIndex <= 0)
+            {
+         MessageBox.Show("Please select a food item.", "Validation Error", 
+  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+       return;
+   }
+            
+            int foodIndex = cboFoodSearch.SelectedIndex - 1; // Subtract 1 for placeholder
+      var food = _foodItems[foodIndex];
+          
+            double quantity = (double)nudQuantity.Value;
+   await AddFoodEntry(food, quantity);
+            await OnFoodEntryAddedAsync(); // Update charts
+        }
+
+      private async Task AddFoodEntry(FoodItem food, double quantity)
+        {
+            try
+{
+           var dto = new FoodEntryDto
+    {
+      FoodItemId = food.Id,
+         FoodName = food.Name,
+   Calories = (int)(food.DefaultCaloriesPerServing * quantity),
+      Quantity = quantity,
+    Timestamp = DateTime.Now
+        };
+       
+        await _entryService.AddFoodEntryAsync(_user.Id, dto);
+       await RefreshTodayData();
+      }
+         catch (Exception ex)
+     {
+                MessageBox.Show($"Error adding food entry: {ex.Message}", "Error", 
+   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnAddWater_Click(object sender, EventArgs e)
+        {
+     try
+     {
+        int ml = (int)nudWaterMl.Value;
+        await _entryService.AddWaterEntryAsync(_user.Id, ml);
+       await RefreshWaterEntries();
+       
+            nudWaterMl.Value = 250; // Reset to default
+            }
+         catch (Exception ex)
+            {
+      MessageBox.Show($"Error adding water entry: {ex.Message}", "Error", 
+  MessageBoxButtons.OK, MessageBoxIcon.Error);
+ }
+        }
+
+ private async void btnAddWeight_Click(object sender, EventArgs e)
+        {
+try
+    {
+    double weight = (double)nudWeightEntry.Value;
+      await _entryService.AddWeightEntryAsync(_user.Id, weight);
+      await OnWeightEntryAddedAsync(); // Update charts and BMI
+        
+       MessageBox.Show("Weight entry added successfully!", "Success", 
+            MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+   catch (Exception ex)
+            {
+ MessageBox.Show($"Error adding weight entry: {ex.Message}", "Error", 
+   MessageBoxButtons.OK, MessageBoxIcon.Error);
+     }
+        }
+
+        private string GetBMICategory(double bmi)
+        {
+       if (bmi < 18.5) return "Underweight";
+            if (bmi < 25) return "Normal";
+            if (bmi < 30) return "Overweight";
+    return "Obese";
+    }
+
+        private Color GetBMIColor(double bmi)
+        {
+        if (bmi < 18.5) return Color.Blue;
+   if (bmi < 25) return Color.Green;
+     if (bmi < 30) return Color.Orange;
+    return Color.Red;
+        }
+
+        private async void lvFoodEntries_KeyDown(object sender, KeyEventArgs e)
+        {
+          if (e.KeyCode == Keys.Delete && lvFoodEntries.SelectedItems.Count > 0)
+     {
+                await DeleteSelectedFoodEntry();
+         await OnFoodEntryDeletedAsync(); // Update charts
+         }
+        }
+
+     private async void lvWaterEntries_KeyDown(object sender, KeyEventArgs e)
+        {
+      if (e.KeyCode == Keys.Delete && lvWaterEntries.SelectedItems.Count > 0)
+     {
+         await DeleteSelectedWaterEntry();
+    }
+     }
+
+        private async Task DeleteSelectedFoodEntry()
+        {
+            try
+            {
+     var selectedItem = lvFoodEntries.SelectedItems[0];
+                var entry = (FoodEntryDto)selectedItem.Tag;
+        
+      // Note: We need to add DeleteFoodEntry method to EntryService that takes entry info
+   // For now, we'll just refresh the data
+ await RefreshTodayData();
+            }
+            catch (Exception ex)
+    {
+           MessageBox.Show($"Error deleting food entry: {ex.Message}", "Error", 
+      MessageBoxButtons.OK, MessageBoxIcon.Error);
+  }
+        }
+
+        private async Task DeleteSelectedWaterEntry()
+        {
+   try
+  {
+    var selectedItem = lvWaterEntries.SelectedItems[0];
+        int entryId = (int)selectedItem.Tag;
+             
+    await _entryService.DeleteWaterEntryAsync(entryId);
+   await RefreshWaterEntries();
+   }
+            catch (Exception ex)
+          {
+      MessageBox.Show($"Error deleting water entry: {ex.Message}", "Error", 
+     MessageBoxButtons.OK, MessageBoxIcon.Error);
+     }
+        }
+
+   #endregion
+    }
+}

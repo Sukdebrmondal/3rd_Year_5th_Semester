@@ -1,0 +1,177 @@
+﻿using System;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.SQLite;
+using System.Diagnostics;
+using System.IO;
+using Diet_tracking_weight_tracking.Models;
+
+namespace Diet_tracking_weight_tracking.Data
+{
+    /// <summary>
+    /// SQLite-based Entity Framework DbContext for persistent data storage
+    /// </summary>
+    public class SqliteDietTrackerDbContext : DbContext
+    {
+        static SqliteDietTrackerDbContext()
+        {
+            // Ensure SQLite provider is available
+         System.Data.Entity.Database.SetInitializer(new CreateDatabaseIfNotExists<SqliteDietTrackerDbContext>());
+   }
+
+        /// <summary>
+        /// Creates a new instance using the configured SQLite connection string
+        /// </summary>
+  public SqliteDietTrackerDbContext() : base(AppPaths.GetSqliteConnectionString())
+  {
+       // Enable logging for development
+        Database.Log = (msg) => Debug.WriteLine($"EF: {msg}");
+   
+          // Ensure database exists and is properly initialized
+            try
+     {
+      Database.Initialize(force: false);
+   }
+            catch (Exception ex)
+ {
+        Debug.WriteLine($"Database initialization error: {ex.Message}");
+          throw;
+   }
+        }
+
+        /// <summary>
+        /// Creates a new instance with explicit connection string
+     /// </summary>
+        /// <param name="connectionString">SQLite connection string</param>
+public SqliteDietTrackerDbContext(string connectionString) : base(connectionString)
+        {
+            Database.Log = (msg) => Debug.WriteLine($"EF: {msg}");
+   }
+
+     // DbSets for entities
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<FoodItem> FoodItems { get; set; }
+   public virtual DbSet<FoodEntry> FoodEntries { get; set; }
+   public virtual DbSet<WaterEntry> WaterEntries { get; set; }
+        public virtual DbSet<WeightEntry> WeightEntries { get; set; }
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+     {
+         // Remove pluralizing convention
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            // Configure User entity
+       modelBuilder.Entity<User>()
+  .HasKey(u => u.Id)
+        .Property(u => u.Id)
+          .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<User>()
+           .Property(u => u.Username)
+     .IsRequired()
+ .HasMaxLength(50);
+
+     modelBuilder.Entity<User>()
+           .HasIndex(u => u.Username)
+            .IsUnique();
+
+            modelBuilder.Entity<User>()
+     .Property(u => u.Email)
+   .IsRequired()
+            .HasMaxLength(100);
+
+       modelBuilder.Entity<User>()
+    .Property(u => u.PasswordHash)
+    .IsRequired()
+          .HasMaxLength(500);
+
+       // Configure Profile entity
+            modelBuilder.Entity<Profile>()
+    .HasKey(p => p.Id)
+                .Property(p => p.Id)
+   .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<Profile>()
+      .HasRequired(p => p.User)
+  .WithOptional(u => u.Profile)
+           .HasForeignKey(p => p.UserId);
+
+            // Configure FoodItem entity
+         modelBuilder.Entity<FoodItem>()
+      .HasKey(f => f.Id)
+      .Property(f => f.Id)
+    .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<FoodItem>()
+    .Property(f => f.Name)
+ .IsRequired()
+           .HasMaxLength(100);
+
+       // Configure FoodEntry entity
+      modelBuilder.Entity<FoodEntry>()
+         .HasKey(f => f.Id)
+      .Property(f => f.Id)
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+
+ // Configure WaterEntry entity
+  modelBuilder.Entity<WaterEntry>()
+         .HasKey(w => w.Id)
+  .Property(w => w.Id)
+      .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+
+            // Configure WeightEntry entity
+  modelBuilder.Entity<WeightEntry>()
+ .HasKey(w => w.Id)
+         .Property(w => w.Id)
+     .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+
+       base.OnModelCreating(modelBuilder);
+        }
+
+   /// <summary>
+        /// Ensures database is created and seeded with initial data
+        /// </summary>
+        public void EnsureCreatedAndSeeded()
+        {
+            try
+ {
+    Database.CreateIfNotExists();
+                
+    // Seed initial food items if none exist
+      if (!FoodItems.Any())
+    {
+        SeedFoodItems();
+     }
+       }
+   catch (Exception ex)
+          {
+            Debug.WriteLine($"Database creation/seeding error: {ex.Message}");
+                throw;
+ }
+        }
+
+        /// <summary>
+   /// Seeds the database with default food items
+        /// </summary>
+        private void SeedFoodItems()
+    {
+    var foodItems = new[]
+            {
+      new FoodItem { Name = "Rice", DefaultCaloriesPerServing = 200, ServingDescription = "1 cup cooked" },
+      new FoodItem { Name = "Egg", DefaultCaloriesPerServing = 78, ServingDescription = "1 large" },
+                new FoodItem { Name = "Milk", DefaultCaloriesPerServing = 150, ServingDescription = "1 cup" },
+      new FoodItem { Name = "Fish", DefaultCaloriesPerServing = 200, ServingDescription = "100g" },
+          new FoodItem { Name = "Potato", DefaultCaloriesPerServing = 160, ServingDescription = "1 medium" },
+        new FoodItem { Name = "Butter", DefaultCaloriesPerServing = 102, ServingDescription = "1 tbsp" },
+                new FoodItem { Name = "Bread", DefaultCaloriesPerServing = 80, ServingDescription = "1 slice" },
+       new FoodItem { Name = "Apple", DefaultCaloriesPerServing = 95, ServingDescription = "1 medium" },
+ new FoodItem { Name = "Chicken Breast", DefaultCaloriesPerServing = 165, ServingDescription = "100g" },
+     new FoodItem { Name = "Banana", DefaultCaloriesPerServing = 105, ServingDescription = "1 medium" }
+            };
+
+  FoodItems.AddRange(foodItems);
+ SaveChanges();
+        }
+    }
+}

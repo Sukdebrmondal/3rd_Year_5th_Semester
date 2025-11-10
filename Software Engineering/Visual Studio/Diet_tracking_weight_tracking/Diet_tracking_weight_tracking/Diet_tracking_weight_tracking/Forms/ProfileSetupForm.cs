@@ -1,0 +1,185 @@
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+using Diet_tracking_weight_tracking.Services;
+
+namespace Diet_tracking_weight_tracking.Forms
+{
+    /// <summary>
+  /// Profile setup form for completing user profile information
+    /// </summary>
+    public partial class ProfileSetupForm : Form
+    {
+        private readonly User _user;
+        private readonly ProfileService _profileService;
+
+        public ProfileSetupForm(User user)
+        {
+InitializeComponent();
+      _user = user;
+         _profileService = new ProfileService();
+       
+     LoadEnumValues();
+  SetDefaultValues();
+        }
+
+ private void LoadEnumValues()
+     {
+            // Populate gender combo box
+            cmbGender.Items.Clear();
+            cmbGender.Items.Add("Male");
+          cmbGender.Items.Add("Female");
+            cmbGender.Items.Add("Other");
+        cmbGender.SelectedIndex = 0;
+
+// Populate activity level combo box
+     cmbActivity.Items.Clear();
+  cmbActivity.Items.Add("Sedentary (little/no exercise)");
+ cmbActivity.Items.Add("Light (light exercise 1-3 days/week)");
+      cmbActivity.Items.Add("Moderate (moderate exercise 3-5 days/week)");
+        cmbActivity.Items.Add("Active (hard exercise 6-7 days/week)");
+            cmbActivity.Items.Add("Very Active (very hard exercise, physical job)");
+      cmbActivity.SelectedIndex = 2; // Default to Moderate
+
+         // Populate health goal combo box
+ cmbHealthGoal.Items.Clear();
+            cmbHealthGoal.Items.Add("Lose Weight");
+      cmbHealthGoal.Items.Add("Maintain Weight");
+        cmbHealthGoal.Items.Add("Gain Weight");
+    cmbHealthGoal.SelectedIndex = 1; // Default to Maintain
+   }
+
+        private void SetDefaultValues()
+ {
+  // Set default values
+            nudHeight.Value = 170; // cm
+         nudWeight.Value = 70; // kg
+    nudTargetWeight.Value = 70; // kg
+            nudWaterTarget.Value = 2000; // ml
+            dtpDob.Value = new DateTime(1990, 1, 1);
+        }
+
+        private async void btnProfileSubmit_Click(object sender, EventArgs e)
+        {
+  try
+        {
+              btnProfileSubmit.Enabled = false;
+          btnProfileSubmit.Text = "Saving...";
+
+        if (!ValidateInputs())
+     return;
+
+       var profileDto = new ProfileDto
+                {
+  FullName = txtNameProfile.Text.Trim(),
+      PhoneNumber = txtPhone.Text.Trim(),
+        DOB = dtpDob.Value.Date,
+  Gender = (Gender)cmbGender.SelectedIndex,
+          HeightCm = (int)nudHeight.Value,
+            WeightKg = (double)nudWeight.Value,
+          ActivityLevel = (ActivityLevel)cmbActivity.SelectedIndex,
+           HealthGoal = (HealthGoal)cmbHealthGoal.SelectedIndex,
+        TargetWeightKg = chkTargetWeight.Checked ? (double?)nudTargetWeight.Value : null,
+  WaterTargetMl = (int)nudWaterTarget.Value
+        };
+
+      await _profileService.SaveProfileAsync(_user.Id, profileDto);
+
+   // Calculate and show targets
+     var (bmr, tdee) = _profileService.CalculateBmrTdee(profileDto);
+   int calorieTarget = _profileService.GetDailyCalorieTarget(profileDto);
+       double bmi = _profileService.CalculateBMI(profileDto.WeightKg, profileDto.HeightCm);
+
+     MessageBox.Show($"Profile saved successfully!\n\n" +
+         $"Your BMI: {bmi:F1}\n" +
+         $"Daily Calorie Target: {calorieTarget} calories\n" +
+            $"Water Target: {profileDto.WaterTargetMl} ml",
+   "Profile Setup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+              // Redirect to dashboard
+     var dashboardForm = new DashboardForm(_user);
+            this.Hide();
+  dashboardForm.ShowDialog();
+             this.Close();
+}
+            catch (Exception ex)
+ {
+   MessageBox.Show($"Error saving profile: {ex.Message}", "Error", 
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+       }
+            finally
+  {
+     btnProfileSubmit.Enabled = true;
+         btnProfileSubmit.Text = "Save Profile";
+            }
+}
+
+ private bool ValidateInputs()
+      {
+       if (string.IsNullOrWhiteSpace(txtNameProfile.Text))
+  {
+             MessageBox.Show("Please enter your full name.", "Validation Error", 
+               MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        txtNameProfile.Focus();
+     return false;
+          }
+
+      if (nudHeight.Value < 50 || nudHeight.Value > 250)
+      {
+        MessageBox.Show("Please enter a valid height between 50-250 cm.", "Validation Error", 
+ MessageBoxButtons.OK, MessageBoxIcon.Warning);
+          nudHeight.Focus();
+     return false;
+         }
+
+        if (nudWeight.Value < 20 || nudWeight.Value > 500)
+     {
+   MessageBox.Show("Please enter a valid weight between 20-500 kg.", "Validation Error", 
+    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+  nudWeight.Focus();
+    return false;
+  }
+
+        if (chkTargetWeight.Checked && (nudTargetWeight.Value < 20 || nudTargetWeight.Value > 500))
+        {
+     MessageBox.Show("Please enter a valid target weight between 20-500 kg.", "Validation Error", 
+     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+  nudTargetWeight.Focus();
+      return false;
+            }
+
+     if (dtpDob.Value.Date >= DateTime.Today.AddYears(-13))
+ {
+     MessageBox.Show("You must be at least 13 years old.", "Validation Error", 
+  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+  dtpDob.Focus();
+     return false;
+            }
+
+            return true;
+        }
+
+    private void chkTargetWeight_CheckedChanged(object sender, EventArgs e)
+   {
+    nudTargetWeight.Enabled = chkTargetWeight.Checked;
+      lblTargetWeight.Enabled = chkTargetWeight.Checked;
+        }
+
+        private void cmbHealthGoal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Enable/disable target weight based on health goal
+     if (cmbHealthGoal.SelectedIndex == 0 || cmbHealthGoal.SelectedIndex == 2) // Lose or Gain
+            {
+         chkTargetWeight.Checked = true;
+      chkTargetWeight.Enabled = true;
+            }
+            else // Maintain
+            {
+                chkTargetWeight.Checked = false;
+   chkTargetWeight.Enabled = false;
+    }
+        }
+    }
+}

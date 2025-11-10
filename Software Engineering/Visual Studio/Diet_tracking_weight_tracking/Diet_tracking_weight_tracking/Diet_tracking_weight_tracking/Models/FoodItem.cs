@@ -1,0 +1,17 @@
+using System;
+
+namespace Diet_tracking_weight_tracking.Models
+{
+    /// <summary>
+    /// Food item catalog entity
+    /// </summary>
+    public class FoodItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int DefaultCaloriesPerServing { get; set; }
+        public string ServingDescription { get; set; }
+        public bool IsActive { get; set; } = true;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    }
+}

@@ -1,0 +1,161 @@
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+using Diet_tracking_weight_tracking.Services;
+
+namespace Diet_tracking_weight_tracking.Forms
+{
+ /// <summary>
+    /// Registration form for new user accounts
+/// </summary>
+    public partial class RegisterForm : Form
+ {
+       private readonly AuthenticationService _authService;
+
+   public RegisterForm()
+        {
+    InitializeComponent();
+       _authService = new AuthenticationService();
+        }
+
+  private async void btnRegister_Click(object sender, EventArgs e)
+     {
+      try
+     {
+    btnRegister.Enabled = false;
+            btnRegister.Text = "Creating account...";
+
+ // Validate inputs
+   if (!ValidateInputs())
+         return;
+
+     // Create basic profile DTO
+      var profileDto = new ProfileDto
+     {
+     FullName = txtName.Text.Trim(),
+PhoneNumber = txtPhone.Text.Trim(),
+        DOB = dtpDob.Value.Date,
+          };
+
+       User user = await _authService.RegisterAsync(
+      txtUsername.Text.Trim(),
+         txtEmail.Text.Trim(),
+      txtPassword.Text,
+    profileDto
+  );
+
+    MessageBox.Show("Account created successfully! Please complete your profile setup.", 
+      "Registration Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+    // Redirect to profile setup
+      var profileSetupForm = new ProfileSetupForm(user);
+     this.Hide();
+    profileSetupForm.ShowDialog();
+        this.Close();
+   }
+     catch (Exception ex)
+  {
+            MessageBox.Show($"Registration failed: {ex.Message}", "Registration Error", 
+  MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+   finally
+     {
+   btnRegister.Enabled = true;
+      btnRegister.Text = "Register";
+  }
+ }
+
+ private bool ValidateInputs()
+  {
+      // Check required fields
+  if (string.IsNullOrWhiteSpace(txtName.Text))
+        {
+    MessageBox.Show("Please enter your full name.", "Validation Error", 
+       MessageBoxButtons.OK, MessageBoxIcon.Warning);
+ txtName.Focus();
+  return false;
+      }
+
+        if (string.IsNullOrWhiteSpace(txtUsername.Text))
+ {
+     MessageBox.Show("Please enter a username.", "Validation Error", 
+     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      txtUsername.Focus();
+ return false;
+   }
+
+  if (txtUsername.Text.Length < 3)
+   {
+     MessageBox.Show("Username must be at least 3 characters long.", "Validation Error", 
+    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+   txtUsername.Focus();
+       return false;
+      }
+
+  if (string.IsNullOrWhiteSpace(txtEmail.Text) || !IsValidEmail(txtEmail.Text))
+     {
+     MessageBox.Show("Please enter a valid email address.", "Validation Error", 
+      MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      txtEmail.Focus();
+        return false;
+      }
+
+        if (string.IsNullOrWhiteSpace(txtPassword.Text))
+ {
+   MessageBox.Show("Please enter a password.", "Validation Error", 
+     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+     txtPassword.Focus();
+      return false;
+      }
+
+  if (txtPassword.Text.Length < 6)
+        {
+  MessageBox.Show("Password must be at least 6 characters long.", "Validation Error", 
+      MessageBoxButtons.OK, MessageBoxIcon.Warning);
+   txtPassword.Focus();
+      return false;
+        }
+
+        if (txtPassword.Text != txtConfirmPassword.Text)
+     {
+       MessageBox.Show("Passwords do not match.", "Validation Error", 
+     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+ txtConfirmPassword.Focus();
+       return false;
+        }
+
+  if (dtpDob.Value.Date >= DateTime.Today.AddYears(-13))
+   {
+   MessageBox.Show("You must be at least 13 years old to register.", "Validation Error", 
+    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+     dtpDob.Focus();
+       return false;
+    }
+
+  return true;
+ }
+
+   private bool IsValidEmail(string email)
+        {
+  try
+   {
+         var addr = new System.Net.Mail.MailAddress(email);
+   return addr.Address == email;
+ }
+   catch
+    {
+  return false;
+   }
+        }
+
+    private void lnkLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+     {
+      var loginForm = new LoginForm();
+   this.Hide();
+    loginForm.ShowDialog();
+     this.Close();
+        }
+    }
+}

@@ -1,0 +1,192 @@
+﻿using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Diet_tracking_weight_tracking.Models;
+using Diet_tracking_weight_tracking.Services;
+using Diet_tracking_weight_tracking.Testing;
+
+namespace Diet_tracking_weight_tracking.Forms
+{
+    /// <summary>
+    /// Login form for user authentication with persistent storage
+    /// </summary>
+    public partial class LoginForm : Form
+    {
+      private readonly AuthenticationService _authService;
+
+  public LoginForm()
+        {
+  InitializeComponent();
+      _authService = new AuthenticationService();
+     
+   // Report database status for debugging
+    _authService.DebugReportDatabaseStatus();
+      
+        // Set initial focus
+   txtUsername.Focus();
+   
+   // Add debug test button in development builds
+   #if DEBUG
+   AddDebugTestButton();
+   #endif
+ }
+
+        private async void btnLogin_Click(object sender, EventArgs e)
+        {
+      try
+   {
+    btnLogin.Enabled = false;
+ btnLogin.Text = "Logging in...";
+   
+      string username = txtUsername.Text.Trim();
+    string password = txtPassword.Text;
+       
+       Debug.WriteLine($"Login attempt for username: {username}");
+
+      if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+     {
+          MessageBox.Show("Please enter both username and password.", "Validation Error", 
+        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    return;
+    }
+
+      User user = await _authService.LoginAsync(username, password);
+
+      if (user != null)
+{
+     Debug.WriteLine($"Login successful for user: {user.Username} (ID: {user.Id})");
+    
+   // Login successful - check if user has a profile
+var profileService = new ProfileService();
+    var profile = await profileService.GetProfileAsync(user.Id);
+
+       if (profile == null)
+  {
+       Debug.WriteLine($"User {user.Username} has no profile, redirecting to setup");
+    
+      // Redirect to profile setup
+var profileSetupForm = new ProfileSetupForm(user);
+         this.Hide();
+       
+       if (profileSetupForm.ShowDialog() == DialogResult.OK)
+     {
+   // Profile setup completed, go to dashboard
+  var dashboardForm = new DashboardForm(user);
+        dashboardForm.ShowDialog();
+      }
+ }
+     else
+    {
+    Debug.WriteLine($"User {user.Username} has profile, opening dashboard");
+    
+        // Go directly to dashboard
+       var dashboardForm = new DashboardForm(user);
+     this.Hide();
+        dashboardForm.ShowDialog();
+     }
+  
+      this.Close();
+        }
+      else
+  {
+    Debug.WriteLine($"Login failed for username: {username}");
+       
+     // Show generic error message for security
+       MessageBox.Show("Invalid username or password. Please try again.", 
+   "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+  
+       // Clear password field and focus username
+    txtPassword.Clear();
+     txtUsername.Focus();
+     txtUsername.SelectAll();
+      }
+  }
+  catch (Exception ex)
+  {
+     Debug.WriteLine($"Unexpected login error: {ex.Message}");
+   MessageBox.Show($"An error occurred during login:\n{ex.Message}\n\nPlease try again.", 
+     "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+   }
+     finally
+     {
+    btnLogin.Enabled = true;
+  btnLogin.Text = "Login";
+        }
+ }
+
+  private void btnRegister_Click(object sender, EventArgs e)
+     {
+      var registerForm = new RegisterForm();
+        this.Hide();
+  registerForm.ShowDialog();
+        this.Close();
+      }
+
+       private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+     {
+    if (e.KeyCode == Keys.Enter)
+    {
+     e.SuppressKeyPress = true;
+        btnLogin_Click(sender, e);
+       }
+    }
+
+     private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+   {
+     if (e.KeyCode == Keys.Enter)
+     {
+      e.SuppressKeyPress = true;
+  txtPassword.Focus();
+        }
+        }
+
+      private void LoginForm_Load(object sender, EventArgs e)
+        {
+      // Set window position and basic properties
+     this.StartPosition = FormStartPosition.CenterScreen;
+    
+        // Add some helpful debug information in development
+    Debug.WriteLine("=== Login Form Loaded ===");
+     _authService.DebugReportDatabaseStatus();
+   }
+
+      private void lblForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+   {
+        MessageBox.Show("Password recovery is not implemented in this demo version.\n\nFor demo purposes, try registering a new account.", 
+      "Password Recovery", MessageBoxButtons.OK, MessageBoxIcon.Information);
+     }
+        
+     #if DEBUG
+   private void AddDebugTestButton()
+     {
+     var btnTest = new Button
+     {
+     Text = "Run Auth Tests",
+      Size = new Size(120, 30),
+     Location = new Point(this.Width - 140, this.Height - 70),
+     Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
+    BackColor = Color.LightBlue,
+       UseVisualStyleBackColor = false
+      };
+    
+ btnTest.Click += async (s, e) => {
+btnTest.Enabled = false;
+      btnTest.Text = "Testing...";
+   try
+    {
+     await AuthenticationTestHelper.ShowTestDialog();
+  }
+        finally
+   {
+     btnTest.Enabled = true;
+   btnTest.Text = "Run Auth Tests";
+      }
+    };
+      
+     this.Controls.Add(btnTest);
+      }
+   #endif
+    }
+}

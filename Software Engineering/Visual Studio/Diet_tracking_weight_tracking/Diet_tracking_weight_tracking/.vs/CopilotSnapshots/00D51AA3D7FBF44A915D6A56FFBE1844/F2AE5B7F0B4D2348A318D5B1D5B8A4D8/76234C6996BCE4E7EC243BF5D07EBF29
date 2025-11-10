@@ -1,0 +1,313 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SQLite;
+using System.Threading.Tasks;
+using Diet_tracking_weight_tracking.Data;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+
+namespace Diet_tracking_weight_tracking.Services
+{
+   /// <summary>
+    /// Service for managing food, water, and weight entries
+    /// </summary>
+    public class EntryService
+    {
+  /// <summary>
+     /// Add a new food entry for the user
+/// </summary>
+        public async Task AddFoodEntryAsync(int userId, FoodEntryDto dto)
+  {
+      await Task.Run(() =>
+ {
+      using (var context = new DietTrackerDbContext())
+    {
+  context.ExecuteNonQuery(@"
+       INSERT INTO FoodEntries (UserId, FoodItemId, FoodName, Calories, Quantity, Timestamp, Note)
+   VALUES (@userId, @foodItemId, @foodName, @calories, @quantity, @timestamp, @note)",
+      new SQLiteParameter("@userId", userId),
+       new SQLiteParameter("@foodItemId", dto.FoodItemId ?? (object)DBNull.Value),
+   new SQLiteParameter("@foodName", dto.FoodName),
+   new SQLiteParameter("@calories", dto.Calories),
+    new SQLiteParameter("@quantity", dto.Quantity),
+    new SQLiteParameter("@timestamp", dto.Timestamp.ToString("yyyy-MM-dd HH:mm:ss")),
+   new SQLiteParameter("@note", dto.Note ?? (object)DBNull.Value)
+   );
+     }
+        });
+ }
+
+        /// <summary>
+ /// Get food entries for a specific date
+    /// </summary>
+     public async Task<List<FoodEntryDto>> GetFoodEntriesForDateAsync(int userId, DateTime date)
+ {
+   return await Task.Run(() =>
+    {
+    var entries = new List<FoodEntryDto>();
+  
+      using (var context = new DietTrackerDbContext())
+      {
+    string dateString = date.ToString("yyyy-MM-dd");
+  using (var reader = context.ExecuteReader(@"
+     SELECT FoodItemId, FoodName, Calories, Quantity, Timestamp, Note
+      FROM FoodEntries 
+        WHERE UserId = @userId AND DATE(Timestamp) = @date
+      ORDER BY Timestamp DESC",
+   new SQLiteParameter("@userId", userId),
+new SQLiteParameter("@date", dateString)
+    ))
+      {
+        while (reader.Read())
+ {
+     entries.Add(new FoodEntryDto
+        {
+      FoodItemId = reader.IsDBNull(reader.GetOrdinal("FoodItemId")) ? null : (int?)reader.GetInt32("FoodItemId"),
+     FoodName = reader.GetString("FoodName"),
+     Calories = reader.GetInt32("Calories"),
+    Quantity = reader.GetDouble("Quantity"),
+    Timestamp = DateTime.Parse(reader.GetString("Timestamp")),
+       Note = reader.IsDBNull(reader.GetOrdinal("Note")) ? null : reader.GetString("Note")
+ });
+      }
+  }
+   }
+
+   return entries;
+ });
+        }
+
+/// <summary>
+   /// Add a new water entry for the user
+/// </summary>
+    public async Task AddWaterEntryAsync(int userId, int ml)
+{
+      await Task.Run(() =>
+     {
+    using (var context = new DietTrackerDbContext())
+  {
+ context.ExecuteNonQuery(@"
+   INSERT INTO WaterEntries (UserId, Ml, Timestamp)
+     VALUES (@userId, @ml, @timestamp)",
+  new SQLiteParameter("@userId", userId),
+new SQLiteParameter("@ml", ml),
+     new SQLiteParameter("@timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+ );
+      }
+   });
+      }
+
+/// <summary>
+    /// Get water entries for a specific date
+    /// </summary>
+  public async Task<List<WaterEntry>> GetWaterEntriesForDateAsync(int userId, DateTime date)
+ {
+ return await Task.Run(() =>
+        {
+      var entries = new List<WaterEntry>();
+        
+       using (var context = new DietTrackerDbContext())
+     {
+      string dateString = date.ToString("yyyy-MM-dd");
+using (var reader = context.ExecuteReader(@"
+       SELECT Id, Ml, Timestamp
+   FROM WaterEntries 
+   WHERE UserId = @userId AND DATE(Timestamp) = @date
+  ORDER BY Timestamp DESC",
+   new SQLiteParameter("@userId", userId),
+new SQLiteParameter("@date", dateString)
+      ))
+     {
+   while (reader.Read())
+   {
+         entries.Add(new WaterEntry
+       {
+       Id = reader.GetInt32("Id"),
+  UserId = userId,
+        Ml = reader.GetInt32("Ml"),
+    Timestamp = DateTime.Parse(reader.GetString("Timestamp"))
+    });
+     }
+     }
+    }
+
+   return entries;
+ });
+        }
+
+     /// <summary>
+        /// Add a new weight entry for the user
+ /// </summary>
+        public async Task AddWeightEntryAsync(int userId, double weightKg)
+ {
+   await Task.Run(() =>
+ {
+      using (var context = new DietTrackerDbContext())
+      {
+      context.ExecuteNonQuery(@"
+       INSERT INTO WeightEntries (UserId, WeightKg, Timestamp)
+VALUES (@userId, @weight, @timestamp)",
+   new SQLiteParameter("@userId", userId),
+     new SQLiteParameter("@weight", weightKg),
+    new SQLiteParameter("@timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+     );
+
+    // Update profile weight
+     context.ExecuteNonQuery(@"
+   UPDATE Profiles SET WeightKg = @weight, UpdatedAt = @updatedAt
+  WHERE UserId = @userId",
+new SQLiteParameter("@weight", weightKg),
+new SQLiteParameter("@updatedAt", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
+       new SQLiteParameter("@userId", userId)
+   );
+  }
+        });
+   }
+
+        /// <summary>
+     /// Get weight history for a date range
+ /// </summary>
+   public async Task<List<WeightEntryDto>> GetWeightHistoryAsync(int userId, DateTime from, DateTime to)
+     {
+        return await Task.Run(() =>
+  {
+       var entries = new List<WeightEntryDto>();
+      
+ using (var context = new DietTrackerDbContext())
+     {
+      using (var reader = context.ExecuteReader(@"
+   SELECT WeightKg, Timestamp
+FROM WeightEntries 
+       WHERE UserId = @userId AND DATE(Timestamp) BETWEEN @from AND @to
+       ORDER BY Timestamp ASC",
+   new SQLiteParameter("@userId", userId),
+ new SQLiteParameter("@from", from.ToString("yyyy-MM-dd")),
+   new SQLiteParameter("@to", to.ToString("yyyy-MM-dd"))
+     ))
+   {
+      while (reader.Read())
+      {
+   entries.Add(new WeightEntryDto
+      {
+        WeightKg = reader.GetDouble("WeightKg"),
+    Timestamp = DateTime.Parse(reader.GetString("Timestamp"))
+     });
+      }
+}
+        }
+
+      return entries;
+ });
+        }
+
+        /// <summary>
+ /// Get all available food items
+        /// </summary>
+ public async Task<List<FoodItem>> GetFoodItemsAsync()
+   {
+      return await Task.Run(() =>
+        {
+   var items = new List<FoodItem>();
+  
+    using (var context = new DietTrackerDbContext())
+     {
+    using (var reader = context.ExecuteReader(@"
+    SELECT Id, Name, DefaultCaloriesPerServing, ServingDescription
+      FROM FoodItems 
+       WHERE IsActive = 1
+        ORDER BY Name"))
+     {
+       while (reader.Read())
+       {
+        items.Add(new FoodItem
+    {
+   Id = reader.GetInt32("Id"),
+Name = reader.GetString("Name"),
+        DefaultCaloriesPerServing = reader.GetInt32("DefaultCaloriesPerServing"),
+ ServingDescription = reader.IsDBNull(reader.GetOrdinal("ServingDescription")) ? null : reader.GetString("ServingDescription")
+    });
+      }
+ }
+  }
+
+ return items;
+        });
+ }
+
+        /// <summary>
+   /// Delete a food entry by ID
+  /// </summary>
+   public async Task DeleteFoodEntryAsync(int entryId)
+ {
+     await Task.Run(() =>
+   {
+      using (var context = new DietTrackerDbContext())
+       {
+       context.ExecuteNonQuery("DELETE FROM FoodEntries WHERE Id = @id",
+     new SQLiteParameter("@id", entryId));
+   }
+     });
+   }
+
+ /// <summary>
+        /// Delete a water entry by ID
+/// </summary>
+    public async Task DeleteWaterEntryAsync(int entryId)
+     {
+ await Task.Run(() =>
+    {
+    using (var context = new DietTrackerDbContext())
+    {
+       context.ExecuteNonQuery("DELETE FROM WaterEntries WHERE Id = @id",
+       new SQLiteParameter("@id", entryId));
+      }
+  });
+ }
+
+ /// <summary>
+     /// Get total calories consumed for a specific date
+   /// </summary>
+   public async Task<int> GetTotalCaloriesForDateAsync(int userId, DateTime date)
+  {
+      return await Task.Run(() =>
+      {
+   using (var context = new DietTrackerDbContext())
+     {
+      string dateString = date.ToString("yyyy-MM-dd");
+  var result = context.ExecuteScalar(@"
+    SELECT COALESCE(SUM(Calories), 0)
+   FROM FoodEntries 
+       WHERE UserId = @userId AND DATE(Timestamp) = @date",
+  new SQLiteParameter("@userId", userId),
+   new SQLiteParameter("@date", dateString)
+     );
+
+     return Convert.ToInt32(result);
+   }
+        });
+   }
+
+     /// <summary>
+        /// Get total water consumed for a specific date
+ /// </summary>
+     public async Task<int> GetTotalWaterForDateAsync(int userId, DateTime date)
+ {
+        return await Task.Run(() =>
+  {
+  using (var context = new DietTrackerDbContext())
+     {
+      string dateString = date.ToString("yyyy-MM-dd");
+    var result = context.ExecuteScalar(@"
+SELECT COALESCE(SUM(Ml), 0)
+        FROM WaterEntries 
+     WHERE UserId = @userId AND DATE(Timestamp) = @date",
+    new SQLiteParameter("@userId", userId),
+        new SQLiteParameter("@date", dateString)
+    );
+
+  return Convert.ToInt32(result);
+    }
+  });
+        }
+    }
+}

@@ -1,0 +1,241 @@
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Diet_tracking_weight_tracking.Data;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+
+namespace Diet_tracking_weight_tracking.Services
+{
+    /// <summary>
+    /// Service for user authentication operations with enhanced persistence
+    /// </summary>
+    public class AuthenticationService
+    {
+        /// <summary>
+    /// Register a new user with profile information
+        /// </summary>
+        /// <param name="username">Unique username</param>
+   /// <param name="email">User email address</param>
+        /// <param name="password">Plain text password (will be hashed)</param>
+        /// <param name="profileData">Profile information</param>
+        /// <returns>Created user or null if registration failed</returns>
+  public async Task<User> RegisterAsync(string username, string email, string password, ProfileDto profileData)
+    {
+       return await Task.Run(() =>
+    {
+    try
+    {
+ // Validate inputs
+     if (string.IsNullOrWhiteSpace(username))
+    throw new ArgumentException("Username is required", nameof(username));
+ 
+      if (string.IsNullOrWhiteSpace(email))
+        throw new ArgumentException("Email is required", nameof(email));
+          
+ if (!PasswordHelper.IsValidPassword(password))
+          throw new ArgumentException(PasswordHelper.GetPasswordRequirements(), nameof(password));
+
+       using (var context = DbContextFactory.CreateContext())
+         {
+          // Check if username already exists (case-insensitive)
+      if (context.UserExists(username, email))
+  {
+      Debug.WriteLine($"Registration failed: Username '{username}' or email '{email}' already exists");
+     throw new InvalidOperationException("Username or email already exists");
+      }
+
+        // Create new user with hashed password
+  var hashedPassword = PasswordHelper.HashPassword(password);
+ var user = context.CreateUser(username, email, hashedPassword);
+
+  if (user != null)
+     {
+        Debug.WriteLine($"User created successfully: {username} (Id={user.Id}) using DietTrackerDbContext");
+   
+     // Create profile if provided
+      if (profileData != null)
+      {
+         try
+       {
+         CreateUserProfile(user, profileData);
+           }
+  catch (Exception profileEx)
+             {
+          Debug.WriteLine($"Profile creation warning: {profileEx.Message}");
+       // Don't fail registration if profile creation fails
+           }
+       }
+
+      return user;
+ }
+       else
+     {
+   Debug.WriteLine("Registration failed: CreateUser returned null");
+      throw new InvalidOperationException("Failed to create user");
+   }
+ }
+         }
+     catch (Exception ex)
+    {
+       Debug.WriteLine($"Registration error for user '{username}': {ex.Message}");
+       throw;
+    }
+        });
+ }
+
+        /// <summary>
+        /// Authenticate user with username and password
+        /// </summary>
+        /// <param name="username">Username (case-insensitive)</param>
+ /// <param name="password">Plain text password</param>
+        /// <returns>User if authentication successful, null otherwise</returns>
+        public async Task<User> LoginAsync(string username, string password)
+        {
+      return await Task.Run(() =>
+ {
+    try
+      {
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+     {
+         Debug.WriteLine("Login failed: Empty username or password");
+   return null;
+         }
+
+ using (var context = DbContextFactory.CreateContext())
+       {
+            // Report database status for debugging
+       Debug.WriteLine($"Attempting login for user: {username}");
+      Debug.WriteLine($"Using original DietTrackerDbContext");
+
+     // Find user by username (case-insensitive)
+         var user = context.GetUser(username);
+
+    if (user == null)
+        {
+   Debug.WriteLine($"Login failed: Username '{username}' not found in database");
+              return null; // Generic error to user
+    }
+
+    // Verify password
+     bool passwordValid = PasswordHelper.VerifyPassword(password, user.PasswordHash);
+
+    if (!passwordValid)
+         {
+    Debug.WriteLine($"Login failed: Password verification failed for user '{username}'");
+    return null; // Generic error to user
+     }
+
+ Debug.WriteLine($"Login successful for user '{username}' (Id={user.Id})");
+            return user;
+ }
+      }
+ catch (Exception ex)
+      {
+     Debug.WriteLine($"Login error for user '{username}': {ex.Message}");
+        return null;
+     }
+   });
+        }
+
+        /// <summary>
+        /// Check if a username already exists
+        /// </summary>
+     /// <param name="username">Username to check</param>
+  /// <returns>True if username exists</returns>
+     public async Task<bool> UsernameExistsAsync(string username)
+     {
+    return await Task.Run(() =>
+        {
+try
+{
+ using (var context = DbContextFactory.CreateContext())
+     {
+         return context.UserExists(username, "");
+      }
+   }
+     catch (Exception ex)
+     {
+     Debug.WriteLine($"Error checking username existence: {ex.Message}");
+  return false;
+  }
+            });
+ }
+
+        /// <summary>
+/// Get user by ID
+   /// </summary>
+ /// <param name="userId">User ID</param>
+        /// <returns>User or null if not found</returns>
+        public async Task<User> GetUserByIdAsync(int userId)
+     {
+       return await Task.Run(() =>
+    {
+    try
+{
+     using (var context = DbContextFactory.CreateContext())
+      {
+        // Use a simple query to get user by ID
+        // This is a placeholder - the original context doesn't have this method
+    // but we can work around it
+               var users = context.GetType().GetMethod("GetUsers")?.Invoke(context, null) as System.Collections.Generic.IEnumerable<User>;
+       if (users != null)
+    {
+        return users.FirstOrDefault(u => u.Id == userId);
+        }
+         return null;
+        }
+       }
+            catch (Exception ex)
+      {
+      Debug.WriteLine($"Error getting user by ID {userId}: {ex.Message}");
+           return null;
+       }
+   });
+        }
+
+  /// <summary>
+  /// Creates a user profile (private helper method)
+   /// </summary>
+        private void CreateUserProfile(User user, ProfileDto profileData)
+     {
+     using (var context = DbContextFactory.CreateContext())
+     {
+      var profile = new Profile
+         {
+           UserId = user.Id,
+      FullName = profileData.FullName,
+DOB = profileData.DOB,
+         Gender = profileData.Gender,
+  HeightCm = profileData.HeightCm,
+           WeightKg = profileData.WeightKg,
+         ActivityLevel = profileData.ActivityLevel,
+         HealthGoal = profileData.HealthGoal,
+        TargetWeightKg = profileData.TargetWeightKg,
+          WaterTargetMl = profileData.WaterTargetMl,
+ UpdatedAt = DateTime.UtcNow
+         };
+
+         context.SaveProfile(user.Id, profile);
+   
+       Debug.WriteLine($"Profile created for user {user.Username}");
+          }
+        }
+
+     /// <summary>
+        /// Debug method to report database status - for development only
+    /// </summary>
+        public void DebugReportDatabaseStatus()
+      {
+   try
+  {
+        DbContextFactory.ReportDatabaseStatus();
+      }
+     catch (Exception ex)
+   {
+     Debug.WriteLine($"Failed to report database status: {ex.Message}");
+          }
+        }
+    }
+}

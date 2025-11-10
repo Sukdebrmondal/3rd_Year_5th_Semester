@@ -1,0 +1,582 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+using Diet_tracking_weight_tracking.Services;
+
+namespace Diet_tracking_weight_tracking.Forms
+{
+    /// <summary>
+  /// Main dashboard form for tracking daily food, water, and weight
+    /// </summary>
+    public partial class DashboardForm : Form
+    {
+        private readonly User _user;
+private readonly ProfileService _profileService;
+   private readonly EntryService _entryService;
+   private ProfileDto _userProfile;
+    private List<FoodItem> _foodItems;
+ 
+  // Quick Add FlowLayoutPanel
+     private FlowLayoutPanel flowQuickAdd;
+
+        public DashboardForm(User user)
+     {
+InitializeComponent();
+  _user = user;
+   _profileService = new ProfileService();
+   _entryService = new EntryService();
+    
+    // Wire up resize event for responsive behavior
+ this.Resize += DashboardForm_Resize;
+          
+      // Setup DataGridViews
+  SetupDataGridViews();
+            
+    LoadUserData();
+        }
+
+        #region DataGridView Setup and Management
+
+        /// <summary>
+     /// Setup all DataGridViews with proper columns and event handlers
+        /// </summary>
+        private void SetupDataGridViews()
+        {
+         SetupFoodDataGridView();
+ SetupWaterDataGridView();
+            SetupWeightDataGridView();
+     }
+
+        private void SetupFoodDataGridView()
+        {
+     dgvFoodEntries.Columns.Clear();
+     dgvFoodEntries.AllowUserToAddRows = false;
+            dgvFoodEntries.ReadOnly = true;
+   dgvFoodEntries.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+     dgvFoodEntries.MultiSelect = false;
+            dgvFoodEntries.RowHeadersVisible = false;
+  dgvFoodEntries.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+   // Add columns
+  dgvFoodEntries.Columns.Add(new DataGridViewTextBoxColumn 
+      { 
+      Name = "Food", 
+      HeaderText = "Food", 
+      ReadOnly = true,
+      FillWeight = 40 
+      });
+      
+         dgvFoodEntries.Columns.Add(new DataGridViewTextBoxColumn 
+    { 
+    Name = "Calories", 
+   HeaderText = "Cal", 
+      ReadOnly = true,
+  FillWeight = 20 
+      });
+      
+     dgvFoodEntries.Columns.Add(new DataGridViewTextBoxColumn 
+          { 
+      Name = "Quantity", 
+              HeaderText = "Qty", 
+       ReadOnly = true,
+       FillWeight = 20 
+      });
+    
+     dgvFoodEntries.Columns.Add(new DataGridViewTextBoxColumn 
+            { 
+    Name = "Time", 
+       HeaderText = "Time", 
+      ReadOnly = true,
+           FillWeight = 20 
+            });
+
+            // Hidden ID column
+    dgvFoodEntries.Columns.Add(new DataGridViewTextBoxColumn 
+ { 
+                Name = "Id", 
+       Visible = false 
+     });
+
+       // Delete button column
+       var deleteCol = new DataGridViewButtonColumn
+  {
+   Name = "Delete",
+        HeaderText = "",
+     Text = "Delete",
+   UseColumnTextForButtonValue = true,
+     Width = 80,
+ AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+     DefaultCellStyle = new DataGridViewCellStyle
+      {
+      BackColor = Color.FromArgb(220, 53, 69),
+    ForeColor = Color.White,
+     Alignment = DataGridViewContentAlignment.MiddleCenter
+      }
+         };
+            dgvFoodEntries.Columns.Add(deleteCol);
+
+       // Event handlers
+       dgvFoodEntries.CellContentClick += DgvFoodEntries_CellContentClick;
+            dgvFoodEntries.KeyDown += DgvFoodEntries_KeyDown;
+      }
+
+        private void SetupWaterDataGridView()
+        {
+   dgvWaterEntries.Columns.Clear();
+            dgvWaterEntries.AllowUserToAddRows = false;
+dgvWaterEntries.ReadOnly = true;
+            dgvWaterEntries.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+   dgvWaterEntries.MultiSelect = false;
+ dgvWaterEntries.RowHeadersVisible = false;
+            dgvWaterEntries.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+  // Add columns
+  dgvWaterEntries.Columns.Add(new DataGridViewTextBoxColumn 
+      { 
+    Name = "Amount", 
+      HeaderText = "Amount", 
+   ReadOnly = true,
+   FillWeight = 50 
+            });
+      
+      dgvWaterEntries.Columns.Add(new DataGridViewTextBoxColumn 
+      { 
+           Name = "Time", 
+   HeaderText = "Time", 
+    ReadOnly = true,
+    FillWeight = 50 
+        });
+
+       // Hidden ID column
+            dgvWaterEntries.Columns.Add(new DataGridViewTextBoxColumn 
+ { 
+            Name = "Id", 
+       Visible = false 
+    });
+
+            // Delete button column
+   var deleteCol = new DataGridViewButtonColumn
+            {
+        Name = "Delete",
+      HeaderText = "",
+                Text = "Delete",
+      UseColumnTextForButtonValue = true,
+ Width = 80,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+    DefaultCellStyle = new DataGridViewCellStyle
+            {
+       BackColor = Color.FromArgb(220, 53, 69),
+     ForeColor = Color.White,
+       Alignment = DataGridViewContentAlignment.MiddleCenter
+      }
+   };
+            dgvWaterEntries.Columns.Add(deleteCol);
+
+   // Event handlers
+          dgvWaterEntries.CellContentClick += DgvWaterEntries_CellContentClick;
+      dgvWaterEntries.KeyDown += DgvWaterEntries_KeyDown;
+        }
+
+ private void SetupWeightDataGridView()
+        {
+     dgvWeightEntries.Columns.Clear();
+         dgvWeightEntries.AllowUserToAddRows = false;
+     dgvWeightEntries.ReadOnly = true;
+         dgvWeightEntries.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvWeightEntries.MultiSelect = false;
+            dgvWeightEntries.RowHeadersVisible = false;
+            dgvWeightEntries.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+      // Add columns
+      dgvWeightEntries.Columns.Add(new DataGridViewTextBoxColumn 
+   { 
+Name = "Weight", 
+       HeaderText = "Weight (kg)", 
+      ReadOnly = true,
+      FillWeight = 50 
+ });
+    
+ dgvWeightEntries.Columns.Add(new DataGridViewTextBoxColumn 
+          { 
+       Name = "Time", 
+   HeaderText = "Date", 
+      ReadOnly = true,
+      FillWeight = 50 
+     });
+
+   // Hidden ID column
+            dgvWeightEntries.Columns.Add(new DataGridViewTextBoxColumn 
+  { 
+        Name = "Id", 
+       Visible = false 
+   });
+
+            // Delete button column
+       var deleteCol = new DataGridViewButtonColumn
+      {
+      Name = "Delete",
+    HeaderText = "",
+   Text = "Delete",
+      UseColumnTextForButtonValue = true,
+         Width = 80,
+    AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+   DefaultCellStyle = new DataGridViewCellStyle
+      {
+BackColor = Color.FromArgb(220, 53, 69),
+           ForeColor = Color.White,
+Alignment = DataGridViewContentAlignment.MiddleCenter
+     }
+ };
+      dgvWeightEntries.Columns.Add(deleteCol);
+
+  // Event handlers
+            dgvWeightEntries.CellContentClick += DgvWeightEntries_CellContentClick;
+     dgvWeightEntries.KeyDown += DgvWeightEntries_KeyDown;
+   }
+
+        #endregion
+
+        #region Delete Event Handlers
+
+     private async void DgvFoodEntries_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+ if (e.RowIndex < 0) return;
+
+          // Detect delete button click
+     if (dgvFoodEntries.Columns[e.ColumnIndex].Name == "Delete")
+  {
+       await DeleteFoodEntryAsync(e.RowIndex);
+         }
+ }
+
+        private async void DgvFoodEntries_KeyDown(object sender, KeyEventArgs e)
+        {
+    if (e.KeyCode == Keys.Delete && dgvFoodEntries.SelectedRows.Count > 0)
+       {
+        await DeleteFoodEntryAsync(dgvFoodEntries.SelectedRows[0].Index);
+    }
+        }
+
+   private async Task DeleteFoodEntryAsync(int rowIndex)
+   {
+   try
+ {
+       var row = dgvFoodEntries.Rows[rowIndex];
+       var idObj = row.Cells["Id"].Value;
+       if (idObj == null) return;
+
+       int entryId = Convert.ToInt32(idObj);
+      var foodName = row.Cells["Food"].Value?.ToString();
+       var calories = row.Cells["Calories"].Value?.ToString();
+
+      // Confirm deletion
+    var result = MessageBox.Show(
+              $"Delete '{foodName}' ({calories} cal) from today's log?", 
+   "Confirm Delete", 
+       MessageBoxButtons.YesNo, 
+        MessageBoxIcon.Warning);
+            
+                if (result != DialogResult.Yes) return;
+
+     // Remove row optimistically for responsive UI
+        dgvFoodEntries.Rows.RemoveAt(rowIndex);
+   UpdateFoodTotals();
+
+       // Delete from database on background thread
+      var success = await Task.Run(() => _entryService.DeleteFoodEntryAsync(entryId));
+
+     if (!success)
+  {
+        // Deletion failed - reload data to restore correct state
+          MessageBox.Show("Failed to delete food entry. Please try again.", "Error", 
+ MessageBoxButtons.OK, MessageBoxIcon.Error);
+    await LoadFoodEntriesForTodayAsync();
+          }
+                else
+       {
+   // Success - update charts and show feedback
+         await UpdateCaloriesPieChartAsync(DateTime.Today);
+ ShowSuccessMessage("Food entry deleted successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+           MessageBox.Show($"Error deleting food entry: {ex.Message}", "Error", 
+          MessageBoxButtons.OK, MessageBoxIcon.Error);
+     await LoadFoodEntriesForTodayAsync();
+     }
+ }
+
+        private async void DgvWaterEntries_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+  if (e.RowIndex < 0) return;
+
+         if (dgvWaterEntries.Columns[e.ColumnIndex].Name == "Delete")
+            {
+          await DeleteWaterEntryAsync(e.RowIndex);
+ }
+        }
+
+        private async void DgvWaterEntries_KeyDown(object sender, KeyEventArgs e)
+      {
+      if (e.KeyCode == Keys.Delete && dgvWaterEntries.SelectedRows.Count > 0)
+        {
+     await DeleteWaterEntryAsync(dgvWaterEntries.SelectedRows[0].Index);
+  }
+        }
+
+     private async Task DeleteWaterEntryAsync(int rowIndex)
+        {
+         try
+            {
+             var row = dgvWaterEntries.Rows[rowIndex];
+        var idObj = row.Cells["Id"].Value;
+     if (idObj == null) return;
+
+  int entryId = Convert.ToInt32(idObj);
+              var amount = row.Cells["Amount"].Value?.ToString();
+
+    // Confirm deletion
+      var result = MessageBox.Show(
+              $"Delete water entry ({amount})?", 
+         "Confirm Delete", 
+  MessageBoxButtons.YesNo, 
+MessageBoxIcon.Warning);
+   
+   if (result != DialogResult.Yes) return;
+
+     // Remove row optimistically
+ dgvWaterEntries.Rows.RemoveAt(rowIndex);
+           await UpdateWaterTotals();
+
+        // Delete from database
+    var success = await Task.Run(() => _entryService.DeleteWaterEntryAsync(entryId));
+
+     if (!success)
+    {
+       MessageBox.Show("Failed to delete water entry. Please try again.", "Error", 
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            await LoadWaterEntriesForTodayAsync();
+        }
+     else
+       {
+    ShowSuccessMessage("Water entry deleted successfully");
+            }
+     }
+      catch (Exception ex)
+    {
+ MessageBox.Show($"Error deleting water entry: {ex.Message}", "Error", 
+         MessageBoxButtons.OK, MessageBoxIcon.Error);
+       await LoadWaterEntriesForTodayAsync();
+            }
+  }
+
+        private async void DgvWeightEntries_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+          if (e.RowIndex < 0) return;
+
+          if (dgvWeightEntries.Columns[e.ColumnIndex].Name == "Delete")
+            {
+     await DeleteWeightEntryAsync(e.RowIndex);
+ }
+        }
+
+        private async void DgvWeightEntries_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && dgvWeightEntries.SelectedRows.Count > 0)
+     {
+          await DeleteWeightEntryAsync(dgvWeightEntries.SelectedRows[0].Index);
+  }
+        }
+
+        private async Task DeleteWeightEntryAsync(int rowIndex)
+     {
+    try
+ {
+                var row = dgvWeightEntries.Rows[rowIndex];
+                var idObj = row.Cells["Id"].Value;
+           if (idObj == null) return;
+
+      int entryId = Convert.ToInt32(idObj);
+   var weight = row.Cells["Weight"].Value?.ToString();
+       var date = row.Cells["Time"].Value?.ToString();
+
+    // Confirm deletion
+var result = MessageBox.Show(
+   $"Delete weight entry ({weight} kg on {date})?", 
+          "Confirm Delete", 
+            MessageBoxButtons.YesNo, 
+           MessageBoxIcon.Warning);
+         
+        if (result != DialogResult.Yes) return;
+
+        // Remove row optimistically
+  dgvWeightEntries.Rows.RemoveAt(rowIndex);
+
+                // Delete from database
+      var success = await Task.Run(() => _entryService.DeleteWeightEntryAsync(entryId));
+
+       if (!success)
+   {
+        MessageBox.Show("Failed to delete weight entry. Please try again.", "Error", 
+  MessageBoxButtons.OK, MessageBoxIcon.Error);
+       await LoadWeightEntriesAsync();
+        }
+      else
+    {
+                // Update weight chart and BMI
+           await UpdateWeightLineChartAsync(DateTime.Today.AddDays(-30), DateTime.Today);
+      await UpdateHeaderStats();
+       ShowSuccessMessage("Weight entry deleted successfully");
+  }
+       }
+     catch (Exception ex)
+         {
+   MessageBox.Show($"Error deleting weight entry: {ex.Message}", "Error", 
+            MessageBoxButtons.OK, MessageBoxIcon.Error);
+      await LoadWeightEntriesAsync();
+            }
+        }
+
+#endregion
+
+        #region Data Loading Methods
+
+  private async Task LoadFoodEntriesForTodayAsync()
+        {
+            try
+    {
+            var entries = await _entryService.GetFoodEntriesForDateAsync(_user.Id, DateTime.Today);
+    
+  dgvFoodEntries.Rows.Clear();
+     foreach (var entry in entries.OrderBy(e => e.Timestamp))
+       {
+ dgvFoodEntries.Rows.Add(
+         entry.FoodName, 
+         entry.Calories, 
+          entry.Quantity.ToString("F1"), 
+          entry.Timestamp.ToString("HH:mm"),
+ entry.Id
+     );
+    }
+
+                UpdateFoodTotals();
+    }
+            catch (Exception ex)
+  {
+       MessageBox.Show($"Error loading food entries: {ex.Message}", "Error", 
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+       }
+        }
+
+        private async Task LoadWaterEntriesForTodayAsync()
+        {
+     try
+     {
+           var entries = await _entryService.GetWaterEntriesForDateAsync(_user.Id, DateTime.Today);
+    
+         dgvWaterEntries.Rows.Clear();
+     foreach (var entry in entries.OrderBy(e => e.Timestamp))
+            {
+   dgvWaterEntries.Rows.Add(
+  $"{entry.Ml} ml", 
+         entry.Timestamp.ToString("HH:mm"),
+            entry.Id
+  );
+      }
+
+   await UpdateWaterTotals();
+      }
+    catch (Exception ex)
+  {
+         MessageBox.Show($"Error loading water entries: {ex.Message}", "Error", 
+        MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+  }
+
+   private async Task LoadWeightEntriesAsync()
+   {
+            try
+     {
+   var entries = await _entryService.GetWeightHistoryAsync(_user.Id, DateTime.Today.AddDays(-30), DateTime.Today);
+     
+                dgvWeightEntries.Rows.Clear();
+                foreach (var entry in entries.OrderByDescending(e => e.Timestamp).Take(10)) // Show last 10 entries
+   {
+         dgvWeightEntries.Rows.Add(
+         entry.WeightKg.ToString("F1"), 
+  entry.Timestamp.ToString("MMM dd"),
+         entry.Id
+     );
+     }
+    }
+     catch (Exception ex)
+    {
+   MessageBox.Show($"Error loading weight entries: {ex.Message}", "Error", 
+  MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+        }
+
+        #endregion
+
+   #region Helper Methods
+
+        private void UpdateFoodTotals()
+        {
+          int totalCalories = 0;
+          foreach (DataGridViewRow row in dgvFoodEntries.Rows)
+       {
+   if (row.Cells["Calories"].Value != null)
+ {
+              if (int.TryParse(row.Cells["Calories"].Value.ToString(), out int calories))
+         {
+          totalCalories += calories;
+      }
+      }
+            }
+     lblCalorieTotal.Text = $"Total: {totalCalories} calories";
+      }
+
+        private async Task UpdateWaterTotals()
+        {
+   int totalWater = 0;
+            foreach (DataGridViewRow row in dgvWaterEntries.Rows)
+         {
+     if (row.Cells["Amount"].Value != null)
+            {
+     var amountStr = row.Cells["Amount"].Value.ToString().Replace(" ml", "");
+     if (int.TryParse(amountStr, out int ml))
+        {
+                  totalWater += ml;
+        }
+      }
+          }
+
+            int target = _userProfile?.WaterTargetMl ?? 2000;
+            lblWaterTotal.Text = $"{totalWater} / {target} ml";
+            
+         // Update progress bar
+  double progress = Math.Min(100, (double)totalWater / target * 100);
+        progressWater.Value = (int)progress;
+        }
+
+        private void ShowSuccessMessage(string message)
+        {
+         // Simple success feedback - could be enhanced with a temporary status label
+        var timer = new Timer { Interval = 3000 };
+            var originalText = this.Text;
+  this.Text = message;
+      timer.Tick += (s, e) => 
+  {
+       this.Text = originalText;
+  timer.Dispose();
+            };
+         timer.Start();
+        }
+
+        #endregion

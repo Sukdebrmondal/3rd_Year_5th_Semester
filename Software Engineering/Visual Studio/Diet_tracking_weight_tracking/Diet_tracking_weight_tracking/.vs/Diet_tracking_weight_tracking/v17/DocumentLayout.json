@@ -1,0 +1,946 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|e:\\repositary\\3rd_year_5th_semester\\software engineering\\visual studio\\diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\profilesetupform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\profilesetupform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\food_catalog_implementation_complete.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\food_catalog_implementation_complete.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\services\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\services\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\models\\fooditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\models\\fooditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\models\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\models\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\models\\foodentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\models\\foodentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\models\\waterentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\models\\waterentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\models\\weightentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\models\\weightentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\dtos\\profiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\dtos\\profiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\dtos\\foodentrydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\dtos\\foodentrydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\dtos\\weightentrydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\dtos\\weightentrydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\data\\diettrackerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\data\\diettrackerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\data\\databaseinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\data\\databaseinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\services\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\services\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\services\\profileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\services\\profileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\services\\entryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\services\\entryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\loginform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\loginform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\loginform.resx||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\loginform.resx||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\registerform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\registerform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\registerform.resx||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\registerform.resx||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\profilesetupform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\profilesetupform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\profilesetupform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\profilesetupform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\profilesetupform.resx||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\profilesetupform.resx||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\dashboardform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\dashboardform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\forms\\dashboardform.resx||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\forms\\dashboardform.resx||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\services\\charthelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\services\\charthelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\dtos\\chartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\dtos\\chartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\chart_implementation.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\chart_implementation.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\dashboard_fixes.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\dashboard_fixes.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\delete_functionality.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\delete_functionality.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\error_resolution_summary.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\error_resolution_summary.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\data\\apppaths.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\data\\apppaths.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\data\\dbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\data\\dbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\testing\\authenticationtesthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\testing\\authenticationtesthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\authentication_fix_complete.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\authentication_fix_complete.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\authentication_persistence_resolved.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\authentication_persistence_resolved.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\services\\simplecredstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\services\\simplecredstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\testing\\credentialtestform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\testing\\credentialtestform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\simple_credentials_implementation.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\simple_credentials_implementation.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\services\\comboboxitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\services\\comboboxitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\services\\foodcatalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\services\\foodcatalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\diet_tracking_weight_tracking\\updated_app_flow_registration_to_profile.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{14776E77-CE38-4DA1-B7AF-E4FDC4C8EB61}|Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking.csproj|solutionrelative:diet_tracking_weight_tracking\\updated_app_flow_registration_to_profile.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\COMPLETE_APP_FLOW_IMPLEMENTATION.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\FINAL_APP_FLOW_IMPLEMENTATION.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\BUILD_ERROR_RESOLUTION_GUIDE.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\BUILD_STATUS_UPDATE.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\PROFILE_EDIT_IMPLEMENTATION.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\PROFILE_EDIT_VISUAL_GUIDE.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "README.md",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\README.md",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\README.md",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\README.md",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALkAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T13:16:45.041Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginForm.cs [Design]",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\LoginForm.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\final_project\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\LoginForm.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:21:54.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProfileSetupForm.cs [Design]",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\final_project\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:21:57.332Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RegisterForm.cs [Design]",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\RegisterForm.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\RegisterForm.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\final_project\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\RegisterForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:22:00.121Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DashboardForm.cs [Design]",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\DashboardForm.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\DashboardForm.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\DashboardForm.cs [Design]",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Forms\\DashboardForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:21:37.069Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FOOD_CATALOG_IMPLEMENTATION_COMPLETE.md",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\FOOD_CATALOG_IMPLEMENTATION_COMPLETE.md",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\FOOD_CATALOG_IMPLEMENTATION_COMPLETE.md",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\FOOD_CATALOG_IMPLEMENTATION_COMPLETE.md",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\FOOD_CATALOG_IMPLEMENTATION_COMPLETE.md",
+              "ViewState": "AgIAAGgAAAAANDMzM7MiwBMBAADEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T17:06:04.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "UPDATED_APP_FLOW_REGISTRATION_TO_PROFILE.md",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\UPDATED_APP_FLOW_REGISTRATION_TO_PROFILE.md",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\UPDATED_APP_FLOW_REGISTRATION_TO_PROFILE.md",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\UPDATED_APP_FLOW_REGISTRATION_TO_PROFILE.md",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\UPDATED_APP_FLOW_REGISTRATION_TO_PROFILE.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOEAAACiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T17:23:32.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PasswordHelper.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\PasswordHelper.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Services\\PasswordHelper.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\PasswordHelper.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Services\\PasswordHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:04:51.842Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "COMPLETE_APP_FLOW_IMPLEMENTATION.md",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\COMPLETE_APP_FLOW_IMPLEMENTATION.md",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\COMPLETE_APP_FLOW_IMPLEMENTATION.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAP4AAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T16:23:29.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "FoodCatalogService.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\FoodCatalogService.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Services\\FoodCatalogService.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\FoodCatalogService.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Services\\FoodCatalogService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T17:19:31.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "ComboBoxItem.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\ComboBoxItem.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Services\\ComboBoxItem.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\ComboBoxItem.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Services\\ComboBoxItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T16:50:41.744Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "FINAL_APP_FLOW_IMPLEMENTATION.md",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\FINAL_APP_FLOW_IMPLEMENTATION.md",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\FINAL_APP_FLOW_IMPLEMENTATION.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOEAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T16:25:16.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "BUILD_ERROR_RESOLUTION_GUIDE.md",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\BUILD_ERROR_RESOLUTION_GUIDE.md",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\BUILD_ERROR_RESOLUTION_GUIDE.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALAAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T16:29:48.858Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "BUILD_STATUS_UPDATE.md",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\BUILD_STATUS_UPDATE.md",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\BUILD_STATUS_UPDATE.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIsAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T16:31:24.718Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "DbContextFactory.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Data\\DbContextFactory.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Data\\DbContextFactory.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Data\\DbContextFactory.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Data\\DbContextFactory.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAEBVwFoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T15:15:11.157Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "SimpleCredStore.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\SimpleCredStore.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Services\\SimpleCredStore.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\SimpleCredStore.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Services\\SimpleCredStore.cs",
+              "ViewState": "AgIAAJgAAAAAAAAAAABRwJsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T16:05:51.093Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "CredentialTestForm.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Testing\\CredentialTestForm.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Testing\\CredentialTestForm.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Testing\\CredentialTestForm.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Testing\\CredentialTestForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T16:07:43.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "SIMPLE_CREDENTIALS_IMPLEMENTATION.md",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\SIMPLE_CREDENTIALS_IMPLEMENTATION.md",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\SIMPLE_CREDENTIALS_IMPLEMENTATION.md",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\SIMPLE_CREDENTIALS_IMPLEMENTATION.md",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\SIMPLE_CREDENTIALS_IMPLEMENTATION.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEBAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T16:09:41.989Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "AuthenticationTestHelper.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Testing\\AuthenticationTestHelper.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Testing\\AuthenticationTestHelper.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Testing\\AuthenticationTestHelper.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Testing\\AuthenticationTestHelper.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAIBJwK0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T15:18:08.943Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "AppPaths.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Data\\AppPaths.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Data\\AppPaths.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Data\\AppPaths.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Data\\AppPaths.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T15:14:03.148Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "AUTHENTICATION_PERSISTENCE_RESOLVED.md",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\AUTHENTICATION_PERSISTENCE_RESOLVED.md",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\AUTHENTICATION_PERSISTENCE_RESOLVED.md",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\AUTHENTICATION_PERSISTENCE_RESOLVED.md",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\AUTHENTICATION_PERSISTENCE_RESOLVED.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPwAAACVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T15:27:21.969Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "AUTHENTICATION_FIX_COMPLETE.md",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\AUTHENTICATION_FIX_COMPLETE.md",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\AUTHENTICATION_FIX_COMPLETE.md",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\AUTHENTICATION_FIX_COMPLETE.md",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\AUTHENTICATION_FIX_COMPLETE.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFkBAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T15:20:08.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "ChartHelpers.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\ChartHelpers.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Services\\ChartHelpers.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\ChartHelpers.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Services\\ChartHelpers.cs",
+              "ViewState": "AgIAAG0BAAAAAAAAAIBZwHIBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:37:52.706Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "PROFILE_EDIT_IMPLEMENTATION.md",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\PROFILE_EDIT_IMPLEMENTATION.md",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\PROFILE_EDIT_IMPLEMENTATION.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMBAACoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T15:03:36.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "PROFILE_EDIT_VISUAL_GUIDE.md",
+              "DocumentMoniker": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\PROFILE_EDIT_VISUAL_GUIDE.md",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\PROFILE_EDIT_VISUAL_GUIDE.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T15:03:58.726Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "DELETE_FUNCTIONALITY.md",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DELETE_FUNCTIONALITY.md",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\DELETE_FUNCTIONALITY.md",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DELETE_FUNCTIONALITY.md",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\DELETE_FUNCTIONALITY.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUBAACzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T14:34:24.593Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "ERROR_RESOLUTION_SUMMARY.md",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\ERROR_RESOLUTION_SUMMARY.md",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\ERROR_RESOLUTION_SUMMARY.md",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\ERROR_RESOLUTION_SUMMARY.md",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\ERROR_RESOLUTION_SUMMARY.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOYAAACiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T14:42:28.977Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "ChartDto.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DTOs\\ChartDto.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\DTOs\\ChartDto.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DTOs\\ChartDto.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\DTOs\\ChartDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:37:59.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "DASHBOARD_FIXES.md",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DASHBOARD_FIXES.md",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\DASHBOARD_FIXES.md",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DASHBOARD_FIXES.md",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\DASHBOARD_FIXES.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPEAAADnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T14:09:45.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "CHART_IMPLEMENTATION.md",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\CHART_IMPLEMENTATION.md",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\CHART_IMPLEMENTATION.md",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\CHART_IMPLEMENTATION.md",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\CHART_IMPLEMENTATION.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFMBAAC0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-10T13:51:30.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FoodItem.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\FoodItem.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Models\\FoodItem.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\FoodItem.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Models\\FoodItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:24:04.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "WeightEntry.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\WeightEntry.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Models\\WeightEntry.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\WeightEntry.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Models\\WeightEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:03:42.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "WaterEntry.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\WaterEntry.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Models\\WaterEntry.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\WaterEntry.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Models\\WaterEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:03:37.246Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "FoodEntry.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\FoodEntry.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Models\\FoodEntry.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\FoodEntry.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Models\\FoodEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:03:30.946Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Profile.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\Profile.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Models\\Profile.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\Profile.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Models\\Profile.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAowDsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:03:18.538Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "User.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Models\\User.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\User.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:03:06.798Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Enums.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\Enums.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Models\\Enums.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Models\\Enums.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Models\\Enums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:03:00.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Form1.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Form1.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:00:53.878Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ProfileDto.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DTOs\\ProfileDto.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\DTOs\\ProfileDto.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DTOs\\ProfileDto.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\DTOs\\ProfileDto.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAMBqwBYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:03:48.658Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "DashboardForm.resx",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\DashboardForm.resx",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\DashboardForm.resx",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\DashboardForm.resx",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Forms\\DashboardForm.resx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-11-10T13:13:34.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "DashboardForm.Designer.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\DashboardForm.Designer.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\DashboardForm.Designer.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\DashboardForm.Designer.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Forms\\DashboardForm.Designer.cs",
+              "ViewState": "AgIAABgCAAAAAAAAAABRwBsCAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:13:21.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "DashboardForm.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\DashboardForm.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\DashboardForm.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\DashboardForm.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Forms\\DashboardForm.cs",
+              "ViewState": "AgIAAFIEAAAAAAAAAGBnwF8EAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:11:49.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ProfileSetupForm.resx",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.resx",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.resx",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.resx",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.resx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-11-10T13:11:01.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ProfileSetupForm.Designer.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.Designer.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.Designer.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.Designer.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.Designer.cs",
+              "ViewState": "AgIAALUBAAAAAAAAAIBZwLoBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:10:13.339Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ProfileSetupForm.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Forms\\ProfileSetupForm.cs",
+              "ViewState": "AgIAALIAAAAAAAAAAMBdwLgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:09:08.844Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "RegisterForm.resx",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\RegisterForm.resx",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\RegisterForm.resx",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\RegisterForm.resx",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Forms\\RegisterForm.resx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-11-10T13:08:37.018Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "RegisterForm.Designer.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\RegisterForm.Designer.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\RegisterForm.Designer.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\RegisterForm.Designer.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Forms\\RegisterForm.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:08:25.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "RegisterForm.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\RegisterForm.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\RegisterForm.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\RegisterForm.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Forms\\RegisterForm.cs",
+              "ViewState": "AgIAAKYAAAAAAAAAAIBZwKsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:07:40.195Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "LoginForm.resx",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\LoginForm.resx",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\LoginForm.resx",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\final_project\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\LoginForm.resx*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHcAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-11-10T13:07:21.082Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "LoginForm.Designer.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\LoginForm.Designer.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\LoginForm.Designer.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\final_project\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\LoginForm.Designer.cs*",
+              "ViewState": "AgIAAKcAAAAAAAAAAABBwKgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:07:03.468Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\LoginForm.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Forms\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\raj\\source\\repos\\final_project\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Forms\\LoginForm.cs*",
+              "ViewState": "AgIAANkAAAAAAAAAAIBZwN4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:06:39.694Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Program.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Program.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Program.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Program.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAABhwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:06:24.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "EntryService.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\EntryService.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Services\\EntryService.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\EntryService.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Services\\EntryService.cs",
+              "ViewState": "AgIAAAwBAAAAAAAAAABRwBIBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:06:16.919Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ProfileService.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\ProfileService.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Services\\ProfileService.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\ProfileService.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Services\\ProfileService.cs",
+              "ViewState": "AgIAAKAAAAAAAAAAACBjwKoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:05:39.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AuthenticationService.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\AuthenticationService.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Services\\AuthenticationService.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Services\\AuthenticationService.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Services\\AuthenticationService.cs",
+              "ViewState": "AgIAAOwAAAAAAAAAAEBVwPAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:05:08.889Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "DatabaseInitializer.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Data\\DatabaseInitializer.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Data\\DatabaseInitializer.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Data\\DatabaseInitializer.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Data\\DatabaseInitializer.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAABRwD8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:04:44.435Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "DietTrackerDbContext.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Data\\DietTrackerDbContext.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\Data\\DietTrackerDbContext.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Data\\DietTrackerDbContext.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\Data\\DietTrackerDbContext.cs",
+              "ViewState": "AgIAAO8BAAAAAAAAACBrwPoBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:04:18.027Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "WeightEntryDto.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DTOs\\WeightEntryDto.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\DTOs\\WeightEntryDto.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DTOs\\WeightEntryDto.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\DTOs\\WeightEntryDto.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAIBXwA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:03:59.23Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "FoodEntryDto.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DTOs\\FoodEntryDto.cs",
+              "RelativeDocumentMoniker": "Diet_tracking_weight_tracking\\DTOs\\FoodEntryDto.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\Diet_tracking_weight_tracking\\DTOs\\FoodEntryDto.cs",
+              "RelativeToolTip": "Diet_tracking_weight_tracking\\DTOs\\FoodEntryDto.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAABfwBEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T13:03:55.02Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

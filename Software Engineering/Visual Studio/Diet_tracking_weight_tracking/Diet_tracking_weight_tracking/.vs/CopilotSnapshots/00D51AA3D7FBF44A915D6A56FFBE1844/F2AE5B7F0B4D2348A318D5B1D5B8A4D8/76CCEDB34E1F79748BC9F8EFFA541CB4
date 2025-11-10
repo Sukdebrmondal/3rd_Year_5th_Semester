@@ -1,0 +1,26 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Diet_tracking_weight_tracking.Models
+{
+    /// <summary>
+   /// Food item catalog entity
+    /// </summary>
+    public class FoodItem
+   {
+    [Key]
+    public int Id { get; set; }
+
+[Required]
+  [StringLength(100)]
+     public string Name { get; set; }
+
+      [Required]
+        [Range(1, 10000)]
+    public int DefaultCaloriesPerServing { get; set; }
+
+    [StringLength(50)]
+        public string ServingDescription { get; set; }
+
+     public bool IsActive { get; set; } = true;
+    }
+}

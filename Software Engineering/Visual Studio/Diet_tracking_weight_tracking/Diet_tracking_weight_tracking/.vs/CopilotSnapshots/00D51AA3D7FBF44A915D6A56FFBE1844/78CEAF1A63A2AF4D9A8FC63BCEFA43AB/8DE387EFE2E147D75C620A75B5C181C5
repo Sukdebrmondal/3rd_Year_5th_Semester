@@ -1,0 +1,107 @@
+﻿using System;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Diet_tracking_weight_tracking.Models;
+using Diet_tracking_weight_tracking.Services;
+
+namespace Diet_tracking_weight_tracking.Forms
+{
+    /// <summary>
+    /// Login form for user authentication
+    /// </summary>
+   public partial class LoginForm : Form
+    {
+ private readonly AuthenticationService _authService;
+
+   public LoginForm()
+  {
+       InitializeComponent();
+     _authService = new AuthenticationService();
+  }
+
+   private async void btnLogin_Click(object sender, EventArgs e)
+   {
+      try
+  {
+   btnLogin.Enabled = false;
+       btnLogin.Text = "Logging in...";
+
+  string username = txtUsername.Text.Trim();
+   string password = txtPassword.Text;
+
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+      {
+    MessageBox.Show("Please enter both username and password.", "Validation Error", 
+  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+ return;
+        }
+
+   User user = await _authService.LoginAsync(username, password);
+
+    if (user != null)
+     {
+      // Login successful - check if user has a profile
+      var profileService = new ProfileService();
+    var profile = await profileService.GetProfileAsync(user.Id);
+
+  if (profile == null)
+     {
+      // Redirect to profile setup
+  var profileSetupForm = new ProfileSetupForm(user);
+    this.Hide();
+    profileSetupForm.ShowDialog();
+     this.Close();
+    }
+     else
+     {
+        // Redirect to dashboard
+      var dashboardForm = new DashboardForm(user);
+     this.Hide();
+       dashboardForm.ShowDialog();
+ this.Close();
+}
+   }
+else
+     {
+    MessageBox.Show("Invalid username or password.", "Login Failed", 
+      MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+  }
+  catch (Exception ex)
+    {
+ MessageBox.Show($"An error occurred during login: {ex.Message}", "Error", 
+     MessageBoxButtons.OK, MessageBoxIcon.Error);
+  }
+   finally
+ {
+       btnLogin.Enabled = true;
+   btnLogin.Text = "Login";
+  }
+        }
+
+    private void lnkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+  {
+        var registerForm = new RegisterForm();
+     this.Hide();
+  registerForm.ShowDialog();
+    this.Close();
+    }
+
+ private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+       if (e.KeyChar == (char)Keys.Enter)
+      {
+  btnLogin_Click(sender, e);
+        }
+        }
+
+   private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
+  {
+     if (e.KeyChar == (char)Keys.Enter)
+  {
+ txtPassword.Focus();
+  }
+    }
+    }
+}

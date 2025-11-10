@@ -1,0 +1,26 @@
+﻿using System;
+using System.Windows.Forms;
+using Diet_tracking_weight_tracking.Data;
+using Diet_tracking_weight_tracking.Forms;
+
+namespace Diet_tracking_weight_tracking
+{
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // Initialize the database
+            DatabaseInitializer.Initialize();
+     
+            // Start with the login form
+            Application.Run(new LoginForm());
+        }
+    }
+}

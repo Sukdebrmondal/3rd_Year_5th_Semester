@@ -1,0 +1,125 @@
+﻿using System;
+using System.Data.SQLite;
+using System.Threading.Tasks;
+using Diet_tracking_weight_tracking.Data;
+using Diet_tracking_weight_tracking.DTOs;
+using Diet_tracking_weight_tracking.Models;
+
+namespace Diet_tracking_weight_tracking.Services
+{
+    /// <summary>
+    /// Service for user authentication operations
+    /// </summary>
+    public class AuthenticationService
+    {
+     /// <summary>
+        /// Register a new user with profile information
+     /// </summary>
+   public async Task<User> RegisterAsync(string username, string email, string password, ProfileDto profileData)
+      {
+      return await Task.Run(() =>
+        {
+      using (var context = new DietTrackerDbContext())
+   {
+   // Check if username already exists
+    var existingUser = context.ExecuteScalar(
+     "SELECT COUNT(*) FROM Users WHERE Username = @username OR Email = @email",
+   new SQLiteParameter("@username", username),
+      new SQLiteParameter("@email", email)
+     );
+
+     if (Convert.ToInt32(existingUser) > 0)
+       {
+       throw new InvalidOperationException("Username or email already exists");
+      }
+
+  // Hash the password
+       string passwordHash = HashPassword(password);
+
+     // Insert new user
+  context.ExecuteNonQuery(@"
+   INSERT INTO Users (Username, PasswordHash, Email, CreatedAt) 
+      VALUES (@username, @passwordHash, @email, @createdAt)",
+  new SQLiteParameter("@username", username),
+ new SQLiteParameter("@passwordHash", passwordHash),
+    new SQLiteParameter("@email", email),
+    new SQLiteParameter("@createdAt", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+   );
+
+// Get the new user ID
+ var userId = context.ExecuteScalar("SELECT last_insert_rowid()");
+     int userIdInt = Convert.ToInt32(userId);
+
+ // Create profile if provided
+      if (profileData != null)
+     {
+   var profileService = new ProfileService();
+     profileService.SaveProfile(userIdInt, profileData);
+    }
+
+ // Return the new user
+     var user = new User
+     {
+     Id = userIdInt,
+      Username = username,
+Email = email,
+   CreatedAt = DateTime.Now
+       };
+
+     return user;
+   }
+        });
+     }
+
+/// <summary>
+ /// Authenticate a user with username and password
+   /// </summary>
+     public async Task<User> LoginAsync(string username, string password)
+  {
+      return await Task.Run(() =>
+     {
+     using (var context = new DietTrackerDbContext())
+ {
+  using (var reader = context.ExecuteReader(
+    "SELECT Id, Username, PasswordHash, Email, CreatedAt FROM Users WHERE Username = @username",
+   new SQLiteParameter("@username", username)
+      ))
+    {
+  if (reader.Read())
+          {
+    string storedHash = reader.GetString("PasswordHash");
+  if (VerifyPassword(password, storedHash))
+   {
+          return new User
+    {
+       Id = reader.GetInt32("Id"),
+     Username = reader.GetString("Username"),
+     Email = reader.GetString("Email"),
+        CreatedAt = DateTime.Parse(reader.GetString("CreatedAt"))
+  };
+      }
+     }
+  }
+
+     return null; // Invalid credentials
+     }
+   });
+        }
+
+        /// <summary>
+ /// Hash a password using the PasswordHelper
+      /// </summary>
+   public string HashPassword(string password)
+     {
+        return PasswordHelper.HashPassword(password);
+  }
+
+        /// <summary>
+   /// Verify a password using the PasswordHelper
+     /// </summary>
+        public bool VerifyPassword(string password, string hash)
+     {
+   return PasswordHelper.VerifyPassword(password, hash);
+        }
+    }
+}

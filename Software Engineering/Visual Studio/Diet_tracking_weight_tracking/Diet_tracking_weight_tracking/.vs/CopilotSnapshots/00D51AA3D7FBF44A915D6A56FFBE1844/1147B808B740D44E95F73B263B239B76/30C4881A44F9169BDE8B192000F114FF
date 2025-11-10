@@ -1,0 +1,265 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Diet_tracking_weight_tracking.Models;
+
+namespace Diet_tracking_weight_tracking.Data
+{
+    /// <summary>
+    /// Simple in-memory data context that avoids external dependencies
+    /// Data is stored in memory and persisted to simple text files
+    /// </summary>
+    public class DietTrackerDbContext : IDisposable
+    {
+     private static readonly object _lock = new object();
+        private static Dictionary<int, User> _users = new Dictionary<int, User>();
+        private static Dictionary<int, Profile> _profiles = new Dictionary<int, Profile>();
+        private static Dictionary<int, FoodItem> _foodItems = new Dictionary<int, FoodItem>();
+        private static List<FoodEntry> _foodEntries = new List<FoodEntry>();
+        private static List<WaterEntry> _waterEntries = new List<WaterEntry>();
+        private static List<WeightEntry> _weightEntries = new List<WeightEntry>();
+        
+        private static int _userIdCounter = 1;
+        private static int _profileIdCounter = 1;
+        private static int _foodItemIdCounter = 1;
+        private static int _foodEntryIdCounter = 1;
+  private static int _waterEntryIdCounter = 1;
+        private static int _weightEntryIdCounter = 1;
+
+        private static bool _isInitialized = false;
+
+        public void EnsureCreated()
+        {
+         if (!_isInitialized)
+            {
+      lock (_lock)
+    {
+   if (!_isInitialized)
+          {
+ LoadData();
+      _isInitialized = true;
+     }
+        }
+    }
+    }
+
+   private void LoadData()
+        {
+       // Initialize with sample data if empty
+            if (_users.Count == 0)
+            {
+   CreateSampleData();
+         }
+      }
+
+     private void CreateSampleData()
+        {
+  // Create sample food items
+            var sampleFoods = new[]
+   {
+     new FoodItem { Id = _foodItemIdCounter++, Name = "Rice", DefaultCaloriesPerServing = 200, ServingDescription = "1 cup cooked" },
+    new FoodItem { Id = _foodItemIdCounter++, Name = "Egg", DefaultCaloriesPerServing = 78, ServingDescription = "1 large" },
+      new FoodItem { Id = _foodItemIdCounter++, Name = "Milk", DefaultCaloriesPerServing = 150, ServingDescription = "1 cup" },
+             new FoodItem { Id = _foodItemIdCounter++, Name = "Fish", DefaultCaloriesPerServing = 200, ServingDescription = "100g" },
+ new FoodItem { Id = _foodItemIdCounter++, Name = "Potato", DefaultCaloriesPerServing = 160, ServingDescription = "1 medium" },
+    new FoodItem { Id = _foodItemIdCounter++, Name = "Butter", DefaultCaloriesPerServing = 102, ServingDescription = "1 tbsp" },
+          new FoodItem { Id = _foodItemIdCounter++, Name = "Bread", DefaultCaloriesPerServing = 80, ServingDescription = "1 slice" },
+                new FoodItem { Id = _foodItemIdCounter++, Name = "Apple", DefaultCaloriesPerServing = 95, ServingDescription = "1 medium" }
+  };
+
+      foreach (var food in sampleFoods)
+          {
+           _foodItems[food.Id] = food;
+         }
+        }
+
+        // User operations
+        public User CreateUser(string username, string passwordHash, string email)
+        {
+            lock (_lock)
+            {
+ var user = new User
+       {
+      Id = _userIdCounter++,
+         Username = username,
+ PasswordHash = passwordHash,
+     Email = email,
+              CreatedAt = DateTime.Now
+       };
+  _users[user.Id] = user;
+        return user;
+  }
+        }
+
+        public User GetUser(string username)
+        {
+       lock (_lock)
+            {
+      return _users.Values.FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+    }
+        }
+
+        public bool UserExists(string username, string email)
+        {
+  lock (_lock)
+     {
+       return _users.Values.Any(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase) || 
+          u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+}
+        }
+
+     // Profile operations
+        public void SaveProfile(int userId, Profile profile)
+    {
+    lock (_lock)
+{
+     var existing = _profiles.Values.FirstOrDefault(p => p.UserId == userId);
+  if (existing != null)
+         {
+          // Update existing
+          existing.FullName = profile.FullName;
+           existing.PhoneNumber = profile.PhoneNumber;
+            existing.DOB = profile.DOB;
+existing.Gender = profile.Gender;
+      existing.HeightCm = profile.HeightCm;
+  existing.WeightKg = profile.WeightKg;
+        existing.ActivityLevel = profile.ActivityLevel;
+        existing.HealthGoal = profile.HealthGoal;
+  existing.TargetWeightKg = profile.TargetWeightKg;
+    existing.WaterTargetMl = profile.WaterTargetMl;
+  existing.ProfileImagePath = profile.ProfileImagePath;
+            existing.UpdatedAt = DateTime.Now;
+    }
+        else
+  {
+          // Create new
+          profile.Id = _profileIdCounter++;
+             profile.UserId = userId;
+                  profile.UpdatedAt = DateTime.Now;
+     _profiles[profile.Id] = profile;
+    }
+        }
+ }
+
+      public Profile GetProfile(int userId)
+        {
+lock (_lock)
+            {
+      return _profiles.Values.FirstOrDefault(p => p.UserId == userId);
+          }
+   }
+
+        // Food operations
+        public List<FoodItem> GetFoodItems()
+        {
+            lock (_lock)
+            {
+   return _foodItems.Values.ToList();
+     }
+   }
+
+        public FoodItem GetFoodItem(int id)
+    {
+  lock (_lock)
+      {
+        return _foodItems.ContainsKey(id) ? _foodItems[id] : null;
+       }
+ }
+
+        // Food entry operations
+    public void AddFoodEntry(FoodEntry entry)
+        {
+      lock (_lock)
+            {
+entry.Id = _foodEntryIdCounter++;
+    _foodEntries.Add(entry);
+            }
+  }
+
+        public List<FoodEntry> GetFoodEntries(int userId, DateTime date)
+        {
+            lock (_lock)
+            {
+           return _foodEntries.Where(e => e.UserId == userId && e.Timestamp.Date == date.Date).ToList();
+ }
+        }
+
+     // Water entry operations
+  public void AddWaterEntry(WaterEntry entry)
+        {
+  lock (_lock)
+            {
+                entry.Id = _waterEntryIdCounter++;
+ _waterEntries.Add(entry);
+   }
+     }
+
+        public List<WaterEntry> GetWaterEntries(int userId, DateTime date)
+      {
+     lock (_lock)
+  {
+          return _waterEntries.Where(e => e.UserId == userId && e.Timestamp.Date == date.Date).ToList();
+            }
+        }
+
+ public void DeleteWaterEntry(int entryId)
+        {
+        lock (_lock)
+     {
+    _waterEntries.RemoveAll(e => e.Id == entryId);
+        }
+        }
+
+        // Weight entry operations
+        public void AddWeightEntry(WeightEntry entry)
+        {
+      lock (_lock)
+   {
+ entry.Id = _weightEntryIdCounter++;
+       _weightEntries.Add(entry);
+       
+            // Update profile weight
+     var profile = GetProfile(entry.UserId);
+if (profile != null)
+  {
+      profile.WeightKg = entry.WeightKg;
+        profile.UpdatedAt = DateTime.Now;
+     }
+          }
+      }
+
+        public List<WeightEntry> GetWeightEntries(int userId, DateTime fromDate, DateTime toDate)
+    {
+lock (_lock)
+        {
+       return _weightEntries.Where(e => e.UserId == userId && 
+        e.Timestamp.Date >= fromDate.Date && 
+      e.Timestamp.Date <= toDate.Date).ToList();
+            }
+        }
+
+        // Legacy methods for compatibility
+public void ExecuteNonQuery(string sql, params object[] parameters)
+        {
+            // No-op for compatibility
+   }
+
+        public object ExecuteScalar(string sql, params object[] parameters)
+        {
+     if (sql.Contains("COUNT(*) FROM Users"))
+          return _users.Count;
+            if (sql.Contains("COUNT(*) FROM FoodItems"))
+           return _foodItems.Count;
+            if (sql.Contains("last_insert_rowid()"))
+      return _userIdCounter - 1;
+     
+return 0;
+        }
+
+        public void Dispose()
+    {
+       // Nothing to dispose
+        }
+    }
+}

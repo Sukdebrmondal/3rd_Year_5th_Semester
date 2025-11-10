@@ -1,0 +1,157 @@
+﻿using System;
+using System.Data.SQLite;
+using System.IO;
+using Diet_tracking_weight_tracking.Models;
+
+namespace Diet_tracking_weight_tracking.Data
+{
+    /// <summary>
+    /// Simple SQLite database context for the Diet Tracker application
+    /// </summary>
+    public class DietTrackerDbContext : IDisposable
+    {
+      private SQLiteConnection _connection;
+      private readonly string _connectionString;
+
+     public DietTrackerDbContext()
+        {
+  string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DietTracker");
+      Directory.CreateDirectory(appDataPath);
+    string dbPath = Path.Combine(appDataPath, "DietTracker.db");
+ _connectionString = $"Data Source={dbPath};Version=3;";
+  }
+
+      public SQLiteConnection GetConnection()
+     {
+  if (_connection == null)
+         {
+          _connection = new SQLiteConnection(_connectionString);
+  _connection.Open();
+          }
+   return _connection;
+        }
+
+ public void EnsureCreated()
+        {
+            var connection = GetConnection();
+      
+   // Create Users table
+        ExecuteNonQuery(@"
+         CREATE TABLE IF NOT EXISTS Users (
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+ Username TEXT NOT NULL UNIQUE,
+      PasswordHash TEXT NOT NULL,
+         Email TEXT NOT NULL,
+      CreatedAt TEXT NOT NULL
+    )");
+
+   // Create Profiles table
+        ExecuteNonQuery(@"
+        CREATE TABLE IF NOT EXISTS Profiles (
+      Id INTEGER PRIMARY KEY AUTOINCREMENT,
+          UserId INTEGER NOT NULL,
+        FullName TEXT NOT NULL,
+           PhoneNumber TEXT,
+ DOB TEXT NOT NULL,
+      Gender INTEGER NOT NULL,
+             HeightCm INTEGER NOT NULL,
+    WeightKg REAL NOT NULL,
+             ActivityLevel INTEGER NOT NULL,
+    HealthGoal INTEGER NOT NULL,
+TargetWeightKg REAL,
+    WaterTargetMl INTEGER NOT NULL DEFAULT 2000,
+        ProfileImagePath TEXT,
+    UpdatedAt TEXT NOT NULL,
+   FOREIGN KEY (UserId) REFERENCES Users(Id)
+         )");
+
+    // Create FoodItems table
+          ExecuteNonQuery(@"
+   CREATE TABLE IF NOT EXISTS FoodItems (
+   Id INTEGER PRIMARY KEY AUTOINCREMENT,
+          Name TEXT NOT NULL,
+       DefaultCaloriesPerServing INTEGER NOT NULL,
+           ServingDescription TEXT,
+ IsActive INTEGER NOT NULL DEFAULT 1
+     )");
+
+   // Create FoodEntries table
+            ExecuteNonQuery(@"
+       CREATE TABLE IF NOT EXISTS FoodEntries (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    UserId INTEGER NOT NULL,
+     FoodItemId INTEGER,
+ FoodName TEXT NOT NULL,
+       Calories INTEGER NOT NULL,
+         Quantity REAL NOT NULL,
+       Timestamp TEXT NOT NULL,
+      Note TEXT,
+FOREIGN KEY (UserId) REFERENCES Users(Id),
+    FOREIGN KEY (FoodItemId) REFERENCES FoodItems(Id)
+  )");
+
+       // Create WaterEntries table
+   ExecuteNonQuery(@"
+         CREATE TABLE IF NOT EXISTS WaterEntries (
+       Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    UserId INTEGER NOT NULL,
+   Ml INTEGER NOT NULL,
+         Timestamp TEXT NOT NULL,
+          FOREIGN KEY (UserId) REFERENCES Users(Id)
+            )");
+
+       // Create WeightEntries table
+ ExecuteNonQuery(@"
+ CREATE TABLE IF NOT EXISTS WeightEntries (
+Id INTEGER PRIMARY KEY AUTOINCREMENT,
+       UserId INTEGER NOT NULL,
+        WeightKg REAL NOT NULL,
+         Timestamp TEXT NOT NULL,
+  FOREIGN KEY (UserId) REFERENCES Users(Id)
+)");
+        }
+
+      public void ExecuteNonQuery(string sql, params SQLiteParameter[] parameters)
+ {
+       var connection = GetConnection();
+            using (var command = new SQLiteCommand(sql, connection))
+          {
+      if (parameters != null)
+         {
+     command.Parameters.AddRange(parameters);
+   }
+      command.ExecuteNonQuery();
+     }
+   }
+
+     public SQLiteDataReader ExecuteReader(string sql, params SQLiteParameter[] parameters)
+{
+       var connection = GetConnection();
+   var command = new SQLiteCommand(sql, connection);
+       if (parameters != null)
+       {
+   command.Parameters.AddRange(parameters);
+      }
+  return command.ExecuteReader();
+      }
+
+      public object ExecuteScalar(string sql, params SQLiteParameter[] parameters)
+     {
+     var connection = GetConnection();
+  using (var command = new SQLiteCommand(sql, connection))
+   {
+       if (parameters != null)
+             {
+        command.Parameters.AddRange(parameters);
+       }
+         return command.ExecuteScalar();
+  }
+        }
+
+   public void Dispose()
+     {
+            _connection?.Close();
+    _connection?.Dispose();
+        }
+    }
+}
