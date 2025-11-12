@@ -1,0 +1,61 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\practice1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F8798C37-4B78-4560-95AA-194B2445970B}|practice1\\practice1.csproj|e:\\repositary\\3rd_year_5th_semester\\software engineering\\visual studio\\practice1\\practice1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F8798C37-4B78-4560-95AA-194B2445970B}|practice1\\practice1.csproj|solutionrelative:practice1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8798C37-4B78-4560-95AA-194B2445970B}|practice1\\practice1.csproj|E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\practice1\\practice1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8798C37-4B78-4560-95AA-194B2445970B}|practice1\\practice1.csproj|solutionrelative:practice1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\practice1\\practice1\\Form1.cs",
+              "RelativeDocumentMoniker": "practice1\\Form1.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\practice1\\practice1\\Form1.cs",
+              "RelativeToolTip": "practice1\\Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T03:09:43.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\practice1\\practice1\\Form1.cs",
+              "RelativeDocumentMoniker": "practice1\\Form1.cs",
+              "ToolTip": "E:\\repositary\\3rd_Year_5th_Semester\\Software Engineering\\Visual Studio\\practice1\\practice1\\Form1.cs [Design]",
+              "RelativeToolTip": "practice1\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T02:58:49.872Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
